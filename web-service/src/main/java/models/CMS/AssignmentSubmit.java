@@ -5,6 +5,8 @@
  */
 package models.CMS;
 
+import java.util.ArrayList;
+import models.UploadedFile;
 import models.User;
 
 /**
@@ -17,4 +19,5 @@ public class AssignmentSubmit {
 	Assignment assignmet;
 	int grade;
 	String studentNotes;
+	ArrayList<UploadedFile> files;
 }

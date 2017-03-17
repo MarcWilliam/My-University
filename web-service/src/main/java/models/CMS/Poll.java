@@ -5,15 +5,13 @@
  */
 package models.CMS;
 
-import models.SEntity;
+import java.util.ArrayList;
 
 /**
  *
  * @author marcw
  */
-public class Department extends SEntity {
+public class Poll extends Post {
 
-	Department parent;
-	String name;
-	String description;
+	ArrayList<PollQuestion> questions;
 }

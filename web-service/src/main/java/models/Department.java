@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.social;
+package models;
 
-import models.*;
+import models.SEntity;
 
 /**
  *
- * @author AAGOOGLE
+ * @author marcw
  */
-public class Post extends SEntity {
+public class Department extends SEntity {
 
-	public User ownerUser;
-
-	public String title, content;
-
+	Department parent;
+	String name;
+	String description;
 }

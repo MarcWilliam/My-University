@@ -5,17 +5,10 @@
  */
 package models.CMS;
 
-import models.Department;
-import java.util.ArrayList;
-import models.SEntity;
-
 /**
  *
  * @author marcw
  */
-public class Cource extends SEntity {
+public class Announcement extends Post {
 
-	String name, code, description;
-	ArrayList<Cource> prerequisites;
-	Department department;
 }

@@ -5,17 +5,21 @@
  */
 package models.CMS;
 
-import models.Department;
 import java.util.ArrayList;
-import models.SEntity;
 
 /**
  *
  * @author marcw
  */
-public class Cource extends SEntity {
+public class PollQuestion {
 
-	String name, code, description;
-	ArrayList<Cource> prerequisites;
-	Department department;
+	ArrayList<Choices> options;
+
+	boolean hasTextArea;
+
+	static class Choices {
+
+		int number;
+		String text;
+	}
 }

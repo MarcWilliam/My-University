@@ -5,15 +5,15 @@
  */
 package models.CMS;
 
-import java.util.Date;
+import models.*;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class Assignment extends Post {
+public class Group extends SEntity {
 
-	Date dueDate, lateSubmits;
-	int maxGrade;
-	CourceOffering cource;
+	Group parent;
+	String name, description;
+
 }

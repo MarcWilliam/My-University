@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.social;
+package models.CMS;
 
-import models.*;
+import models.User;
 
 /**
  *
- * @author AAGOOGLE
+ * @author marcw
  */
-public class Comment extends SEntity {
+public class PollAnswer {
 
-	public User ownerUser;
-
-	public String title, content;
-
+	Poll poll;
+	User user;
+	int optionNumber;
+	String answer;
 }

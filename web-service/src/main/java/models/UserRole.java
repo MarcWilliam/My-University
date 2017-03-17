@@ -14,7 +14,7 @@ public class UserRole {
 	String name, description;
 
 	public static enum PermissionItme {
-		USER, ASSIGNMENT, ASSIGNMENT_SUBMIT, COURSE, COURSE_OFFERING, DEPARTMENT
+		USER, ASSIGNMENT, ASSIGNMENT_SUBMIT, COURSE, COURSE_OFFERING, DEPARTMENT, GROUP
 	}
 
 	public static class Permission {

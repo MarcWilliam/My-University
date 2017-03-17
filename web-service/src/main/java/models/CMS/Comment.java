@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.social;
+package models.CMS;
 
 import models.*;
 
@@ -11,10 +11,10 @@ import models.*;
  *
  * @author AAGOOGLE
  */
-public class Group extends SEntity {
+public class Comment extends SEntity {
 
-	public User ownerUser;
-
-	public String name, description;
+	User user;
+	Comment parent;
+	String content;
 
 }

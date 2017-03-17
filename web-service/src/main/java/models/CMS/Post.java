@@ -5,17 +5,19 @@
  */
 package models.CMS;
 
-import models.Department;
 import java.util.ArrayList;
-import models.SEntity;
+import models.*;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class Cource extends SEntity {
+public class Post extends SEntity {
 
-	String name, code, description;
-	ArrayList<Cource> prerequisites;
-	Department department;
+	User creater;
+	ArrayList<Comment> Comments;
+	ArrayList<Group> Groups;
+	ArrayList<UploadedFile> files;
+	String title, content;
+
 }
