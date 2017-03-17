@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package models.social;
 
-import java.util.Date;
+import models.*;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class Assignment {
+public class Post extends SEntity {
 
-	String title, description;
-	Date dueDate, lateSubmits;
-	int maxGrade;
-	CourceOffering cource;
+	public User ownerUser;
+
+	public String title, content;
+
 }
