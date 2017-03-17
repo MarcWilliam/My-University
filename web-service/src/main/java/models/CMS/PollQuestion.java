@@ -6,14 +6,16 @@
 package models.CMS;
 
 import java.util.ArrayList;
+import models.SEntity;
 
 /**
  *
  * @author marcw
  */
-public class PollQuestion {
+public class PollQuestion extends SEntity {
 
 	ArrayList<Choices> options;
+	boolean isRequired;
 
 	boolean hasTextArea;
 

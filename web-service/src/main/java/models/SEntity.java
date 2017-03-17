@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.util.Date;
+
 /**
  *
  * @author marcw
@@ -12,6 +14,7 @@ package models;
 public abstract class SEntity {
 
 	protected int id;
+	protected Date createdAt, updatedAt;
 
 	public boolean save() {
 		return (this.id == 0) ? this.create() : this.update();

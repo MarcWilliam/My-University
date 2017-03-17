@@ -6,14 +6,13 @@
 package models.CMS;
 
 import java.util.ArrayList;
-import models.UploadedFile;
-import models.User;
+import models.*;
 
 /**
  *
  * @author marcw
  */
-public class AssignmentSubmit {
+public class AssignmentSubmit extends SEntity {
 
 	User student;
 	Assignment assignmet;

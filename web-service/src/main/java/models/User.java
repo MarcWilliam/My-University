@@ -6,7 +6,6 @@
 package models;
 
 import java.util.Date;
-import models.SEntity;
 
 /**
  *
@@ -14,9 +13,17 @@ import models.SEntity;
  */
 public class User extends SEntity {
 
-	String name;
-	String email;
+	String name, email;
+	int universityID, phone;
 	Date birthDate;
-	
+
 	private String hasedPassword;
+
+	boolean login(String email, String password) {
+		return false;
+	}
+
+	boolean logout() {
+		return false;
+	}
 }

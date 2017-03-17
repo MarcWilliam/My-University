@@ -5,6 +5,7 @@
  */
 package models.CMS;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,4 +17,5 @@ public class Assignment extends Post {
 	Date dueDate, lateSubmits;
 	int maxGrade;
 	CourceOffering cource;
+	ArrayList<Group> groups;
 }
