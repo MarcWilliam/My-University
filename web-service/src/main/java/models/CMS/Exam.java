@@ -11,10 +11,12 @@ import java.util.Date;
  *
  * @author marcw
  */
-public class Assignment extends Post {
+public class Exam extends Post {
 
-	Date dueDate, lateSubmits;
-	int maxGrade;
+	int maxGrades;
 	CourceOffering cource;
-	Group[] groups;
+
+	Date StartTime, EndTime;
+
+	Group[] Groups;
 }

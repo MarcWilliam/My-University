@@ -6,7 +6,6 @@
 package models.CMS;
 
 import models.Department;
-import java.util.ArrayList;
 import models.SEntity;
 
 /**
@@ -16,6 +15,6 @@ import models.SEntity;
 public class Cource extends SEntity {
 
 	String name, code, description;
-	ArrayList<Cource> prerequisites;
+	Cource[] prerequisites;
 	Department department;
 }

@@ -5,7 +5,6 @@
  */
 package models.CMS;
 
-import java.util.ArrayList;
 import models.*;
 
 /**
@@ -15,9 +14,9 @@ import models.*;
 public class Post extends SEntity implements Notification.Subject<User> {
 
 	User creater;
-	ArrayList<Comment> Comments;
-	ArrayList<Group> Groups;
-	ArrayList<UpFile> files;
+	Comment[] Comments;
+	Group[] Groups;
+	UpFile[] files;
 	String title, content;
 
 	@Override

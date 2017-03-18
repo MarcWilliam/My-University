@@ -5,13 +5,11 @@
  */
 package models.CMS;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author marcw
  */
 public class Poll extends Post {
 
-	ArrayList<PollQuestion> questions;
+	PollQuestion[] questions;
 }

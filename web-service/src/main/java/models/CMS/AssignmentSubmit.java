@@ -5,7 +5,6 @@
  */
 package models.CMS;
 
-import java.util.ArrayList;
 import models.*;
 
 /**
@@ -18,5 +17,5 @@ public class AssignmentSubmit extends SEntity {
 	Assignment assignmet;
 	int grade;
 	String studentNotes;
-	ArrayList<UpFile> files;
+	UpFile[] files;
 }

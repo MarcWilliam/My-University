@@ -5,7 +5,6 @@
  */
 package models.CMS;
 
-import java.util.ArrayList;
 import models.SEntity;
 
 /**
@@ -14,7 +13,7 @@ import models.SEntity;
  */
 public class PollQuestion extends SEntity {
 
-	ArrayList<Choices> options;
+	Choices[] options;
 	boolean isRequired;
 
 	boolean hasTextArea;
