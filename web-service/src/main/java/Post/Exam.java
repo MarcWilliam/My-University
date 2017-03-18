@@ -1,7 +1,7 @@
 package Post;
 
 import java.util.Date;
-import enrole.CourceOffering;
+import enrole.CourseOffering;
 import enrole.Group;
 
 /**
@@ -11,7 +11,7 @@ import enrole.Group;
 public class Exam extends Post {
 
 	int maxGrades;
-	CourceOffering cource;
+	CourseOffering course;
 
 	Date StartTime, EndTime;
 

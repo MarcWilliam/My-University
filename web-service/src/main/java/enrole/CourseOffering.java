@@ -4,9 +4,9 @@ package enrole;
  *
  * @author marcw
  */
-public class CourceOffering extends SEntity {
+public class CourseOffering extends SEntity {
 
-	Cource cource;
+	Course course;
 	int Year;
 	Semester semester;
 	User[] staff;

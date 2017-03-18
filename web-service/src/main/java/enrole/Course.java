@@ -4,10 +4,10 @@ package enrole;
  *
  * @author marcw
  */
-public class Cource extends SEntity {
+public class Course extends SEntity {
 
 	String name, code, description;
-	Cource[] prerequisites;
+	Course[] prerequisites;
 	int creditHours;
 	int level;
 	Department department;

@@ -9,9 +9,9 @@ package Controllers;
  *
  * @author marcw
  */
-public class CourceController {
+public class CourseController {
 
-	void createCource() {
+	void createCourse() {
 
 	}
 }
