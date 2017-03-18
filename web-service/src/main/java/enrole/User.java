@@ -3,13 +3,13 @@ package enrole;
 import Notification.Notification;
 import Notification.Observer;
 import java.util.Date;
-import Post.Post;
+import Post.AbstractPost;
 
 /**
  *
  * @author marcw
  */
-public class User extends SEntity implements Observer<Post> {
+public class User extends SEntity implements Observer<AbstractPost> {
 
 	String name, email;
 	int universityID, phone;
@@ -28,7 +28,7 @@ public class User extends SEntity implements Observer<Post> {
 	}
 
 	@Override
-	public boolean sendNotification(Post subject, Notification Notification) {
+	public boolean sendNotification(AbstractPost subject, Notification Notification) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 

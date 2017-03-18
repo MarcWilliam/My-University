@@ -5,10 +5,16 @@
  */
 package Post;
 
+import enrole.CourseOffering;
+import enrole.Group;
+
 /**
  *
  * @author marcw
  */
-public class Post extends AbstractPost {
+public class Graded extends AbstractPost {
 
+	CourseOffering cource;
+	Group[] groups;
+	int maxGrade, scaleFactor;
 }

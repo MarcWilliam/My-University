@@ -8,12 +8,12 @@ import enrole.SEntity;
  */
 public class PollQuestion extends SEntity {
 
-	Choices[] options;
+	Choice[] choices;
 	boolean isRequired;
 
 	boolean hasTextArea;
 
-	static class Choices {
+	static class Choice {
 
 		int number;
 		String text;
