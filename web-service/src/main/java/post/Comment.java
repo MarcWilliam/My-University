@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package post;
 
-import models.SEntity;
+import enrole.SEntity;
+import enrole.User;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class Department extends SEntity {
+public class Comment extends SEntity {
 
-	Department parent;
-	String name;
-	String description;
+	User user;
+	Comment parent;
+	String content;
+
 }

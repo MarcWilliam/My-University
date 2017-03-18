@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package enrole;
 
-import models.*;
+import enrole.SEntity;
 
 /**
  *
  * @author AAGOOGLE
  */
-public class Comment extends SEntity {
+public class Group extends SEntity {
 
-	User user;
-	Comment parent;
-	String content;
+	Group parent;
+	String name, description;
 
 }

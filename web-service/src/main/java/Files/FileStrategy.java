@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package Files;
+
+import java.io.File;
 
 /**
  *
  * @author marcw
  */
-public enum Semester {
-	FALL, SPRING, SUMMER
+public abstract class FileStrategy {
+
+	abstract boolean validateFile(File file);
+
+	abstract boolean compressFile(File file);
 }

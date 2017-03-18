@@ -3,25 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package post;
 
-import java.io.File;
+import enrole.User;
 
 /**
  *
  * @author marcw
  */
-public class UpFile extends SEntity {
+public class PollAnswer {
 
-	String Path;
-	File file;
-	User UploaderBy;
-
-	static enum Type {
-		IMG, VIDEO, Document
-	}
-
-	UpFile.Type getFileType() {
-		return null;
-	}
+	Poll poll;
+	User user;
+	int optionNumber;
+	String answer;
 }

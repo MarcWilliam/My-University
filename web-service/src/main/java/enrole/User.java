@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package enrole;
 
+import post.Post;
+import Notification.Notification;
+import Notification.Observer;
 import java.util.Date;
-import models.CMS.*;
 
 /**
  *
  * @author marcw
  */
-public class User extends SEntity implements Notification.Observer<Post> {
+public class User extends SEntity implements Observer<Post> {
 
 	String name, email;
 	int universityID, phone;

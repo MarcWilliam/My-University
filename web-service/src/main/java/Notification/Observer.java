@@ -3,24 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
-
-import models.SEntity;
+package Notification;
 
 /**
  *
  * @author marcw
  */
-public class PollQuestion extends SEntity {
+public interface Observer<SubjectT> {
 
-	Choices[] options;
-	boolean isRequired;
-
-	boolean hasTextArea;
-
-	static class Choices {
-
-		int number;
-		String text;
-	}
+	public boolean sendNotification(SubjectT subject, Notification Notification);
+	
 }

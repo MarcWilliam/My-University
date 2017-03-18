@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package enrole;
 
-import models.User;
+import enrole.SEntity;
 
 /**
  *
  * @author marcw
  */
-public class PollAnswer {
+public class CourceOffering extends SEntity {
 
-	Poll poll;
-	User user;
-	int optionNumber;
-	String answer;
+	Cource cource;
+	int Year;
+	Semester semester;
+	Group group;
 }

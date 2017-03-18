@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package enrole;
 
-import java.util.Date;
+import enrole.SEntity;
 
 /**
  *
  * @author marcw
  */
-public class Exam extends Post {
+public class Department extends SEntity {
 
-	int maxGrades;
-	CourceOffering cource;
-
-	Date StartTime, EndTime;
-
-	Group[] Groups;
+	Department parent;
+	String name;
+	String description;
 }

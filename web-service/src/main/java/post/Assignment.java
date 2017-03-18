@@ -3,13 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package post;
+
+import java.util.Date;
+import enrole.CourceOffering;
+import enrole.Group;
 
 /**
  *
  * @author marcw
  */
-public class Poll extends Post {
+public class Assignment extends Post {
 
-	PollQuestion[] questions;
+	Date dueDate, lateSubmits;
+	int maxGrade;
+	CourceOffering cource;
+	Group[] groups;
 }

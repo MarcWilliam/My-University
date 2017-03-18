@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package post;
 
-import java.util.Date;
+import enrole.SEntity;
+import enrole.User;
+import Files.UpFile;
 
 /**
  *
  * @author marcw
  */
-public class Assignment extends Post {
+public class AssignmentSubmit extends SEntity {
 
-	Date dueDate, lateSubmits;
-	int maxGrade;
-	CourceOffering cource;
-	Group[] groups;
+	User student;
+	Assignment assignmet;
+	int grade;
+	String studentNotes;
+	UpFile[] files;
 }

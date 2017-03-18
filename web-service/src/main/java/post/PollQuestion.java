@@ -3,18 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package post;
 
-import models.Department;
-import models.SEntity;
+import enrole.SEntity;
 
 /**
  *
  * @author marcw
  */
-public class Cource extends SEntity {
+public class PollQuestion extends SEntity {
 
-	String name, code, description;
-	Cource[] prerequisites;
-	Department department;
+	Choices[] options;
+	boolean isRequired;
+
+	boolean hasTextArea;
+
+	static class Choices {
+
+		int number;
+		String text;
+	}
 }

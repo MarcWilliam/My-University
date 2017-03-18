@@ -3,15 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
+package post;
 
-import models.*;
+import enrole.SEntity;
+import enrole.User;
+import Files.UpFile;
+import Notification.Notification;
+import Notification.NotificationSubject;
+import enrole.Group;
 
 /**
  *
  * @author AAGOOGLE
  */
-public class Post extends SEntity implements Notification.Subject<User> {
+public class Post extends SEntity implements NotificationSubject<User> {
 
 	User creater;
 	Comment[] Comments;

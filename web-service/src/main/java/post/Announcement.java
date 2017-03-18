@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
-
-import models.*;
+package post;
 
 /**
  *
- * @author AAGOOGLE
+ * @author marcw
  */
-public class Group extends SEntity {
-
-	Group parent;
-	String name, description;
+public class Announcement extends Post {
 
 }

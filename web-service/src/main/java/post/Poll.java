@@ -3,18 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.CMS;
-
-import models.*;
+package post;
 
 /**
  *
  * @author marcw
  */
-public class CourceOffering extends SEntity {
+public class Poll extends Post {
 
-	Cource cource;
-	int Year;
-	Semester semester;
-	Group group;
+	PollQuestion[] questions;
 }
