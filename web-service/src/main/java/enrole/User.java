@@ -1,9 +1,9 @@
 package enrole;
 
-import post.Post;
 import Notification.Notification;
 import Notification.Observer;
 import java.util.Date;
+import Post.Post;
 
 /**
  *
@@ -14,6 +14,8 @@ public class User extends SEntity implements Observer<Post> {
 	String name, email;
 	int universityID, phone;
 	Date birthDate;
+	Enrollment[] enrollments;
+	
 
 	private String hasedPassword;
 

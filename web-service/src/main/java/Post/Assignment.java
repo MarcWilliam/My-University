@@ -1,4 +1,4 @@
-package post;
+package Post;
 
 import java.util.Date;
 import enrole.CourceOffering;
@@ -8,12 +8,10 @@ import enrole.Group;
  *
  * @author marcw
  */
-public class Exam extends Post {
+public class Assignment extends Post {
 
-	int maxGrades;
+	Date dueDate, lateSubmits;
+	int maxGrade;
 	CourceOffering cource;
-
-	Date StartTime, EndTime;
-
-	Group[] Groups;
+	Group[] groups;
 }

@@ -11,5 +11,5 @@ public interface NotificationSubject<ObserverT> {
 	public boolean rmNotificationList(ObserverT observer);
 
 	public boolean notifyObservers(Notification Notification);
-	
+
 }

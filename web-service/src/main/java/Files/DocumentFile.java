@@ -17,5 +17,5 @@ public class DocumentFile extends FileStrategy {
 	boolean compressFile(File file) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-	
+
 }

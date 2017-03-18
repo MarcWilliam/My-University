@@ -15,5 +15,4 @@ public class Notification extends SEntity {
 	int priority;
 	boolean isRead;
 
-
 }

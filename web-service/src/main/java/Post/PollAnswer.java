@@ -1,4 +1,4 @@
-package post;
+package Post;
 
 import enrole.User;
 

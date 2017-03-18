@@ -1,6 +1,6 @@
 package enrole;
 
-import enrole.SEntity;
+import Files.UpFile;
 
 /**
  *
@@ -11,4 +11,5 @@ public class Department extends SEntity {
 	Department parent;
 	String name;
 	String description;
+	UpFile LogoImg;
 }
