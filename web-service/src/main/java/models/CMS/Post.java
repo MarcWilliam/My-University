@@ -12,12 +12,27 @@ import models.*;
  *
  * @author AAGOOGLE
  */
-public class Post extends SEntity {
+public class Post extends SEntity implements Notification.Subject<User> {
 
 	User creater;
 	ArrayList<Comment> Comments;
 	ArrayList<Group> Groups;
-	ArrayList<UploadedFile> files;
+	ArrayList<UpFile> files;
 	String title, content;
+
+	@Override
+	public boolean add2NotificationList(User observer) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public boolean rmNotificationList(User observer) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public boolean notifyObservers(Notification Notification) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 
 }

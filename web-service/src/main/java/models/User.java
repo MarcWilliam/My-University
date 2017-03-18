@@ -6,12 +6,13 @@
 package models;
 
 import java.util.Date;
+import models.CMS.*;
 
 /**
  *
  * @author marcw
  */
-public class User extends SEntity {
+public class User extends SEntity implements Notification.Observer<Post> {
 
 	String name, email;
 	int universityID, phone;
@@ -26,4 +27,10 @@ public class User extends SEntity {
 	boolean logout() {
 		return false;
 	}
+
+	@Override
+	public boolean sendNotification(Post subject, Notification Notification) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
 }

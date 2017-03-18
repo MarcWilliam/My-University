@@ -11,17 +11,17 @@ import java.io.File;
  *
  * @author marcw
  */
-public class UploadedFile extends SEntity {
+public class UpFile extends SEntity {
 
 	String Path;
 	File file;
 	User UploaderBy;
 
-	enum Type {
+	static enum Type {
 		IMG, VIDEO, Document
 	}
 
-	UploadedFile.Type getFileType() {
+	UpFile.Type getFileType() {
 		return null;
 	}
 }

@@ -18,5 +18,5 @@ public class AssignmentSubmit extends SEntity {
 	Assignment assignmet;
 	int grade;
 	String studentNotes;
-	ArrayList<UploadedFile> files;
+	ArrayList<UpFile> files;
 }
