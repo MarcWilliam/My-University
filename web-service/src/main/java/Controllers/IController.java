@@ -7,20 +7,14 @@ package Controllers;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class AssignmentController implements IController {
+public interface IController {
 
-    @Override
-    public void create() {
-    }
+    void create();
 
-    @Override
-    public void update() {
-    }
+    void update();
 
-    @Override
-    public void delete() {
-    }
+    void delete();
 
 }

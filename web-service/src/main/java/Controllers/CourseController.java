@@ -9,11 +9,21 @@ package Controllers;
  *
  * @author marcw
  */
-public class CourseController {
+public class CourseController implements IController {
 
-	void createCourse() {
+    @Override
+    public void create() {
 
-	
+    }
 
-	}
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void delete() {
+
+    }
+
 }

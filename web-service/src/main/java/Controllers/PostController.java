@@ -9,9 +9,17 @@ package Controllers;
  *
  * @author marcw
  */
-public class PostController {
+public class PostController implements IController {
 
-	void deletePost() {}
-	void createPost() {}
-	void updatePost() {}
+    @Override
+    public void delete() {
+    }
+
+    @Override
+    public void create() {
+    }
+
+    @Override
+    public void update() {
+    }
 }

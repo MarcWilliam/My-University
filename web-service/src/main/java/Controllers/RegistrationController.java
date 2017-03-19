@@ -9,6 +9,17 @@ package Controllers;
  *
  * @author marcw
  */
-public class RegistrationController {
-	
+public class RegistrationController implements IController {
+
+    @Override
+    public void create() {
+    }
+
+    @Override
+    public void update() {
+    }
+
+    @Override
+    public void delete() {
+    }
 }

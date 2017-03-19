@@ -7,9 +7,9 @@ package Controllers;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGLE
  */
-public class AssignmentController implements IController {
+public class GroupController implements IController {
 
     @Override
     public void create() {
@@ -22,5 +22,4 @@ public class AssignmentController implements IController {
     @Override
     public void delete() {
     }
-
 }

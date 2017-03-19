@@ -9,7 +9,7 @@ package Controllers;
  *
  * @author marcw
  */
-public class PollConstroller {
+public class PollConstroller implements IController {
 
 	void submitAnswers() {
 
@@ -19,15 +19,18 @@ public class PollConstroller {
 
 	}
 
-	void createPoll() {
+        @Override
+	public void create() {
 
 	}
 
-	void updatePoll() {
+        @Override
+	public void update() {
 
 	}
 
-	void deletePoll() {
+        @Override
+	public void delete() {
 
 	}
 }

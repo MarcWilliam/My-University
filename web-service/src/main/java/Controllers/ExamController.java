@@ -7,9 +7,9 @@ package Controllers;
 
 /**
  *
- * @author marcw
+ * @author AAGOOGle
  */
-public class AssignmentController implements IController {
+public class ExamController implements IController {
 
     @Override
     public void create() {

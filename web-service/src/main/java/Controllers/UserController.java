@@ -9,16 +9,27 @@ package Controllers;
  *
  * @author marcw
  */
-public class UserController {
+public class UserController implements IController {
 
-	void login() {
-	}
+    void login() {
+    }
 
-	void logout() {
-	}
+    void logout() {
+    }
 
-	void signup() {
+    void signup() {
 
-	}
+    }
 
+    @Override
+    public void create() {
+    }
+
+    @Override
+    public void update() {
+    }
+
+    @Override
+    public void delete() {
+    }
 }
