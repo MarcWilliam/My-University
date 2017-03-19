@@ -1,5 +1,6 @@
-package enrole;
+package Registration;
 
+import core.SEntity;
 import Files.UpFile;
 
 /**

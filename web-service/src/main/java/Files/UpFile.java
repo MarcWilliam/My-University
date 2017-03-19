@@ -1,7 +1,7 @@
 package Files;
 
-import enrole.SEntity;
-import enrole.User;
+import core.SEntity;
+import User.User;
 import java.io.File;
 
 /**

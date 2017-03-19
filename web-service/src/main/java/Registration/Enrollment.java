@@ -1,4 +1,6 @@
-package enrole;
+package Registration;
+
+import User.UserJob;
 
 /**
  *

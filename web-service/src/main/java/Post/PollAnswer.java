@@ -1,6 +1,6 @@
 package Post;
 
-import enrole.User;
+import User.User;
 
 /**
  *

@@ -1,7 +1,7 @@
 package Post;
 
-import enrole.SEntity;
-import enrole.User;
+import core.SEntity;
+import User.User;
 
 /**
  *

@@ -1,7 +1,7 @@
 package Notification;
 
-import enrole.SEntity;
-import enrole.User;
+import core.SEntity;
+import User.User;
 
 /**
  *

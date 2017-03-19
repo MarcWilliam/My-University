@@ -3,23 +3,24 @@ package Post;
 import Files.UpFile;
 import Notification.Notification;
 import Notification.NotificationSubject;
-import enrole.Group;
-import enrole.SEntity;
-import enrole.User;
+import Registration.Group;
+import User.User;
+import core.SEntity;
+import core.Searchable;
+import core.hasPermission;
 
 /**
  *
  * @author AAGOOGLE
  */
-public class AbstractPost extends SEntity implements NotificationSubject<User> {
+public abstract class AbstractPost extends SEntity implements NotificationSubject<User>, hasPermission, Searchable {
 
 	User creator;
-	Comment[] comments;
-	Group[] groups;
-	UpFile[] files;
 	String title, content;
+	UpFile[] files;
 
-	
+	abstract protected Notification generateNotification(String title, String message);
+
 	@Override
 	public boolean add2NotificationList(User observer) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -35,4 +36,31 @@ public class AbstractPost extends SEntity implements NotificationSubject<User> {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
+	public Comment[] fetchComments() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public Group[] fetchGroups() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public UpFile[] fetchFiles() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public boolean addGroup(Group group) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public boolean addFile(UpFile file) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public boolean rmGroup(int id) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public boolean rmFile(int id) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 }

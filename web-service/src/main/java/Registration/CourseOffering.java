@@ -1,4 +1,8 @@
-package enrole;
+package Registration;
+
+import core.SEntity;
+import User.User;
+import java.util.Date;
 
 /**
  *
@@ -10,5 +14,6 @@ public class CourseOffering extends SEntity {
 	int Year;
 	Semester semester;
 	User[] staff;
+	Date registrationEnd;
 	Group group;
 }

@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package core;
 
 /**
  *
  * @author marcw
  */
-public class CourseController {
+public interface Searchable<T> {
 
-	void createCourse() {
-
-	
-
-	}
+	T[] search(String query);
 }

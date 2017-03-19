@@ -9,11 +9,6 @@ package Controllers;
  *
  * @author marcw
  */
-public class CourseController {
-
-	void createCourse() {
-
+public class RegistrationController {
 	
-
-	}
 }

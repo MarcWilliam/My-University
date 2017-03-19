@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Registration;
 
 /**
  *
  * @author marcw
  */
-public class CourseController {
-
-	void createCourse() {
+public class GradeTranscript {
 
 	
-
+	public int calculateGPA() {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }

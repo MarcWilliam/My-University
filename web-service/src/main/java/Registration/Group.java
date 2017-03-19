@@ -1,4 +1,7 @@
-package enrole;
+package Registration;
+
+import core.SEntity;
+import User.User;
 
 /**
  *
@@ -8,6 +11,7 @@ public class Group extends SEntity {
 
 	Group parent;
 	String name, description;
-	User[] users;
+	int maxStudent;
+	User[] students;
 
 }

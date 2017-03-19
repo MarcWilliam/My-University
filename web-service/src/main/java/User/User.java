@@ -1,5 +1,7 @@
-package enrole;
+package User;
 
+import Registration.Enrollment;
+import core.SEntity;
 import Notification.Notification;
 import Notification.Observer;
 import java.util.Date;

@@ -1,4 +1,7 @@
-package enrole;
+package User;
+
+import Registration.Department;
+import core.SEntity;
 
 /**
  *

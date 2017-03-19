@@ -12,13 +12,14 @@ import Registration.CourseOffering;
  *
  * @author marcw
  */
-public class Graded extends AbstractPost {
+public class Folder extends AbstractPost {
 
 	CourseOffering cource;
-	int maxGrade, scaleFactor;
+	Folder parent;
 
 	@Override
 	protected Notification generateNotification(String title, String message) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
+
 }

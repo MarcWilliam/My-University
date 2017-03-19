@@ -1,4 +1,6 @@
-package enrole;
+package User;
+
+import core.Permission;
 
 /**
  *
@@ -8,6 +10,7 @@ public class UserRole {
 
 	String name,
 			description;
+	boolean isStaff;
 
 	Permission USER,
 			ASSIGNMENT,

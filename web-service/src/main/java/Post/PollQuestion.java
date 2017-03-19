@@ -1,6 +1,6 @@
 package Post;
 
-import enrole.SEntity;
+import core.SEntity;
 
 /**
  *
@@ -8,10 +8,11 @@ import enrole.SEntity;
  */
 public class PollQuestion extends SEntity {
 
-	Choice[] choices;
-	boolean isRequired;
+	String question, extraInfo;
 
-	boolean hasTextArea;
+	Choice[] choices;
+
+	boolean isRequired, hasTextArea;
 
 	static class Choice {
 
