@@ -9,12 +9,12 @@ import core.SEntity;
  */
 public class Comment extends SEntity {
 
-	Comment parent;
-	String content;
+	protected Comment parent;
+	protected String content;
 
-	User user;
-	AbstractPost post;
+	protected User user;
+	protected AbstractPost post;
 
-	int post_id, user_id;
+	protected int post_id, user_id;
 
 }

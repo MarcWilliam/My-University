@@ -10,12 +10,12 @@ import java.io.File;
  */
 public class UpFile extends SEntity {
 
-	String Path;
-	File file;
-	User UploaderBy;
-	FileStrategy strategy;
+	protected String Path;
+	protected File file;
+	protected User UploaderBy;
+	protected FileStrategy strategy;
 
-	static enum Type {
+	public static enum Type {
 		IMG, VIDEO, Document
 	}
 
@@ -23,7 +23,7 @@ public class UpFile extends SEntity {
 	 *
 	 * @return the file type
 	 */
-	UpFile.Type getFileType() {
+	public UpFile.Type getFileType() {
 		return null;
 	}
 
@@ -33,7 +33,7 @@ public class UpFile extends SEntity {
 	 *
 	 * @return
 	 */
-	boolean validate() {
+	public boolean validate() {
 		return this.strategy.validateFile(file);
 	}
 
@@ -42,7 +42,7 @@ public class UpFile extends SEntity {
 	 *
 	 * @return
 	 */
-	boolean compress() {
+	public boolean compress() {
 		return this.strategy.compressFile(file);
 	}
 }

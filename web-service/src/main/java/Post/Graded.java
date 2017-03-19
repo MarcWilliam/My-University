@@ -14,8 +14,8 @@ import core.Permission;
  */
 public class Graded extends AbstractPost {
 
-	CourseOffering cource;
-	int maxGrade, scaleFactor;
+	protected CourseOffering cource;
+	protected int maxGrade, scaleFactor;
 
 	@Override
 	protected Notification generateNotification(String title, String message) {

@@ -5,8 +5,8 @@ package Registration;
  */
 public class GradeTranscript {
 
-	CourseRegistration[] cources;
-	int totalCreditHours, totalGPA;
+	protected CourseRegistration[] cources;
+	protected int totalCreditHours, totalGPA;
 
 	/**
 	 * calculate the user GPA
@@ -23,7 +23,7 @@ public class GradeTranscript {
 	 * @param user_id the user ID
 	 * @return the grade transcript
 	 */
-	static GradeTranscript readGradeTranscript(int user_id) {
+	public static GradeTranscript readGradeTranscript(int user_id) {
 		return null;
 	}
 }

@@ -7,8 +7,8 @@ import User.User;
  */
 public class PollAnswer {
 
-	Poll poll;
-	User user;
-	int optionNumber;
-	String answer;
+	protected Poll poll;
+	protected User user;
+	protected int optionNumber;
+	protected String answer;
 }

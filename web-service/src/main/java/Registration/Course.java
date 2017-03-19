@@ -7,9 +7,9 @@ import core.SEntity;
  */
 public class Course extends SEntity {
 
-	String name, code, description;
-	Course[] prerequisites;
-	int creditHours;
-	int level;
-	Department department;
+	protected String name, code, description;
+	protected Course[] prerequisites;
+	protected int creditHours;
+	protected int level;
+	protected Department department;
 }

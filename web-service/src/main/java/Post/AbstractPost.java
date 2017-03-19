@@ -14,10 +14,10 @@ import core.hasPermission;
  */
 public abstract class AbstractPost extends SEntity implements NotificationSubject<User>, hasPermission, Searchable {
 
-	User creator;
-	String title, content;
-	UpFile[] files;
-	boolean isPublished;
+	protected User creator;
+	protected String title, content;
+	protected UpFile[] files;
+	protected boolean isPublished;
 
 	abstract protected Notification generateNotification(String title, String message);
 

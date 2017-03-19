@@ -5,18 +5,18 @@ import core.SEntity;
 
 /**
  * sections or groups
- * ex: Group A , 
+ * ex: Group A ,
  * Section A3 would have A as parent
  */
 public class Group extends SEntity {
 
-	Group parent;
-	String name, description;
-	
+	protected Group parent;
+	protected String name, description;
+
 	/**
 	 * max number of students for this group
 	 */
-	int maxStudent;
-	User[] students;
+	protected int maxStudent;
+	protected User[] students;
 
 }

@@ -1,19 +1,19 @@
-
 package Registration;
 
 import User.User;
 
 /**
- * 
+ *
  * @author marcw
  */
 public class CourseRegistration {
 
-	CourseOffering courceOffer;
-	int student_id, courceOffer_id, totalGrade;
+	protected CourseOffering courceOffer;
+	protected int student_id, courceOffer_id, totalGrade;
 
 	/**
 	 * recalculate the GPA from the graded items
+	 *
 	 * @return true if update success else false
 	 */
 	public boolean reCaulculateGrade() {
@@ -29,6 +29,7 @@ public class CourseRegistration {
 
 	/**
 	 * fetch the student from the db by id
+	 *
 	 * @return the student
 	 */
 	public User fetchStudent() {
@@ -37,7 +38,8 @@ public class CourseRegistration {
 
 	/**
 	 * fetch the course offer the db by id
-	 * @return 
+	 *
+	 * @return
 	 */
 	public User fetchCourceOffer() {
 		throw new UnsupportedOperationException("Not supported yet.");

@@ -9,10 +9,10 @@ import core.SEntity;
  */
 public class AssignmentSubmit extends SEntity {
 
-	int studentID, assignmetID;
-	int grade;
-	String studentNotes;
-	UpFile[] files;
+	protected int studentID, assignmetID;
+	protected int grade;
+	protected String studentNotes;
+	protected UpFile[] files;
 
 	public User fetchStudent() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

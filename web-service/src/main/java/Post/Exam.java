@@ -8,5 +8,5 @@ import java.util.Date;
  */
 public class Exam extends Graded {
 
-	Date StartTime, EndTime;
+	protected Date StartTime, EndTime;
 }

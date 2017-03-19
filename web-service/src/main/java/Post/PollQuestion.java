@@ -8,13 +8,13 @@ import core.SEntity;
  */
 public class PollQuestion extends SEntity {
 
-	String question, extraInfo;
+	protected String question, extraInfo;
 
-	Choice[] choices;
+	protected Choice[] choices;
 
-	boolean isRequired, hasTextArea;
+	protected boolean isRequired, hasTextArea;
 
-	static class Choice {
+	public static class Choice {
 
 		int number;
 		String text;

@@ -11,8 +11,7 @@ public class Department extends SEntity {
 	/**
 	 * parent used for major / minor
 	 */
-	Department parent;
-	String name;
-	String description;
-	UpFile LogoImg;
+	protected Department parent;
+	protected String name, description;
+	protected UpFile LogoImg;
 }

@@ -11,16 +11,16 @@ package Controllers;
  */
 public class AssignmentSubmitController implements IController {
 
-    @Override
-    public void create() {
-    }
+	@Override
+	public void create() {
+	}
 
-    @Override
-    public void update() {
-    }
+	@Override
+	public void update() {
+	}
 
-    @Override
-    public void delete() {
-    }
+	@Override
+	public void delete() {
+	}
 
 }

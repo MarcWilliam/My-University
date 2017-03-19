@@ -8,10 +8,10 @@ import core.SEntity;
  */
 public class Notification extends SEntity {
 
-	String title, message;
-	User sender, recipient;
+	protected String title, message;
+	protected User sender, recipient;
 
-	int priority;
-	boolean isRead;
+	protected int priority;
+	protected boolean isRead;
 
 }

@@ -7,9 +7,9 @@ import User.UserJob;
  */
 public class Enrollment extends UserJob {
 
-	Department major, minor;
-	int year;
-	Semester semester;
+	protected Department major, minor;
+	protected int year;
+	protected Semester semester;
 
 	/**
 	 * fetch enrollment by the following

@@ -11,25 +11,25 @@ package Controllers;
  */
 public class UserController implements IController {
 
-    void login() {
-    }
+	void login() {
+	}
 
-    void logout() {
-    }
+	void logout() {
+	}
 
-    void signup() {
+	void signup() {
 
-    }
+	}
 
-    @Override
-    public void create() {
-    }
+	@Override
+	public void create() {
+	}
 
-    @Override
-    public void update() {
-    }
+	@Override
+	public void update() {
+	}
 
-    @Override
-    public void delete() {
-    }
+	@Override
+	public void delete() {
+	}
 }

@@ -8,11 +8,11 @@ import core.Permission;
  */
 public class UserRole {
 
-	String name,
+	protected String name,
 			description;
-	boolean isStaff;
+	protected boolean isStaff;
 
-	Permission USER,
+	protected Permission USER,
 			ASSIGNMENT,
 			ASSIGNMENT_SUBMIT,
 			COURSE,

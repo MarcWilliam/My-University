@@ -15,8 +15,8 @@ import core.Permission;
  */
 public class Folder extends AbstractPost {
 
-	CourseOffering cource;
-	Folder parent;
+	protected CourseOffering cource;
+	protected Folder parent;
 
 	@Override
 	protected Notification generateNotification(String title, String message) {

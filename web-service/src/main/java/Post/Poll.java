@@ -9,9 +9,9 @@ import core.Permission;
  */
 public class Poll extends AbstractPost {
 
-	boolean isAnonymous;
+	protected boolean isAnonymous;
 
-	PollQuestion[] questions;
+	protected PollQuestion[] questions;
 
 	@Override
 	protected Notification generateNotification(String title, String message) {

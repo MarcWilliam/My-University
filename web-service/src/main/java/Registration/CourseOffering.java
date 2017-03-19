@@ -9,12 +9,12 @@ import java.util.Date;
  */
 public class CourseOffering extends SEntity {
 
-	Course course;
-	int Year;
-	Semester semester;
-	User[] staff;
-	Date registrationEnd;
-	Group group;
+	protected Course course;
+	protected int Year;
+	protected Semester semester;
+	protected User[] staff;
+	protected Date registrationEnd;
+	protected Group group;
 
 	/**
 	 * loop throw the prerequisite to check if the user passed them all
@@ -22,7 +22,7 @@ public class CourseOffering extends SEntity {
 	 * @param user_id
 	 * @return true if user has done all the prerequisite else false
 	 */
-	boolean checkPrerequisite(int user_id) {
+	public boolean checkPrerequisite(int user_id) {
 		return false;
 	}
 }

@@ -3,7 +3,7 @@ package core;
 import java.util.Date;
 
 /**
- * 
+ *
  */
 public abstract class SEntity {
 

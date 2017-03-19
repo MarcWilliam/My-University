@@ -8,6 +8,6 @@ import java.util.Date;
  */
 public class Assignment extends Graded {
 
-	Date dueDate, lateSubmits;
-	
+	protected Date dueDate, lateSubmits;
+
 }

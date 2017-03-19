@@ -11,10 +11,10 @@ package Controllers;
  */
 public interface IController {
 
-    void create();
+	void create();
 
-    void update();
+	void update();
 
-    void delete();
+	void delete();
 
 }

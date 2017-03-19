@@ -5,6 +5,6 @@ package core;
  */
 public class Permission {
 
-	boolean create, read, update, delete;
+	protected boolean create, read, update, delete;
 
 }

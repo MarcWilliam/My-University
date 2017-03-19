@@ -14,9 +14,9 @@ import java.util.Date;
  */
 public class User extends SEntity implements Searchable<User>, hasPermission, NotificationObserver<AbstractPost> {
 
-	String name, email;
-	int phone;
-	Date birthDate;
+	protected String name, email;
+	protected int phone;
+	protected Date birthDate;
 
 	private String hasedPassword;
 
@@ -28,7 +28,7 @@ public class User extends SEntity implements Searchable<User>, hasPermission, No
 	 * @param password user password
 	 * @return true if login success else false
 	 */
-	boolean login(String email, String password) {
+	public boolean login(String email, String password) {
 		return false;
 	}
 
@@ -37,7 +37,7 @@ public class User extends SEntity implements Searchable<User>, hasPermission, No
 	 *
 	 * @return true if success else false
 	 */
-	boolean logout() {
+	public boolean logout() {
 		return false;
 	}
 
