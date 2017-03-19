@@ -1,11 +1,10 @@
 package Notification;
 
-import core.SEntity;
 import User.User;
+import core.SEntity;
 
 /**
  *
- * @author marcw
  */
 public class Notification extends SEntity {
 

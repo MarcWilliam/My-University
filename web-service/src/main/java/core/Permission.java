@@ -1,8 +1,7 @@
 package core;
 
 /**
- *
- * @author marcw
+ * holds the permissions of CRUD
  */
 public class Permission {
 

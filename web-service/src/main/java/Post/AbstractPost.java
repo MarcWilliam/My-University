@@ -10,14 +10,14 @@ import core.Searchable;
 import core.hasPermission;
 
 /**
- *
- * @author AAGOOGLE
+ * a generic post abstract class to hold the common post data
  */
 public abstract class AbstractPost extends SEntity implements NotificationSubject<User>, hasPermission, Searchable {
 
 	User creator;
 	String title, content;
 	UpFile[] files;
+	boolean isPublished;
 
 	abstract protected Notification generateNotification(String title, String message);
 

@@ -3,8 +3,7 @@ package Post;
 import User.User;
 
 /**
- *
- * @author marcw
+ * an answer for one of the pools question
  */
 public class PollAnswer {
 

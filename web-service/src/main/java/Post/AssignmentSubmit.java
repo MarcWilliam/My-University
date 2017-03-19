@@ -1,12 +1,11 @@
 package Post;
 
 import Files.UpFile;
-import core.SEntity;
 import User.User;
+import core.SEntity;
 
 /**
- *
- * @author marcw
+ * a solution for an assignment submitted by a student
  */
 public class AssignmentSubmit extends SEntity {
 

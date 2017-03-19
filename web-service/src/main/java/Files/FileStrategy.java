@@ -3,6 +3,7 @@ package Files;
 import java.io.File;
 
 /**
+ * abstract file strategy class to handle different files types
  *
  * @author marcw
  */

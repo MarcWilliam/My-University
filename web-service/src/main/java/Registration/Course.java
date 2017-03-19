@@ -3,8 +3,7 @@ package Registration;
 import core.SEntity;
 
 /**
- *
- * @author marcw
+ * a passive representation of a course
  */
 public class Course extends SEntity {
 

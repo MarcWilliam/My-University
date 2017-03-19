@@ -18,6 +18,10 @@ public class UserRole {
 			COURSE,
 			COURSE_OFFERING,
 			DEPARTMENT,
+			POST,
+			COMMENT,
+			POLL,
+			POLL_ANSWER,
 			GROUP;
 
 }

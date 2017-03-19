@@ -1,10 +1,9 @@
 package Notification;
 
 /**
- *
- * @author marcw
+ * an observer for notification
  */
-public interface Observer<SubjectT> {
+public interface NotificationObserver<SubjectT> {
 
 	public boolean sendNotification(SubjectT subject, Notification Notification);
 

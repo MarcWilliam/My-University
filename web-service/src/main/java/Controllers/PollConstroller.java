@@ -15,6 +15,10 @@ public class PollConstroller {
 
 	}
 
+	void modifyAnswers() {
+
+	}
+
 	void createPoll() {
 
 	}

@@ -16,4 +16,9 @@ public class UserController {
 
 	void logout() {
 	}
+
+	void signup() {
+
+	}
+
 }

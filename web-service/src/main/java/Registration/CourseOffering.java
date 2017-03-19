@@ -1,12 +1,11 @@
 package Registration;
 
-import core.SEntity;
 import User.User;
+import core.SEntity;
 import java.util.Date;
 
 /**
- *
- * @author marcw
+ * an instance of a course for each semester/year
  */
 public class CourseOffering extends SEntity {
 
@@ -16,4 +15,14 @@ public class CourseOffering extends SEntity {
 	User[] staff;
 	Date registrationEnd;
 	Group group;
+
+	/**
+	 * loop throw the prerequisite to check if the user passed them all
+	 *
+	 * @param user_id
+	 * @return true if user has done all the prerequisite else false
+	 */
+	boolean checkPrerequisite(int user_id) {
+		return false;
+	}
 }

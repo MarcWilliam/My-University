@@ -3,8 +3,8 @@ package Post;
 import core.SEntity;
 
 /**
- *
- * @author marcw
+ * a question for poll
+ * a poll has an array of it
  */
 public class PollQuestion extends SEntity {
 

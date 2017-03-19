@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package core;
 
 /**
- *
- * @author marcw
+ * interface for any object with search functionality
  */
 public interface Searchable<T> {
 
-	T[] search(String query);
+	/**
+	 * search in the DB for matched
+	 *
+	 * @param query the search query
+	 * @return array containing all the results
+	 */
+	public T[] search(String query);
 }

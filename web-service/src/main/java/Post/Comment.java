@@ -1,16 +1,20 @@
 package Post;
 
-import core.SEntity;
 import User.User;
+import core.SEntity;
 
 /**
- *
- * @author AAGOOGLE
+ * a comment for a post
+ * it also support hierarchy ( different comment levels)
  */
 public class Comment extends SEntity {
 
-	User user;
 	Comment parent;
 	String content;
+
+	User user;
+	AbstractPost post;
+
+	int post_id, user_id;
 
 }

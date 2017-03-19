@@ -7,10 +7,11 @@ package Post;
 
 import Notification.Notification;
 import Registration.CourseOffering;
+import core.Permission;
 
 /**
- *
- * @author marcw
+ * a folder used to hold files just for view purpose only
+ * can have a folder hierarchy
  */
 public class Folder extends AbstractPost {
 
@@ -19,6 +20,16 @@ public class Folder extends AbstractPost {
 
 	@Override
 	protected Notification generateNotification(String title, String message) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public Permission hasPermission() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public Object[] search(String query) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 

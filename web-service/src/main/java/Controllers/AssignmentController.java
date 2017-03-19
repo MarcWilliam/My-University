@@ -9,9 +9,20 @@ package Controllers;
  *
  * @author marcw
  */
-public class PostController {
+public class AssignmentController {
 
-	void deletePost() {}
-	void createPost() {}
-	void updatePost() {}
+	void createAssigment() {
+	}
+
+	void updateAssigment() {
+	}
+
+	void deleteAssigment() {
+	}
+
+	void submitAssigmentSolution() {
+	}
+
+	void updateAssigmentSolution() {
+	}
 }

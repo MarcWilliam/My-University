@@ -1,8 +1,7 @@
 package Registration;
 
 /**
- *
- * @author marcw
+ * enum for semester names
  */
 public enum Semester {
 	FALL, SPRING, SUMMER
