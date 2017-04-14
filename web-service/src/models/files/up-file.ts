@@ -1,22 +1,23 @@
+import { SEntity } from '../core/s-entity';
+import { User } from '../user/user';
+import { FileStrategy } from './file-strategy';
 
 /**
  * 
  * @author marcw
  */
 export class UpFile extends SEntity {
+	
 	Path: string;
-
 	file: File;
-
 	UploaderBy: User;
-
 	strategy: FileStrategy;
 
 	/**
 	 * 
 	 * @return the file type
 	 */
-	public getFileType(): UpFile.Type {
+	public getFileType(): Type {
 		return null;
 	}
 

@@ -1,3 +1,5 @@
+import { Permission } from '../core/permission';
+import { AbstractPost } from './abstract-post';
 
 export class Post extends AbstractPost {
 	generateNotification(title: string, message: string): Notification {

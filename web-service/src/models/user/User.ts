@@ -1,15 +1,19 @@
+import { SEntity } from '../core/s-entity';
+import { Searchable } from '../core/searchable';
+import { hasPermission } from '../core/has-permission';
+import { NotificationObserver } from '../notification/notification-observer';
+import { AbstractPost } from '../post/abstract-post';
+import { Permission } from '../core/permission';
+import { Post } from '../post/post';
 
 /**
  */
 export class User extends SEntity implements Searchable<User>, hasPermission, NotificationObserver<AbstractPost> {
+
 	name: string;
-
 	email: string;
-
 	phone: number;
-
 	birthDate: Date;
-
 	private hasedPassword: string;
 
 	/**
@@ -34,12 +38,7 @@ export class User extends SEntity implements Searchable<User>, hasPermission, No
 	}
 
 	public sendNotification(subject?: any, Notification?: any): any {
-		if (((subject != null && subject instanceof Post.AbstractPost) || subject === null) && ((Notification != null && Notification instanceof Notification.Notification) || Notification === null)) {
-			let __args = Array.prototype.slice.call(arguments);
-			return <any>(() => {
-				return null;
-			})();
-		} else throw new Error('invalid overload');
+		return null;
 	}
 
 	public search(query: string): User[] {

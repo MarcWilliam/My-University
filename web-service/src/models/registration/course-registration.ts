@@ -1,61 +1,54 @@
-/* Generated from Java with JSweet 1.2.0 - http://www.jsweet.org */
-namespace Registration {
-    import User = User.User;
+import { CourseOffering } from './course-offering';
+import { User } from '../user/user';
 
-    /**
-     * 
-     * @author marcw
-     */
-    export class CourseRegistration {
-        courceOffer : CourseOffering;
+/**
+ * 
+ * @author marcw
+ */
+export class CourseRegistration {
+	
+	courceOffer: CourseOffering;
+	student_id: number;
+	courceOffer_id: number;
+	totalGrade: number;
 
-        student_id : number;
+	/**
+	 * recalculate the GPA from the graded items
+	 * 
+	 * @return true if update success else false
+	 */
+	public reCaulculateGrade(): boolean {
+		return null;
+	}
 
-        courceOffer_id : number;
+	/**
+	 * @return the letter grade representing the grade
+	 */
+	public getLetterGrade(): string {
+		return null;
+	}
 
-        totalGrade : number;
+	/**
+	 * fetch the student from the db by id
+	 * 
+	 * @return the student
+	 */
+	public fetchStudent(): User {
+		return null;
+	}
 
-        /**
-         * recalculate the GPA from the graded items
-         * 
-         * @return true if update success else false
-         */
-        public reCaulculateGrade() : boolean {
-            return null;
-        }
+	/**
+	 * fetch the course offer the db by id
+	 * 
+	 * @return
+	 */
+	public fetchCourceOffer(): User {
+		return null;
+	}
 
-        /**
-         * @return the letter grade representing the grade
-         */
-        public getLetterGrade() : string {
-            return null;
-        }
-
-        /**
-         * fetch the student from the db by id
-         * 
-         * @return the student
-         */
-        public fetchStudent() : User {
-            return null;
-        }
-
-        /**
-         * fetch the course offer the db by id
-         * 
-         * @return
-         */
-        public fetchCourceOffer() : User {
-            return null;
-        }
-
-        constructor() {
-            this.student_id = 0;
-            this.courceOffer_id = 0;
-            this.totalGrade = 0;
-        }
-    }
-    CourseRegistration["__class"] = "Registration.CourseRegistration";
-
+	constructor() {
+		this.student_id = 0;
+		this.courceOffer_id = 0;
+		this.totalGrade = 0;
+	}
 }
-

@@ -1,3 +1,4 @@
+import { IController } from './icontroller';
 
 export class ExamController implements IController {
 	public create() {

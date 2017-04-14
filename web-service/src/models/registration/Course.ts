@@ -1,3 +1,5 @@
+import { SEntity } from '../core/s-entity';
+import { Department } from './department';
 
 /**
  * a passive representation of a course

@@ -1,3 +1,4 @@
+import { FileStrategy } from './file-strategy';
 
 /**
  * 

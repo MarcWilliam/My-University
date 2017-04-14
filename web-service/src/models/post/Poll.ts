@@ -1,11 +1,14 @@
+import { AbstractPost } from './abstract-post';
+import { PollQuestion } from './poll-question';
+import { Permission } from '../core/permission';
 
 /**
  * 
  * @author marcw
  */
 export class Poll extends AbstractPost {
+	
 	isAnonymous: boolean;
-
 	questions: PollQuestion[];
 
 	generateNotification(title: string, message: string): Notification {

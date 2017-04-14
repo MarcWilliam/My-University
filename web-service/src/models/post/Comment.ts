@@ -1,19 +1,18 @@
+import { SEntity } from '../core/s-entity';
+import { User } from '../user/user';
+import { AbstractPost } from "./abstract-post";
 
 /**
  * a comment for a post
  * it also support hierarchy ( different comment levels)
  */
 export class Comment extends SEntity {
+
 	parent: Comment;
-
 	content: string;
-
 	user: User;
-
 	post: AbstractPost;
-
 	post_id: number;
-
 	user_id: number;
 
 	constructor() {

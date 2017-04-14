@@ -1,3 +1,4 @@
+import { Permission } from './permission';
 
 /**
  * interface for classes that require permission for CRUD operations

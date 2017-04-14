@@ -1,12 +1,14 @@
+import { CourseOffering } from '../registration/course-offering';
+import { AbstractPost } from './abstract-post';
+import { Permission } from '../core/permission';
 
 /**
  * used to record student grades for example an exam, quiz .. etc
  */
 export class Graded extends AbstractPost {
+	
 	cource: CourseOffering;
-
 	maxGrade: number;
-
 	scaleFactor: number;
 
 	generateNotification(title: string, message: string): Notification {

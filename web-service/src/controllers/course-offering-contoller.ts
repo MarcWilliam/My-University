@@ -1,3 +1,4 @@
+import { IController } from './icontroller';
 
 export class CourseOfferingContoller implements IController {
 	public create() {

@@ -1,18 +1,19 @@
+import { Group } from './group';
+import { User } from '../user/user';
+import { Semester } from './semester';
+import { Course } from './course';
+import { SEntity } from '../core/s-entity';
 
 /**
  * an instance of a course for each semester/year
  */
 export class CourseOffering extends SEntity {
+	
 	course: Course;
-
 	Year: number;
-
 	semester: Semester;
-
 	staff: User[];
-
 	registrationEnd: Date;
-
 	group: Group;
 
 	/**

@@ -1,3 +1,4 @@
+import { IController } from './icontroller';
 
 export class PostController implements IController {
 	public delete() {

@@ -3,6 +3,7 @@
  * a subject for notification
  */
 export interface NotificationSubject<ObserverT> {
+
 	add2NotificationList(observer?: any): any;
 
 	rmNotificationList(observer?: any): any;
