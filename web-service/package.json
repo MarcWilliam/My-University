@@ -1,0 +1,38 @@
+{
+	"name": "my-university",
+
+	"version": "0.0.1",
+	"description": "a learning management system for universityes",
+	"keywords": [
+		"LMS",
+		"learning management system"
+	],
+	"author": "Exception Software Solution",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MarcWafik/My-University"
+	},
+	"license": "",
+	"main": "build/main.js",
+	"typings": "build/",
+	"scripts": {
+		"build": "tsc",
+		"build-watch": "tsc -w",
+		"serve": "node ./build/main.js",
+		"serve-watch": "nodemon --inspect --watch ./build --delay 1 ./build/main.js",
+		"run": "npm run -s build & npm run -s serve",
+		"test": "mocha build/test"
+	},
+	"dependencies": {
+		"chai": "^3.5.0"
+	},
+	"devDependencies": {
+		"@types/chai": "^3.5.0",
+		"@types/mocha": "^2.2.40",
+		"@types/node": "^7.0.12",
+		"chai": "^3.5.0",
+		"mocha": "^3.2.0",
+		"nodemon": "^1.11.0",
+		"typescript": "^2.2.2"
+	}
+}
