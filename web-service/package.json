@@ -25,6 +25,7 @@
 		"test": "mocha build/test"
 	},
 	"dependencies": {
+		"bluebird": "^3.5.0",
 		"body-parser": "^1.17.1",
 		"chai": "^3.5.0",
 		"cors": "^2.8.3",

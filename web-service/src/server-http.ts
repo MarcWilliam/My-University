@@ -9,12 +9,15 @@ import CONFIG from './config';
 
 var app = express();
 
+app.use( express.static('D:\SourceCode\GitHub\My-University\front-end'));
+app.use('/files', express.static('public'));
+
 app.use((req, res, next) => {
 	console.log(`HTTP => Method: ${req.method} \t URL: ${req.url}`);
 	next();
 });
 
-app.get("/", (req, res) => res.send('Hello World!'));
+app.get("/api/", (req, res) => res.send('Hello World!'));
 
 app.listen(CONFIG.HTTP.PORT, () => console.log(
 	`\t HTTP server started listening to \t URL: http://localhost:${CONFIG.HTTP.PORT}/`));

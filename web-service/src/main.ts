@@ -5,9 +5,9 @@ import * as os from 'os';
 
 import CONFIG from './config';
 
-if (CONFIG.USE_CLUSTER && cluster.isMaster) {
+if (CONFIG.CLUSTER.USE && cluster.isMaster) {
 
-	var numWorkers = os.cpus().length;
+	var numWorkers = CONFIG.CLUSTER.NUMBER == 0 ? os.cpus().length : CONFIG.CLUSTER.NUMBER;
 
 	console.log(`Master cluster setting up ${numWorkers} workers...`);
 
