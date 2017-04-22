@@ -9,9 +9,6 @@ import CONFIG from './config';
 
 var app = express();
 
-app.use( express.static('D:\SourceCode\GitHub\My-University\front-end'));
-app.use('/files', express.static('public'));
-
 app.use((req, res, next) => {
 	console.log(`HTTP => Method: ${req.method} \t URL: ${req.url}`);
 	next();
