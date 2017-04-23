@@ -1,0 +1,23 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="push">
+        <md-nav-list>
+            <md-list-item>
+                <a md-line routerLink="/login">SIGN OUT</a>
+                <button md-icon-button color="accent" routerLink="/login">
+                    <md-icon>lock_open</md-icon>
+                </button>
+            </md-list-item>
+        </md-nav-list>
+    </md-sidenav>
+
+    <div class="my-content">
+        <md-toolbar color="primary">
+            <button md-icon-button (click)="sidenav.open()">
+                <md-icon>menu</md-icon>
+                </button>
+            <!-- This fills the remaining space of the current row -->
+            <!-- <span class="fill-remaining-space"></span> -->
+            <span>Dashboard</span>
+        </md-toolbar>
+    </div>
+</md-sidenav-container>

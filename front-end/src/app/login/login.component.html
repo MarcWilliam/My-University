@@ -1,0 +1,21 @@
+<md-toolbar class="md-primary" color="primary">
+    Sign in
+</md-toolbar>
+<form>
+    <md-grid-list cols="1" rowHeight="6rem">
+        <md-grid-tile>
+            <md-input-container color="accent">
+                <input mdInput type="email" placeholder="Email" />
+            </md-input-container>
+        </md-grid-tile>
+        <md-grid-tile>
+            <md-input-container color="accent">
+                <input mdInput type="password" placeholder="Password" />
+            </md-input-container>
+        </md-grid-tile>
+        <md-grid-tile>
+            <button md-raised-button routerLink="/dashboard" color="primary">SIGN IN</button>
+            <button md-raised-button routerLink="/login" color="warn" class="margin">SIGN UP</button>
+        </md-grid-tile>
+    </md-grid-list>
+</form>
