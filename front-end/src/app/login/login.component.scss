@@ -1,3 +1,48 @@
-.margin {
-    margin: 1rem;
+.my-card {
+    width: 400px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    transition: 0.5s color ease;
+    text-decoration: none;
+    color: #795548;
+}
+
+a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+
+a:after {
+    content: "";
+    transition: 0.5s all ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+}
+
+a:after {
+    bottom: -0.25em;
+}
+
+a:after {
+    height: 5px;
+    height: 0.35rem;
+    width: 0;
+    background: #673AB7;
+}
+
+a:after {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+a:hover:after {
+    width: 100%;
 }

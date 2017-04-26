@@ -2,17 +2,17 @@
     <md-grid-tile>
         <md-card class="my-card">
             <md-card-header>
-                <md-card-title>Sign In</md-card-title>
+                <md-card-title>Sign Up</md-card-title>
                 <md-card-subtitle>My university</md-card-subtitle>
             </md-card-header>
 
-            <form [formGroup]="signInForm" (ngSubmit)="onSignInFormSubmit()">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSignUpFormSubmit()">
                 <md-card-content>
                     <md-grid-list cols="1" rowHeight="3.5rem">
                         <md-grid-tile>
                             <md-input-container color="primary">
                                 <input mdInput type="email" placeholder="Email" name="email" formControlName="email" required />
-                                <md-hint *ngIf="signInForm.controls['email'].hasError('pattern')" align="end">
+                                <md-hint *ngIf="signUpForm.controls['email'].hasError('pattern')" align="end">
                                     Enter a valid email
                                 </md-hint>
                             </md-input-container>
@@ -20,7 +20,7 @@
                         <md-grid-tile>
                             <md-input-container color="primary">
                                 <input mdInput type="password" placeholder="Password" name="password" formControlName="password" required />
-                                <md-hint *ngIf="signInForm.controls['password'].hasError('minlength')" align="end">
+                                <md-hint *ngIf="signUpForm.controls['password'].hasError('minlength')" align="end">
                                     Enter at least 6 characters
                                 </md-hint>
                             </md-input-container>
@@ -31,13 +31,13 @@
                 <md-card-actions>
                     <md-grid-list cols="3" rowHeight="50px">
                         <md-grid-tile colspan="3">
-                            <button type="submit" md-raised-button color="primary" [disabled]="signInForm.controls['email'].hasError('required') || signInForm.controls['password'].hasError('required') || signInForm.controls['email'].hasError('pattern') || signInForm.controls['password'].hasError('minlength')">
-                                    SIGN IN
+                            <button type="submit" md-raised-button color="primary" [disabled]="signUpForm.controls['email'].hasError('required') || signUpForm.controls['password'].hasError('required') || signUpForm.controls['email'].hasError('pattern') || signUpForm.controls['password'].hasError('minlength')">
+                                    SIGN UP
                             </button>
                         </md-grid-tile>
                         <md-grid-tile colspan="3">
-                            <a routerLink="/registration">
-                                <p>Need an account?</p>
+                            <a routerLink="/login">
+                                <p>Already have an account?</p>
                             </a>
                         </md-grid-tile>
                     </md-grid-list>

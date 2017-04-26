@@ -5,30 +5,30 @@ import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
-  public signInForm: FormGroup;
+public signUpForm: FormGroup;
 
   constructor( private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
    }
 
   ngOnInit(): void {
-    this.buildSignInForm();
+    this.buildSignUpForm();
   }
 
-  buildSignInForm(): void {
-      this.signInForm = this.formBuilder.group({
+  buildSignUpForm(): void {
+      this.signUpForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/) ] ],
         password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
-  onSignInFormSubmit(): void {
-    this.authService.login(this.signInForm.value.email, this.signInForm.value.password);
+  onSignUpFormSubmit(): void {
+    this.authService.signup(this.signUpForm.value.email, this.signUpForm.value.password);
   }
 
 }
