@@ -4,6 +4,7 @@ import * as cluster from 'cluster';
 import * as os from 'os';
 
 import CONFIG from './config';
+import { User } from './models/user/user';
 
 if (CONFIG.CLUSTER.USE && cluster.isMaster) {
 
@@ -29,3 +30,5 @@ if (CONFIG.CLUSTER.USE && cluster.isMaster) {
 	require("./server-http"); // load the http server
 	require("./server-tcp"); // load the tcp server
 }
+
+User.read("id", 1).then((data) => console.log(data));
