@@ -1,4 +1,4 @@
-import { IController } from './icontroller';
+import { IController } from '../icontroller';
 
 export class NotificationController implements IController {
 	public create() {

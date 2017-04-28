@@ -21,7 +21,7 @@ export class UserRole extends SEntity {
 		course_offering: number,
 		group: number,
 		enrollment: number
-	}
+	};
 
 	permissions: {
 		user_role: Permission,
@@ -32,7 +32,7 @@ export class UserRole extends SEntity {
 		semester: Permission,
 		course_offering: Permission,
 		group: Permission,
-		enrollment: Permission,
+		enrollment: Permission
 	};
 
 	public parseRow(row) {

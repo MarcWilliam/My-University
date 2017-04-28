@@ -1,4 +1,4 @@
-import { IController } from './icontroller';
+import { IController } from '../icontroller';
 
 export class GroupController implements IController {
 	public create() {

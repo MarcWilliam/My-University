@@ -4,7 +4,7 @@
 		"outDir": "./build",
 
 		"module": "commonjs",
-		"target": "es2015",
+		"target": "es2016",
 
 		"noImplicitAny": false,
 		"sourceMap": true,

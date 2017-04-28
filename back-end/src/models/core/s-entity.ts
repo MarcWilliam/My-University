@@ -1,4 +1,4 @@
-import { DBsql } from '../../helpers/db-sql';
+import { DBsql } from '../core/db-sql';
 
 export class SEntity {
 

@@ -2,7 +2,7 @@ import { SEntity } from '../core/s-entity';
 import { Searchable } from '../core/searchable';
 import { NotificationObserver } from '../core/notification';
 import { Permission, hasPermission } from './permission';
-import { DBsql } from '../../helpers/db-sql';
+import { DBsql } from '../core/db-sql';
 import CONFIG from '../../config';
 
 /**

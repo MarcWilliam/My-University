@@ -1,7 +1,7 @@
 import * as mysql from 'mysql2/promise';
 import * as bluebird from 'bluebird';
 
-import CONFIG from '../config';
+import CONFIG from '../../config';
 
 export class DBsql {
 
