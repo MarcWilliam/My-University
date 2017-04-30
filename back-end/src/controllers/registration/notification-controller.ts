@@ -4,6 +4,9 @@ export class NotificationController implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 

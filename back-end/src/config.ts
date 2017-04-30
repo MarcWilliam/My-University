@@ -12,6 +12,10 @@ const CONFIG = {
 		DEBUG_MODE: true
 	},
 
+	AUTH: {
+		SECRET: "eypZAZy0CY^g9%KreypZAZy0CY^g9%Kr"
+	},
+
 	DB: {
 		HOST: "localhost",
 		DATABASE: "my_uni",

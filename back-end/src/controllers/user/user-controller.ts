@@ -1,24 +1,29 @@
-import { IController } from '../icontroller';
+import { Request, Response, NextFunction } from 'express';
+
+import * as jwt from 'jsonwebtoken';
+
+import {IController} from '../icontroller';
+
+import CONFIG from '../../config';
 
 export class UserController implements IController {
-	login() {
-	}
+  private generateToken(user): string {
+    return jwt.sign(user, CONFIG.AUTH.SECRET, {expiresIn: 10080});
+  }
 
-	logout() {
-	}
+  login(req: Request, res: Response, next: NextFunction) {}
 
-	signup() {
-	}
+  logout(req: Request, res: Response, next: NextFunction) {}
 
-	public create() {
-	}
+  public signup(req: Request, res: Response, next: NextFunction) {}
 
-	public update() {
-	}
+  public create() {}
 
-	public delete() {
-	}
+  public read() {}
 
-	constructor() {
-	}
+  public update() {}
+
+  public delete () {}
+
+  constructor() {}
 }
