@@ -66,7 +66,7 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 	 * @param password user password
 	 * @return true if login success else false
 	 */
-	public login(email: string, password: string): boolean {
+	public async login(email: string, password: string) {
 		return false;
 	}
 
@@ -75,7 +75,7 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 	 * 
 	 * @return true if success else false
 	 */
-	public logout(): boolean {
+	public async logout() {
 		return false;
 	}
 

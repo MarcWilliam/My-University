@@ -27,6 +27,10 @@ export class SEntity {
 		return row;
 	}
 
+	public async isValid() {
+		return true;
+	}
+
 	public async save(): Promise<boolean> {
 		return (this.id === 0) ? this.create() : this.update();
 	}
@@ -101,5 +105,13 @@ export class SEntity {
 
 		}
 		return ret;
+	}
+
+	public static cast(obj) {
+		var obj = this.constructor();
+		for (let i in obj) {
+			obj[i] = obj[i];
+		}
+		return obj;
 	}
 }
