@@ -1,4 +1,3 @@
-import { UpFile } from '../files/up-file';
 import { SEntity } from '../core/s-entity';
 
 /**
@@ -12,7 +11,6 @@ export class Department extends SEntity {
 	parent: Department;
 	name: string;
 	description: string;
-	LogoImg: UpFile;
 
 	constructor() {
 		super();

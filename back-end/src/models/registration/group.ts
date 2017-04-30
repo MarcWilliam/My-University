@@ -7,6 +7,7 @@ import { User } from '../user/user';
  * Section A3 would have A as parent
  */
 export class Group extends SEntity {
+
 	parent: Group;
 	name: string;
 	description: string;

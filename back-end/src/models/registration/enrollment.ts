@@ -1,11 +1,11 @@
 import { Department } from './department';
 import { Semester } from './semester';
-import { UserJob } from '../user/user-job';
+import { SEntity } from '../core/s-entity';
 /**
      * hold enrollment data for each term
      */
-export class Enrollment extends UserJob {
-	
+export class Enrollment extends SEntity {
+
 	major: Department;
 	minor: Department;
 	year: number;

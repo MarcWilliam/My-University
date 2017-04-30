@@ -1,12 +1,33 @@
-import { DBsql } from '../../helpers/db-sql';
+import { DBsql } from '../core/db-sql';
 
-export abstract class SEntity {
+export class SEntity {
+
+	static DB_TABLE = {
+		PRIM: "",
+		RELATIONAL: {}
+	};
 
 	id: number;
 	createdAt: Date;
 	updatedAt: Date;
 
-	public save(): boolean {
+	public parseRow(row) {
+		this.id = row.id;
+		this.createdAt = row.created_at;
+		this.updatedAt = row.updated_at;
+	}
+
+	public toRow() {
+		var row: any = {};
+
+		this.id = row.id;
+		row.created_at = this.createdAt;
+		row.updated_at = this.updatedAt;
+
+		return row;
+	}
+
+	public async save(): Promise<boolean> {
 		return (this.id === 0) ? this.create() : this.update();
 	}
 
@@ -16,8 +37,16 @@ export abstract class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public update(): boolean {
-		return null;
+	public async update(): Promise<boolean> {
+		var data = this.toRow();
+		delete data.id;
+		delete data.created_at;
+		delete data.updated_at;
+
+		let connection = await DBsql.getConnection();
+		let [rows, fields] = await connection.execute(`UPDATE ${(<any>this.constructor).DB_TABLE.PRIM} SET ? where id=`, [data, this.id]);
+
+		return true;
 	}
 
 	/**
@@ -27,8 +56,17 @@ export abstract class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public create(): boolean {
-		return null;
+	public async create(): Promise<boolean> {
+
+		var data = this.toRow();
+		delete data.id;
+		delete data.created_at;
+		delete data.updated_at;
+
+		let connection = await DBsql.getConnection();
+		let [rows, fields] = await connection.execute(`INSERT INTO ${(<any>this.constructor).DB_TABLE.PRIM} SET ?`, data);
+		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< set this.id here
+		return true;
 	}
 
 	/**
@@ -38,11 +76,8 @@ export abstract class SEntity {
 	 * @return True if everything pass else false
 	 */
 	public async delete(): Promise<boolean> {
-
 		let connection = await DBsql.getConnection();
-
-		// query database 
-		let [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
+		let [rows, fields] = await connection.execute(`DELETE FROM ${(<any>this.constructor).DB_TABLE.PRIM} WHERE id = ?`, [this.id]);
 		return true;
 	}
 
@@ -52,11 +87,19 @@ export abstract class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public read(id: number): boolean {
-		return null;
-	}
+	public static async read(colum: string, data: any) {
+		let connection = await DBsql.getConnection();
 
-	constructor() {
-		this.id = 0;
+		let [rows, fields] = await connection.execute(`SELECT * FROM ${this.DB_TABLE.PRIM} WHERE ${colum} = ?`, [data]);
+		var ret = [];
+		for (var key in rows) {
+
+			var element = rows[key];
+			var temp = new this();
+			temp.parseRow(rows[key]);
+			ret.push(temp);
+
+		}
+		return ret;
 	}
 }
