@@ -18,6 +18,6 @@ export class DBsql {
 				Promise: bluebird
 			});
 		}
-		return DBsql._connection;
+		return await DBsql._connection;
 	}
 }
