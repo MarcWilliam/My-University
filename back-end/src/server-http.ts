@@ -25,7 +25,7 @@ class App {
     * Turn on that server!
     * In order for the server to work with a depolyment service like 'Heroku',
     * we must specify 'process.env.PORT'.
-        * but by Also adding a second option of 'CONFIG.HTTP.PORT', it will also
+    * but by Also adding a second option of 'CONFIG.HTTP.PORT', it will also
     * allow You to run the server locally with Node.
     */
     this.express.listen(

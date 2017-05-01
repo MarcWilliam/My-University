@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import {Router} from 'express';
 
 import {UserController} from '../../controllers/user/user-controller';
 
@@ -19,7 +19,10 @@ export class UserRouter {
    * Take each handler, and attach to one of the Express.Router's
    * endpoints.
    */
-  init() { this.router.get('/:id', this.userController.login); }
+  init() {
+    this.router.post('/register', this.userController.signup);
+    this.router.post('/login', this.userController.login);
+  }
 }
 
 // Create the UserRouter, and export its configured Express.Router
