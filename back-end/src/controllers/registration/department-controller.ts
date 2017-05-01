@@ -4,6 +4,9 @@ export class DepartmentController implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 

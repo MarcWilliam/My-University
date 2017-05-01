@@ -4,6 +4,9 @@ export class CourseOfferingContoller implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 

@@ -1,53 +1,65 @@
 {
-	"name": "my-university",
-	"version": "0.0.1",
-	"description": "a learning management system for universityes",
-	"keywords": [
-		"my-uni",
-		"my-university",
-		"uni",
-		"university",
-		"LMS",
-		"learning management system"
-	],
-	"author": "Exception Software Solution",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/MarcWafik/My-University"
-	},
-	"license": "UNLICENSED",
-	"private": true,
-	"main": "build/main.js",
-	"typings": "build/",
-	"scripts": {
-		"build": "tsc",
-		"build-watch": "tsc -w",
-		"serve": "node ./build/main.js",
-		"serve-watch": "nodemon --inspect --watch ./build --delay 1 ./build/main.js",
-		"run": "npm run -s build & npm run -s serve",
-		"test": "mocha build/test"
-	},
-	"dependencies": {
-		"bluebird": "^3.5.0",
-		"body-parser": "^1.17.1",
-		"chai": "^3.5.0",
-		"cors": "^2.8.3",
-		"express": "^4.15.2",
-		"mysql2": "^1.2.0",
-		"nodemailer": "^4.0.1",
-		"socket.io": "^1.7.3"
-	},
-	"devDependencies": {
-		"@types/body-parser": "^1.16.3",
-		"@types/chai": "^3.5.0",
-		"@types/cors": "^2.8.1",
-		"@types/express": "^4.0.35",
-		"@types/mocha": "^2.2.40",
-		"@types/node": "^7.0.12",
-		"@types/socket.io": "^1.4.29",
-		"chai": "^3.5.0",
-		"mocha": "^3.2.0",
-		"nodemon": "^1.11.0",
-		"typescript": "^2.2.2"
-	}
+  "name": "my-university",
+  "version": "0.0.1",
+  "description": "a learning management system for universityes",
+  "keywords": [
+    "my-uni",
+    "my-university",
+    "uni",
+    "university",
+    "LMS",
+    "learning management system"
+  ],
+  "author": "Exception Software Solution",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcWafik/My-University"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "build/main.js",
+  "typings": "build/",
+  "scripts": {
+    "build": "tsc",
+    "build-watch": "tsc -w",
+    "serve": "node ./build/main.js",
+    "serve-watch": "nodemon --inspect --watch ./build --delay 1 ./build/main.js",
+    "run": "npm run -s build & npm run -s serve",
+    "test": "mocha build/test"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "morgan": "^1.8.1",
+    "mysql2": "^1.2.0",
+    "nodemailer": "^4.0.1",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/body-parser": "^1.16.3",
+    "@types/chai": "^3.5.0",
+    "@types/cors": "^2.8.1",
+    "@types/express": "^4.0.35",
+    "@types/jsonwebtoken": "^7.2.0",
+    "@types/mocha": "^2.2.40",
+    "@types/morgan": "^1.7.32",
+    "@types/node": "^7.0.12",
+    "@types/passport": "^0.3.3",
+    "@types/passport-jwt": "^2.0.19",
+    "@types/passport-local": "^1.0.30",
+    "@types/socket.io": "^1.4.29",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "typescript": "^2.2.2"
+  }
 }

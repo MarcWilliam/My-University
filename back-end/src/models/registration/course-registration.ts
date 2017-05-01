@@ -6,7 +6,7 @@ import { User } from '../user/user';
  * @author marcw
  */
 export class CourseRegistration {
-	
+
 	courceOffer: CourseOffering;
 	student_id: number;
 	courceOffer_id: number;

@@ -4,6 +4,9 @@ export class RegistrationController implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 

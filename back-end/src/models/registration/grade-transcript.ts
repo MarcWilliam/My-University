@@ -4,7 +4,7 @@ import { CourseRegistration } from './course-registration';
  * calculate the user gpa & completed credit hours from this Courses Registration
  */
 export class GradeTranscript {
-	
+
 	cources: CourseRegistration[];
 	totalCreditHours: number;
 	totalGPA: number;

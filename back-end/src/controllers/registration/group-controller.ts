@@ -4,6 +4,9 @@ export class GroupController implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 

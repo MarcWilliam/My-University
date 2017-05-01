@@ -4,6 +4,9 @@ export class CourseController implements IController {
 	public create() {
 	}
 
+	public read() {
+	}
+
 	public update() {
 	}
 
