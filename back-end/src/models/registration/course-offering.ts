@@ -8,7 +8,7 @@ import { SEntity } from '../core/s-entity';
  * an instance of a course for each semester/year
  */
 export class CourseOffering extends SEntity {
-	
+
 	course: Course;
 	Year: number;
 	semester: Semester;
