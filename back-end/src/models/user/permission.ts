@@ -1,18 +1,23 @@
 import { SEntity } from '../core/s-entity';
+import CONFIG from '../../config';
 
 /**
  * holds the permissions of CRUD
  */
 export class Permission extends SEntity {
 
-	self: CRUDpermission;
-	others: CRUDpermission;
+	self: CRUDpermission = new CRUDpermission();
+	others: CRUDpermission = new CRUDpermission();
 
+	static DB_TABLE = {
+		PRIM: CONFIG.DB.TABLE_PREFIX + "permission",
+		RELATIONAL: {}
+	};
 
 	public parseRow(row) {
 		super.parseRow(row);
-		this.self = <CRUDpermission>{};
-		this.others = <CRUDpermission>{};
+		this.self = new CRUDpermission();
+		this.others = new CRUDpermission();
 
 		this.self.create = row.create_self;
 		this.self.read = row.read_self;
@@ -45,11 +50,11 @@ export class Permission extends SEntity {
 
 }
 
-export interface CRUDpermission {
-	create: boolean;
-	read: boolean;
-	update: boolean;
-	delete: boolean;
+export class CRUDpermission {
+	create: boolean = false;
+	read: boolean = false;
+	update: boolean = false;
+	delete: boolean = false;
 }
 
 export interface hasPermission {

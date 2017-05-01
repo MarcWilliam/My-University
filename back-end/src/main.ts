@@ -30,5 +30,3 @@ if (CONFIG.CLUSTER.USE && cluster.isMaster) {
 	require("./server-http"); // load the http server
 	require("./server-tcp"); // load the tcp server
 }
-
-User.read("id", 1).then((data) => console.log(data));

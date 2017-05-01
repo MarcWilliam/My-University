@@ -1,9 +1,10 @@
+
 export interface IController {
 	create();
-
-	read();
 
 	update();
 
 	delete();
+
+	read();
 }

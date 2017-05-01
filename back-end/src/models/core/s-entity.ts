@@ -48,7 +48,7 @@ export class SEntity {
 		delete data.updated_at;
 
 		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.execute(`UPDATE ${(<any>this.constructor).DB_TABLE.PRIM} SET ? where id=`, [data, this.id]);
+		let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id=?`, [(<any>this.constructor).DB_TABLE.PRIM, data, this.id]);
 
 		return true;
 	}
@@ -68,8 +68,9 @@ export class SEntity {
 		delete data.updated_at;
 
 		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.execute(`INSERT INTO ${(<any>this.constructor).DB_TABLE.PRIM} SET ?`, data);
-		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< set this.id here
+		let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`, [(<any>this.constructor).DB_TABLE.PRIM, data]);
+		this.id = rows.insertId;
+
 		return true;
 	}
 
@@ -81,7 +82,7 @@ export class SEntity {
 	 */
 	public async delete(): Promise<boolean> {
 		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.execute(`DELETE FROM ${(<any>this.constructor).DB_TABLE.PRIM} WHERE id = ?`, [this.id]);
+		let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id = ?`, [(<any>this.constructor).DB_TABLE.PRIM, this.id]);
 		return true;
 	}
 
@@ -94,11 +95,10 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.execute(`SELECT * FROM ${this.DB_TABLE.PRIM} WHERE ${colum} = ?`, [data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [(<any>this.constructor).DB_TABLE.PRIM, data]);
 		var ret = [];
 		for (var key in rows) {
 
-			var element = rows[key];
 			var temp = new this();
 			temp.parseRow(rows[key]);
 			ret.push(temp);
