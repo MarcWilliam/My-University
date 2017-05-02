@@ -8,7 +8,7 @@
 
             <form [formGroup]="signUpForm" (ngSubmit)="onSignUpFormSubmit()">
                 <md-card-content>
-                    <md-grid-list cols="1" rowHeight="3.5rem">
+                    <md-grid-list cols="1" rowHeight="3.6rem">
                         <md-grid-tile>
                             <md-input-container color="primary">
                                 <input mdInput type="email" placeholder="Email" name="email" formControlName="email" required />
@@ -24,6 +24,13 @@
                                     Enter at least 6 characters
                                 </md-hint>
                             </md-input-container>
+                        </md-grid-tile>
+                        <md-grid-tile>
+                            <md-select placeholder="User Role" name="role" formControlName="role">
+                                <md-option *ngFor="let role of roles" [value]="role.value">
+                                    {{role.viewValue}}
+                                </md-option>
+                            </md-select>
                         </md-grid-tile>
                     </md-grid-list>
                 </md-card-content>

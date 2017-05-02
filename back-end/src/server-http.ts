@@ -8,6 +8,7 @@ import { Express } from 'express';
 
 import CONFIG from './config';
 
+import authenticationPassport from './authentication-passport';
 import UserRouter from './routes/user/user-routes';
 
 // Creates and configures an ExpressJS web server.
@@ -28,19 +29,17 @@ class App {
 		* but by Also adding a second option of 'CONFIG.HTTP.PORT', it will also
 		* allow You to run the server locally with Node.
 		*/
-		this.express.listen(
-			process.env.PORT || CONFIG.HTTP.PORT,
-			() => console.log(
-				`\t HTTP server started listening to \t URL: http://localhost:${CONFIG.HTTP.PORT}/`));
+		this.express.listen(process.env.PORT || CONFIG.HTTP.PORT,
+			() => console.log(`\t HTTP server started listening to \t URL: http://localhost:${CONFIG.HTTP.PORT}/`));
 	}
 
 	// Configure Express middleware.
 	private middleware(): void {
-		this.express.use(
-			bodyParser.urlencoded({ extended: false }));  // Parses urlencoded bodies
-		this.express.use(bodyParser.json());            // Send JSON responses
-		this.express.use(logger('dev'));  // Log requests to API using morgan
-		this.express.use(cors());         // Enable Cross-origin resource sharing
+		this.express.use(bodyParser.urlencoded({ extended: false }));	// Parses urlencoded bodies
+		this.express.use(bodyParser.json());            				// Send JSON responses
+		this.express.use(logger('dev'));								// Log requests to API using morgan
+		this.express.use(cors());										// Enable Cross-origin resource sharing
+		this.express.use(authenticationPassport.initialize());	// Initialize authentication passport middleware
 	}
 
 	// Configure API endpoints.

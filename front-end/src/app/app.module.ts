@@ -19,13 +19,13 @@ import { LoginComponent } from './login/login.component';
 
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GroupComponent } from './group/group.component';
 
 
 import { UserService } from './user.service';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './authentication.service';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { AuthenticationGuard } from './authentication.guard';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,7 @@ import { AuthenticationGuard } from './authentication.guard';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [AppConfig, UserService, AuthService, AuthGuard, AuthenticationService, AuthenticationGuard],
+  providers: [AppConfig, UserService, AuthenticationService, AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

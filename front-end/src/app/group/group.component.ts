@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-group',
+  templateUrl: './group.component.html',
+  styleUrls: ['./group.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class GroupComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService)  { }
 

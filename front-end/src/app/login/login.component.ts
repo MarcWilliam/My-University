@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { AuthService } from '../auth.service';
+import { AuthenticationService } from '../authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   public signInForm: FormGroup;
 
-  constructor( private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor( private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
    }
 
   ngOnInit(): void {
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSignInFormSubmit(): void {
-    this.authService.login(this.signInForm.value.email, this.signInForm.value.password);
+    if(this.authenticationService.signIn(this.signInForm.value)) {
+    }
   }
 
 }

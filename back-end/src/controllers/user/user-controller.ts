@@ -5,6 +5,7 @@ import { IController } from '../icontroller';
 import { User } from '../../models/user/user';
 
 import CONFIG from '../../config';
+import { UserRole } from '../../models/user/user-role';
 
 export class UserController implements IController {
 	public user: User;
@@ -15,19 +16,28 @@ export class UserController implements IController {
 		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: 10080 });
 	}
 
-	login = (req: Request, res: Response, next: NextFunction) => { }
+	public login = async (req: Request, res: Response, next: NextFunction) => {
+		delete req.user.password;
+		delete req.user.created_at;
+		delete req.user.updated_at;
 
-	logout = (req: Request, res: Response, next: NextFunction) => { }
+		res.status(200).json({
+			token: 'Bearer ' + this.generateToken(req.user),
+			user: req.user
+		});
+	}
 
-	signup =
-	async (req: Request, res: Response, next: NextFunction) => {
+	public logout = async (req: Request, res: Response, next: NextFunction) => { }
+
+	public signup = async (req: Request, res: Response, next: NextFunction) => {
 		let user: User = Object.assign(new User(), req.body);
 
-		if (user.isValid()) {
-			let t = await user.create();
-
-			res.status(201)
-				.json({ token: 'JWT ' + this.generateToken(user), user: user });
+		if (user.isValid() && await user.create()) {
+			delete user.password;
+			res.status(201).json({
+				token: 'Bearer ' + this.generateToken(user),
+				user: user
+			});
 		} else {
 			return false;
 		}
@@ -35,9 +45,38 @@ export class UserController implements IController {
 
 	public create() { }
 
-	public read() { }
+	public read = async (primaryKey: any) => {
+		let colum: string = Object.keys(primaryKey)[0];
+		let data: any = primaryKey[colum];
+
+		let user = await User.read(colum, data);
+		return user;
+	}
 
 	public update() { }
 
 	public delete() { }
+
+	public roleAuthorization(roles) {
+
+		return async (req: Request, res: Response, next: NextFunction) => {
+
+			let result = await this.read({ 'id': req.user.id });
+			let user = result[0];
+
+			if (user) {
+				if (roles.indexOf(user.role) > -1) {
+					return next();
+				}
+			} else {
+				res.status(422).json({ error: 'No user found.' });
+				return next('No user found.');
+			}
+
+			res.status(401).json({ error: 'You are not authorized to view this content' });
+			return next('Unauthorized');
+
+		}
+	}
+
 }

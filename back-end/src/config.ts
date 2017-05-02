@@ -13,14 +13,15 @@ const CONFIG = {
 	},
 
 	AUTH: {
-		SECRET: "eypZAZy0CY^g9%KreypZAZy0CY^g9%Kr"
+		SCHEME: "Bearer",
+		SECRET: "eypZAZy0CY^g9%KreypZAZy0CY^g9%Kr",
 	},
 
 	DB: {
 		HOST: "localhost",
 		DATABASE: "my_uni",
 		USERNAME: "root",
-		PASSWORD: "root",
+		PASSWORD: "",
 		CHARSET: "utf8",
 		COLLATE: "",
 		TABLE_PREFIX: ""

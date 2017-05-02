@@ -2,6 +2,7 @@ import { SEntity } from '../core/s-entity';
 import { Searchable } from '../core/searchable';
 import { NotificationObserver } from '../core/notification';
 import { Permission, hasPermission } from './permission';
+import * as BCrypt from 'bcrypt';
 import { DBsql } from '../core/db-sql';
 import CONFIG from '../../config';
 
@@ -16,10 +17,11 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 
 	name: string;
 	email: string;
+	role: string;
 	birthDate: Date;
 
 	phone: number;
-	private password: string;
+	password: string;
 	gender: number;
 
 	departmentID: number;
@@ -32,6 +34,7 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 		super.parseRow(row);
 		this.name = row.name;
 		this.email = row.email;
+		this.role = row.role;
 		this.birthDate = row.birth_date;
 		this.password = row.password;
 		this.gender = row.gender;
@@ -42,10 +45,13 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 		this.isPhoneValid = row.phone_valid;
 	}
 
-	public toRow() {
+	public async toRow() {
+		await this.hashPassword();
+
 		var row = super.toRow();
 		row.name = this.name;
 		row.email = this.email;
+		row.role = this.role;
 		row.birth_date = this.birthDate;
 		row.password = this.password;
 		row.gender = this.gender;
@@ -89,5 +95,15 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 
 	public hasPermission(): Permission {
 		return null;
+	}
+
+	private async hashPassword() {
+		const saltRounds: number = 12;
+		this.password = await BCrypt.hash(this.password, saltRounds);
+	}
+
+	public async comparePassword(passwordAttempt) {
+		const isMatch: boolean = await BCrypt.compare(passwordAttempt, this.password);
+		return isMatch;
 	}
 }

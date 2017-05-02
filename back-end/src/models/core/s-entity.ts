@@ -62,7 +62,7 @@ export class SEntity {
 	 */
 	public async create(): Promise<boolean> {
 
-		var data = this.toRow();
+		var data = await this.toRow();
 		delete data.id;
 		delete data.created_at;
 		delete data.updated_at;
@@ -95,7 +95,7 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [(<any>this.constructor).DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [(<any>this).DB_TABLE.PRIM, data]);
 		var ret = [];
 		for (var key in rows) {
 
