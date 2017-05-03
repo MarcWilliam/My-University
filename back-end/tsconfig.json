@@ -2,13 +2,13 @@
 	"compilerOptions": {
 		"rootDir": "./src",
 		"outDir": "./build",
-
-		"module": "commonjs",
+		"module": "es2015",
 		"target": "es2017",
-
+		"alwaysStrict": true,
 		"noImplicitAny": false,
-		"sourceMap": true,
+		"pretty": true,
 		"noEmitOnError": true,
+		"inlineSourceMap": true,
 		"declaration": true
 	},
 	"include": [

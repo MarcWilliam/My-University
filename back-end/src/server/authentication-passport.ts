@@ -3,7 +3,7 @@ import { Passport } from 'passport';
 import * as PassportLocal from 'passport-local';
 import * as PassportJwt from 'passport-jwt';
 
-import CONFIG from './config';
+import CONFIG from '../config';
 
 PassportJwt.ExtractJwt;
 

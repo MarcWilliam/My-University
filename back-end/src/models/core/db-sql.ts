@@ -5,7 +5,7 @@ import CONFIG from '../../config';
 
 export class DBsql {
 
-	private static _connection: mysql = null;
+	private static _connection = null;
 
 	public static async getConnection() {
 

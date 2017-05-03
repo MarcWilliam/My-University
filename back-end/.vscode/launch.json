@@ -9,6 +9,8 @@
 			"request": "launch",
 			"sourceMaps": true,
 			"name": "Launch Program",
+			"protocol": "inspector",
+			"preLaunchTask": "build",
 			"program": "${workspaceRoot}\\build\\main.js",
 			"outFiles": [
 				"${workspaceRoot}/src/**/*",
@@ -21,7 +23,10 @@
 			"name": "Attach to Port",
 			"address": "localhost",
 			"port": 5858,
-			"outFiles": []
+			"outFiles": [
+				"${workspaceRoot}/src/**/*",
+				"${workspaceRoot}/build/**/*"
+			]
 		}
 	]
 }
