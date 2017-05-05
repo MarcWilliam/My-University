@@ -37,14 +37,6 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async update(): Promise<boolean> { return (<any>this.constructor).update([this]); }
-
-	/**
-	 * update the object data in the DB
-	 * this.id must be same as the thing to be updated
-	 * 
-	 * @return True if everything pass else false
-	 */
 	public static async update(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 
@@ -54,21 +46,12 @@ export class SEntity {
 			delete row.created_at;
 			delete row.updated_at;
 
-			let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id=?`, [this.DB_TABLE.PRIM, row]);
+			let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id = ?`, [this.DB_TABLE.PRIM, row]);
 			data[i].id = rows.insertId;
 		}
 
 		return true;
 	}
-
-	/**
-	 * insert the object data in the DB
-	 * this.id must 0
-	 * this.id will be updated to the new id
-	 * 
-	 * @return True if everything pass else false
-	 */
-	public async create(): Promise<boolean> { return (<any>this.constructor).create([this]); }
 
 	/**
 	 * insert the object data in the DB
@@ -102,18 +85,10 @@ export class SEntity {
 	public static async delete(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 		for (var i in data) {
-			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id = ?`, [this.DB_TABLE.PRIM, data[i].id]);
+			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, data[i].id]);
 		}
 		return true;
 	}
-
-	/**
-	 * delete the object data in the DB
-	 * this.id must be same as the thing to be updated
-	 * 
-	 * @return True if everything pass else false
-	 */
-	public async delete(): Promise<boolean> { return (<any>this.constructor).delete([this]); }
 
 	/**
 	 * select the object data from the DB
@@ -124,7 +99,7 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} in (?)`, [this.DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} IN (?)`, [this.DB_TABLE.PRIM, data]);
 		var ret = [];
 
 		for (var key in rows) {
@@ -138,7 +113,7 @@ export class SEntity {
 	public static async CheckUnique(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ${colum} = ? LIMIT 1`, [this.DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ${colum} IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, data]);
 		return rows.length == 0;
 	}
 
