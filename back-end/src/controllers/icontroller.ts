@@ -6,5 +6,5 @@ export interface IController {
 
 	delete();
 
-	read();
+	read(primaryKey: any);
 }

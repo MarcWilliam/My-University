@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import { UserController } from '../../controllers/user/user-controller';
 
+import authenticationPassport from '../../authentication-passport';
+
 export class UserRouter {
 	private userController: UserController;
 	router: Router;
@@ -20,13 +22,15 @@ export class UserRouter {
 	 * endpoints.
 	 */
 	init() {
+		let requireAuth = authenticationPassport.authenticate('jwt', { session: false }),
+			requireLogin = authenticationPassport.authenticate('local', { session: false });
+
 		this.router.post('/register', this.userController.signup);
-		this.router.post('/login', this.userController.login);
+		this.router.post('/login', requireLogin, this.userController.login);
+		this.router.post('/test', requireAuth, this.userController.roleAuthorization(['admin']), function (req, res, next) { console.log(req.body) });
 	}
 }
 
 // Create the UserRouter, and export its configured Express.Router
-const userRoutes = new UserRouter();
-userRoutes.init();
-
-export default userRoutes.router;
+const userRoutes = new UserRouter().router;
+export default userRoutes;

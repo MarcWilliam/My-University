@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { AuthService } from '../auth.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,13 +8,13 @@ import { AuthService } from '../auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
     onLogOutTapped(): any {
-    this.authService.logout();
+    this.authenticationService.signOut();
   }
 
 }
