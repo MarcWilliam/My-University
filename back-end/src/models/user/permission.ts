@@ -6,8 +6,8 @@ import CONFIG from '../../config';
  */
 export class Permission extends SEntity {
 
-	self: CRUDpermission = new CRUDpermission();
-	others: CRUDpermission = new CRUDpermission();
+	self: CRUDpermission;
+	others: CRUDpermission;
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "permission",
@@ -16,19 +16,19 @@ export class Permission extends SEntity {
 
 	public parseRow(row) {
 		super.parseRow(row);
-		this.self = new CRUDpermission();
-		this.others = new CRUDpermission();
 
-		this.self.create = row.create_self;
-		this.self.read = row.read_self;
-		this.self.update = row.update_self;
-		this.self.delete = row.delete_self;
-
-		this.others.create = row.create_others;
-		this.others.read = row.read_others;
-		this.others.update = row.update_others;
-		this.others.delete = row.delete_others;
-
+		this.self = {
+			create: row.create_self,
+			read: row.read_self,
+			update: row.update_self,
+			delete: row.delete_self,
+		};
+		this.others = {
+			create: row.create_others,
+			read: row.read_others,
+			update: row.update_others,
+			delete: row.delete_others,
+		};
 	}
 
 	public toRow() {
@@ -50,11 +50,11 @@ export class Permission extends SEntity {
 
 }
 
-export class CRUDpermission {
-	create: boolean = false;
-	read: boolean = false;
-	update: boolean = false;
-	delete: boolean = false;
+export interface CRUDpermission {
+	create: boolean;
+	read: boolean;
+	update: boolean;
+	delete: boolean;
 }
 
 export interface hasPermission {

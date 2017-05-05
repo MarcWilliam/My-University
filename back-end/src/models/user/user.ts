@@ -19,7 +19,7 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 	birthDate: Date;
 
 	phone: number;
-	private password: string;
+	password: string;
 	gender: number;
 
 	departmentID: number;
