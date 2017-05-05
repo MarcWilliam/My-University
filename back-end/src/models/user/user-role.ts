@@ -81,9 +81,10 @@ export class UserRole extends SEntity {
 
 	public async create(): Promise<boolean> {
 
-		for (var key in this.permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
+	/*	for (var key in this.permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
 			await this.permissions[key].create();
-		}
+		}*/
+		await Permission.create(this.permissions);
 		await super.create();
 		return true;
 	}

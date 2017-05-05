@@ -75,6 +75,40 @@ export class SEntity {
 	}
 
 	/**
+	 * insert the object data in the DB
+	 * this.id must 0
+	 * this.id will be updated to the new id
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public static async create(data): Promise<boolean> {
+
+
+		let connection = await DBsql.getConnection();
+		let  statement = await connection.prepare('INSERT INTO ?? SET ?');
+
+		// statement.parameters - array of column definitions, length === number of params, here 2
+		// statement.columns - array of result column definitions. Can be empty if result schema is dynamic / not known
+		// statement.id
+		// statement.query
+
+		for (var i in data) {
+			var tmp = data[i].toRow();
+			delete tmp.id;
+			delete tmp.created_at;
+			delete tmp.updated_at;
+
+			statement.execute([this.DB_TABLE.PRIM, tmp], (err, rows, columns) => {
+				data[i].id = rows.insertId;
+			});
+		}
+
+		statement.close();
+
+		return true;
+	}
+
+	/**
 	 * delete the object data in the DB
 	 * this.id must be same as the thing to be updated
 	 * 
