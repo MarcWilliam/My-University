@@ -1,6 +1,6 @@
 import { DBsql } from '../core/db-sql';
 
-export class SEntity {
+export abstract class SEntity {
 
 	static DB_TABLE = {
 		PRIM: "",
