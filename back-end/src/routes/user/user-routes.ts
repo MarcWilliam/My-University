@@ -14,13 +14,13 @@ export class UserRouter {
 		let requireAuth = authenticationPassport.authenticate('jwt', { session: false }),
 			requireLogin = authenticationPassport.authenticate('local', { session: false });
 
-		router.post('/register', UserController.register);
-		router.post('/login', requireLogin, UserController.login);
+		router.post('/register', UserController.Register);
+		router.post('/login', requireLogin, UserController.Login);
 
-		router.post('', requireAuth, UserController.create);
-		router.get('', requireAuth, UserController.read);
-		router.put('', requireAuth, UserController.update);
-		router.delete('', requireAuth, UserController.delete);
+		router.post('', requireAuth, UserController.Create);
+		router.get('', requireAuth, UserController.Read);
+		router.put('', requireAuth, UserController.Update);
+		router.delete('', requireAuth, UserController.Delete);
 
 		return router;
 	}

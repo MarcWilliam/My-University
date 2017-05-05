@@ -1,31 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-import { User } from '../../models/user/user';
 import CONFIG from '../../config';
+import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
+import { CRUDController } from '../core/crud-controller';
 
-export class UserController {
+export class UserController extends CRUDController {
 
-	private static generateToken(user): string {
+	static MASTER_CLASS = User;
+
+	private static _GenerateToken(user): string {
 		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: 10080 });
 	}
 
-	public static async create(req: Request, res: Response, next: NextFunction) { }
-
-	public static async read(req: Request, res: Response, next: NextFunction) { }
-
-	public static async update(req: Request, res: Response, next: NextFunction) { }
-
-	public static async delete(req: Request, res: Response, next: NextFunction) { }
-
-	public static async register(req: Request, res: Response, next: NextFunction) {
+	public static async Register(req: Request, res: Response, next: NextFunction) {
 		let user: User = Object.assign(new User(), req.body);
 
 		if (await user.isValid() && await user.create()) {
 			delete user.password;
 			res.status(201).json({
-				token: 'Bearer ' + UserController.generateToken(user),
+				token: 'Bearer ' + UserController._GenerateToken(user),
 				user: user
 			});
 		} else {
@@ -33,16 +28,18 @@ export class UserController {
 		}
 	}
 
-	public static async login(req: Request, res: Response, next: NextFunction) {
+	public static async Login(req: Request, res: Response, next: NextFunction) {
 		delete req.user.password;
 
 		res.status(200)
 			.json({
-				token: 'Bearer ' + UserController.generateToken(req.user),
+				token: 'Bearer ' + UserController._GenerateToken(req.user),
 				user: req.user
 			});
 	}
 
-	public static async logout(req: Request, res: Response, next: NextFunction) { }
+	public static async Logout(req: Request, res: Response, next: NextFunction) {
+
+	}
 
 }

@@ -1,27 +1,12 @@
+import { UserController } from './user-controller';
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-import { User } from '../../models/user/user';
-
 import CONFIG from '../../config';
+import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
+import { CRUDController } from '../core/crud-controller';
 
-export class UserRoleController {
-
-	public static async Create(req: Request, res: Response, next: NextFunction) {
-
-	}
-
-	public static async Read(req: Request, res: Response, next: NextFunction) {
-
-	}
-
-	public static async Update(req: Request, res: Response, next: NextFunction) {
-
-	}
-
-	public static async Delete(req: Request, res: Response, next: NextFunction) {
-
-	}
-
+export class UserRoleController extends CRUDController {
+	static MASTER_CLASS = UserRole;
 }
