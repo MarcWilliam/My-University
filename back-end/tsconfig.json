@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"rootDir": "./src",
 		"outDir": "./build",
-		"module": "es2015",
+		"module": "commonjs",
 		"target": "es2017",
 		"alwaysStrict": true,
 		"noImplicitAny": false,
