@@ -79,36 +79,38 @@ export class UserRole extends SEntity {
 		return row;
 	}
 
-	public static async create(data): Promise<boolean> {
+	public static async Create(data): Promise<boolean> {
 		for (var i in data) {
-			await Permission.create(data[i].permissions);
+			await Permission.Create(data[i].permissions);
 		}
-		await super.create(data);
+		await super.Create(data);
 		return true;
 	}
 
-	public static async delete(data): Promise<boolean> {
-		await super.delete(data); // must delete the object first befor delete links
+	public static async Delete(data): Promise<boolean> {
+		await super.Delete(data); // must delete the object first befor delete links
 		for (var i in data) {
-			await Permission.delete(data[i].permissions);
+			await Permission.Delete(data[i].permissions);
 		}
 		return true;
 	}
 
-	public static async update(data): Promise<boolean> {
+	public static async Update(data): Promise<boolean> {
 		for (var i in data) {
-			await Permission.update(data[i].permissions);
+			await Permission.Update(data[i].permissions);
 		}
-		await super.update(data);
+		await super.Update(data);
 		return true;
 	}
 
-	public static async read(colum: string, data: any) {
-		var roles = await super.read(colum, data);
+	public static async Read(colum: string, data: any, limit?: number, offset?: number) {
+		limit = limit || 1000;
+		offset = offset || 0;
+		var roles = await super.Read(colum, data, limit, offset);
 
 		for (let i in roles) {
 			for (let key in roles[i].permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
-				roles[i].permissions[key] = await Permission.read('id', roles[i].permissions[key].id)[0];
+				roles[i].permissions[key] = await Permission.Read('id', roles[i].permissions[key].id)[0];
 			}
 		}
 

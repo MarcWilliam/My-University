@@ -37,7 +37,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async update(): Promise<boolean> { return (<any>this.constructor).update([this]); }
+	public async update(): Promise<boolean> { return (<any>this.constructor).Update([this]); }
 
 	/**
 	 * update the object data in the DB
@@ -45,7 +45,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public static async update(data): Promise<boolean> {
+	public static async Update(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 
 		for (var i in data) {
@@ -68,7 +68,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async create(): Promise<boolean> { return (<any>this.constructor).create([this]); }
+	public async create(): Promise<boolean> { return (<any>this.constructor).Create([this]); }
 
 	/**
 	 * insert the object data in the DB
@@ -77,7 +77,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public static async create(data): Promise<boolean> {
+	public static async Create(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 
 		for (var i in data) {
@@ -99,7 +99,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public static async delete(data): Promise<boolean> {
+	public static async Delete(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 		for (var i in data) {
 			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, data[i].id]);
@@ -113,7 +113,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async delete(): Promise<boolean> { return (<any>this.constructor).delete([this]); }
+	public async delete(): Promise<boolean> { return (<any>this.constructor).Delete([this]); }
 
 	/**
 	 * select the object data from the DB
@@ -121,10 +121,10 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public static async read(colum: string, data: any) {
+	public static async Read(colum: string, data: any, limit?: number, offset?: number) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ?? IN (?)`, [this.DB_TABLE.PRIM, colum, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ?? IN (?) LIMIT ? OFFSET ?`, [this.DB_TABLE.PRIM, colum, data, limit, offset]);
 		var ret = [];
 
 		for (var key in rows) {
@@ -140,13 +140,5 @@ export class SEntity {
 
 		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]);
 		return rows.length == 0;
-	}
-
-	public static cast(obj) {
-		var obj = this.constructor();
-		for (let i in obj) {
-			obj[i] = obj[i];
-		}
-		return obj;
 	}
 }

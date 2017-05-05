@@ -64,6 +64,10 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 		return row;
 	}
 
+	public async isValid() {
+		return true;
+	}
+
 	/**
 	 * check user email and password
 	 * if correct start a new session and set this object data to the users
