@@ -6,6 +6,7 @@ import { Express } from 'express';
 
 import CONFIG from '../config';
 import UserRouter from '../routes/user/user-routes';
+import authenticationPassport from './authentication-passport';
 
 // Creates and configures an ExpressJS web server.
 export default class HTTPserver {
@@ -36,6 +37,8 @@ export default class HTTPserver {
 		this.express.use(bodyParser.json());	// Send JSON responses
 		this.express.use(logger('dev'));		// Log requests to API using morgan
 		this.express.use(cors());				// Enable Cross-origin resource sharing
+		this.express.use(authenticationPassport.initialize());	// Initialize authentication passport middleware
+
 	}
 
 	/**

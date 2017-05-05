@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { UserController } from '../../controllers/user/user-controller';
 
-import authenticationPassport from '../../authentication-passport';
+import authenticationPassport from '../../server/authentication-passport';
 
 export class UserRouter {
 	private userController: UserController;

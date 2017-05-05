@@ -3,14 +3,8 @@ import { Passport } from 'passport';
 import * as PassportLocal from 'passport-local';
 import * as PassportJwt from 'passport-jwt';
 
-<<<<<<< HEAD:back-end/src/server/authentication-passport.ts
 import CONFIG from '../config';
-
-PassportJwt.ExtractJwt;
-=======
-import CONFIG from './config';
-import { UserController } from './controllers/user/user-controller';
->>>>>>> back-end-auth:back-end/src/authentication-passport.ts
+import { UserController } from '../controllers/user/user-controller';
 
 class AuthenticationPassport {
 	userController: UserController;
