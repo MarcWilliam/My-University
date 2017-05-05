@@ -46,7 +46,7 @@ export class UserRole extends SEntity {
 			group: new Permission(),
 			enrollment: new Permission()
 		};
-		
+
 		this.permissions.user_role.id = row.user_role;
 		this.permissions.permission.id = row.permission;
 		this.permissions.user.id = row.user;
@@ -79,29 +79,27 @@ export class UserRole extends SEntity {
 		return row;
 	}
 
-	public async create(): Promise<boolean> {
-
-	/*	for (var key in this.permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
-			await this.permissions[key].create();
-		}*/
-		await Permission.create(this.permissions);
-		await super.create();
+	public static async create(data): Promise<boolean> {
+		for (var i in data) {
+			await Permission.create(data[i].permissions);
+		}
+		await super.create(data);
 		return true;
 	}
 
-	public async delete(): Promise<boolean> {
-		for (var key in this.permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
-			await this.permissions[key].delete();
+	public static async delete(data): Promise<boolean> {
+		await super.delete(data); // must delete the object first befor delete links
+		for (var i in data) {
+			await Permission.delete(data[i].permissions);
 		}
-		await super.delete();
 		return true;
 	}
 
-	public async update(): Promise<boolean> {
-		for (var key in this.permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
-			await this.permissions[key].update();
+	public static async update(data): Promise<boolean> {
+		for (var i in data) {
+			await Permission.update(data[i].permissions);
 		}
-		await super.update();
+		await super.update(data);
 		return true;
 	}
 

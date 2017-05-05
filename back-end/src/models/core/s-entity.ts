@@ -31,9 +31,13 @@ export class SEntity {
 		return true;
 	}
 
-	public async save(): Promise<boolean> {
-		return (this.id === 0) ? this.create() : this.update();
-	}
+	/**
+	 * update the object data in the DB
+	 * this.id must be same as the thing to be updated
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public async update(): Promise<boolean> { return (<any>this.constructor).update([this]); }
 
 	/**
 	 * update the object data in the DB
@@ -41,14 +45,18 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async update(): Promise<boolean> {
-		var data = this.toRow();
-		delete data.id;
-		delete data.created_at;
-		delete data.updated_at;
-
+	public static async update(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id=?`, [(<any>this.constructor).DB_TABLE.PRIM, data, this.id]);
+
+		for (var i in data) {
+			var row = data[i].toRow();
+			delete row.id;
+			delete row.created_at;
+			delete row.updated_at;
+
+			let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id=?`, [this.DB_TABLE.PRIM, row]);
+			data[i].id = rows.insertId;
+		}
 
 		return true;
 	}
@@ -60,19 +68,7 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async create(): Promise<boolean> {
-
-		var data = this.toRow();
-		delete data.id;
-		delete data.created_at;
-		delete data.updated_at;
-
-		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`, [(<any>this.constructor).DB_TABLE.PRIM, data]);
-		this.id = rows.insertId;
-
-		return true;
-	}
+	public async create(): Promise<boolean> { return (<any>this.constructor).create([this]); }
 
 	/**
 	 * insert the object data in the DB
@@ -82,28 +78,17 @@ export class SEntity {
 	 * @return True if everything pass else false
 	 */
 	public static async create(data): Promise<boolean> {
-
-
 		let connection = await DBsql.getConnection();
-		let  statement = await connection.prepare('INSERT INTO ?? SET ?');
-
-		// statement.parameters - array of column definitions, length === number of params, here 2
-		// statement.columns - array of result column definitions. Can be empty if result schema is dynamic / not known
-		// statement.id
-		// statement.query
 
 		for (var i in data) {
-			var tmp = data[i].toRow();
-			delete tmp.id;
-			delete tmp.created_at;
-			delete tmp.updated_at;
+			var row = data[i].toRow();
+			delete row.id;
+			delete row.created_at;
+			delete row.updated_at;
 
-			statement.execute([this.DB_TABLE.PRIM, tmp], (err, rows, columns) => {
-				data[i].id = rows.insertId;
-			});
+			let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`, [this.DB_TABLE.PRIM, row]);
+			data[i].id = rows.insertId;
 		}
-
-		statement.close();
 
 		return true;
 	}
@@ -114,11 +99,21 @@ export class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public async delete(): Promise<boolean> {
+	public static async delete(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
-		let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id = ?`, [(<any>this.constructor).DB_TABLE.PRIM, this.id]);
+		for (var i in data) {
+			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id = ?`, [this.DB_TABLE.PRIM, data[i].id]);
+		}
 		return true;
 	}
+
+	/**
+	 * delete the object data in the DB
+	 * this.id must be same as the thing to be updated
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public async delete(): Promise<boolean> { return (<any>this.constructor).delete([this]); }
 
 	/**
 	 * select the object data from the DB
@@ -129,7 +124,7 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [this.DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} in (?)`, [this.DB_TABLE.PRIM, data]);
 		var ret = [];
 
 		for (var key in rows) {
