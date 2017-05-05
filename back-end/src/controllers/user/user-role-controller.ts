@@ -1,7 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
+import * as jwt from 'jsonwebtoken';
 
+import { User } from '../../models/user/user';
 
-export class DepartmentController {
+import CONFIG from '../../config';
+import { UserRole } from '../../models/user/user-role';
+
+export class UserRoleController {
 
 	public static async Create(req: Request, res: Response, next: NextFunction) {
 

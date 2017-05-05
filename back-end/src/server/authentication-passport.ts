@@ -5,6 +5,7 @@ import * as PassportJwt from 'passport-jwt';
 
 import CONFIG from '../config';
 import { UserController } from '../controllers/user/user-controller';
+import { User } from '../models/user/user';
 
 class AuthenticationPassport {
 	userController: UserController;
@@ -16,7 +17,7 @@ class AuthenticationPassport {
 	private jwtOptions: any;
 
 	constructor() {
-		this.userController = new UserController();
+
 		this.passport = new Passport();
 
 		this.localOptions = {
@@ -32,7 +33,7 @@ class AuthenticationPassport {
 		};
 
 		this.localLogin = new PassportLocal.Strategy(this.localOptions, async (req, email, password, done) => {
-			let res = await this.userController.read({ 'email': email });
+			let res = await User.Read('email', email);
 			let user = res[0];
 
 			if (!user) {
@@ -48,7 +49,7 @@ class AuthenticationPassport {
 
 		this.jwtLogin = new PassportJwt.Strategy(this.jwtOptions, async (JwtPayLoad, done) => {
 
-			let res = await this.userController.read({ 'id': JwtPayLoad.id });
+			let res = await User.Read('id', JwtPayLoad.id);
 			let user = res[0];
 
 			if (user) {

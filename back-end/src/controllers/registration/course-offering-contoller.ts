@@ -1,18 +1,21 @@
-import { IController } from '../icontroller';
+import { Request, Response, NextFunction } from 'express';
 
-export class CourseOfferingContoller implements IController {
-	public create() {
+export class CourseOfferingContoller {
+
+	public static async Create(req: Request, res: Response, next: NextFunction) {
+
 	}
 
-	public read() {
+	public static async Read(req: Request, res: Response, next: NextFunction) {
+
 	}
 
-	public update() {
+	public static async Update(req: Request, res: Response, next: NextFunction) {
+
 	}
 
-	public delete() {
+	public static async Delete(req: Request, res: Response, next: NextFunction) {
+
 	}
 
-	constructor() {
-	}
 }
