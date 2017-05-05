@@ -1,6 +1,6 @@
 import { DBsql } from '../core/db-sql';
 
-export abstract class SEntity {
+export class SEntity {
 
 	static DB_TABLE = {
 		PRIM: "",
@@ -37,6 +37,14 @@ export abstract class SEntity {
 	 * 
 	 * @return True if everything pass else false
 	 */
+	public async update(): Promise<boolean> { return (<any>this.constructor).update([this]); }
+
+	/**
+	 * update the object data in the DB
+	 * this.id must be same as the thing to be updated
+	 * 
+	 * @return True if everything pass else false
+	 */
 	public static async update(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
 
@@ -52,6 +60,15 @@ export abstract class SEntity {
 
 		return true;
 	}
+
+	/**
+	 * insert the object data in the DB
+	 * this.id must 0
+	 * this.id will be updated to the new id
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public async create(): Promise<boolean> { return (<any>this.constructor).create([this]); }
 
 	/**
 	 * insert the object data in the DB
@@ -89,6 +106,14 @@ export abstract class SEntity {
 		}
 		return true;
 	}
+
+	/**
+	 * delete the object data in the DB
+	 * this.id must be same as the thing to be updated
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public async delete(): Promise<boolean> { return (<any>this.constructor).delete([this]); }
 
 	/**
 	 * select the object data from the DB

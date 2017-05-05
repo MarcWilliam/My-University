@@ -32,7 +32,7 @@ export class UserController implements IController {
 	public async signup(req: Request, res: Response, next: NextFunction) {
 		let user: User = Object.assign(new User(), req.body);
 
-		if (user.isValid() && await User.create([user])) {
+		if (user.isValid() && await user.create()) {
 			delete user.password;
 			res.status(201).json({
 				token: 'Bearer ' + this.generateToken(user),
