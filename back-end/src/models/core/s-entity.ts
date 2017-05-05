@@ -124,7 +124,7 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} IN (?)`, [this.DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ?? IN (?)`, [this.DB_TABLE.PRIM, colum, data]);
 		var ret = [];
 
 		for (var key in rows) {
@@ -138,7 +138,7 @@ export class SEntity {
 	public static async CheckUnique(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ${colum} IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]);
 		return rows.length == 0;
 	}
 
