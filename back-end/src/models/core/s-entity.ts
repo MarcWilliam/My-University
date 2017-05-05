@@ -95,16 +95,22 @@ export class SEntity {
 	public static async read(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [(<any>this.constructor).DB_TABLE.PRIM, data]);
+		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ${colum} = ?`, [this.DB_TABLE.PRIM, data]);
 		var ret = [];
-		for (var key in rows) {
 
+		for (var key in rows) {
 			var temp = new this();
 			temp.parseRow(rows[key]);
 			ret.push(temp);
-
 		}
 		return ret;
+	}
+
+	public static async CheckUnique(colum: string, data: any) {
+		let connection = await DBsql.getConnection();
+
+		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ${colum} = ? LIMIT 1`, [this.DB_TABLE.PRIM, data]);
+		return rows.length == 0;
 	}
 
 	public static cast(obj) {
