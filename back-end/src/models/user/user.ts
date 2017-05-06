@@ -72,12 +72,15 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 	 * check user email and password
 	 * if correct start a new session and set this object data to the users
 	 * 
-	 * @param email user email
+	 * @param unique user email
 	 * @param password user password
 	 * @return true if login success else false
 	 */
-	public async login(email: string, password: string) {
-		return false;
+	public static async Login(email: string, password: string) {
+		let user = await User.Read({ email: email })[0];
+		if (!user) return null;
+		let isMatch = await user.comparePassword(password);
+		return isMatch ? user : null;
 	}
 
 	/**

@@ -1,5 +1,11 @@
 	{
 		"editor.insertSpaces": false,
 		"editor.detectIndentation": false,
-		"editor.tabSize": 4
+		"editor.tabSize": 4,
+		"files.exclude": {
+			"**/node_modules": true, // this excludes all folders named "node_modules" from the explore tree alternative version
+			"node_modules": true, // this excludes the folder only from the root of your workspace 
+			"**/build": true,
+			"build": true
+		}
 	}

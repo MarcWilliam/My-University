@@ -8,7 +8,6 @@ import { UserController } from '../controllers/user/user-controller';
 import { User } from '../models/user/user';
 
 class AuthenticationPassport {
-	userController: UserController;
 
 	public passport: any;
 	private localLogin: PassportLocal.Strategy;
@@ -33,31 +32,15 @@ class AuthenticationPassport {
 		};
 
 		this.localLogin = new PassportLocal.Strategy(this.localOptions, async (req, email, password, done) => {
-			let res = await User.Read({ email: email });
-			let user = res[0];
-
-			if (!user) {
-				return done(null, false, { message: 'Login failed. Please try again.' });
-			}
-
-			let isMatch = await user.comparePassword(password);
-			if (!isMatch) {
-				return done(null, false, { message: 'Login failed. Please try again.' });
-			}
-			return done(null, user);
+			let user = await User.Login(email, password);
+			return user ?
+				done(null, user) :
+				done(null, false, { message: 'Login failed. Please try again.' });
 		});
 
 		this.jwtLogin = new PassportJwt.Strategy(this.jwtOptions, async (JwtPayLoad, done) => {
-
-			let res = await User.Read('id', JwtPayLoad.id);
-			let user = res[0];
-
-			if (user) {
-				done(null, user);
-			} else {
-				done(null, false);
-			}
-
+			let user = await User.Read({ id: JwtPayLoad.id })[0];
+			return user ? done(null, user) : done(null, false);
 		});
 
 		this.passport.use(this.jwtLogin);
