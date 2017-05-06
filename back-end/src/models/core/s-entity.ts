@@ -115,16 +115,32 @@ export class SEntity {
 	 */
 	public async delete(): Promise<boolean> { return (<any>this.constructor).Delete([this]); }
 
-	/**
-	 * select the object data from the DB
-	 * set this object data to the current
-	 * 
-	 * @return True if everything pass else false
-	 */
-	public static async Read(colum: string, data: any, limit?: number, offset?: number) {
+	private static _PaseReadQuery(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number): { query: string, data: [any] } {
+		let query = `SELECT * FROM ?? WHERE `;
+		let data: [any] = [this.DB_TABLE.PRIM];
+
+		let operation = DBopp.OR == opp ? `OR` : `AND`;
+
+		var i = 0, length = Object.keys(feilds).length;
+
+		for (var key in feilds) {
+			data.push(key, feilds[key]);
+			query += ` ?? IN (?) ${i++ == length ? operation : ""} `;
+		}
+
+		query += ` LIMIT ? OFFSET ?`;
+		data.push(
+			limit ? limit : 1000,
+			offset ? offset : 0
+		);
+
+		return { query: query, data: data };
+	}
+
+	public static async SelectQuery(query: string, data: [any]) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ?? IN (?) LIMIT ? OFFSET ?`, [this.DB_TABLE.PRIM, colum, data, limit, offset]);
+		let [rows, fields] = await connection.query(query, data);
 		var ret = [];
 
 		for (var key in rows) {
@@ -135,6 +151,17 @@ export class SEntity {
 		return ret;
 	}
 
+	/**
+	 * select the object data from the DB
+	 * set this object data to the current
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
+		let parsed = this._PaseReadQuery(feilds, opp, limit, offset);
+		return this.SelectQuery(parsed.query, parsed.data);
+	}
+
 	public static async CheckUnique(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
@@ -142,3 +169,5 @@ export class SEntity {
 		return rows.length == 0;
 	}
 }
+
+export enum DBopp { AND, OR }

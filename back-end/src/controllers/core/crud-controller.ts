@@ -15,7 +15,11 @@ export class CRUDController {
 		for (var i in req.body) {
 			data.push(Object.assign(new this.MASTER_CLASS(), req.body[i]));
 		}
+
+		// verify user access here
+		// validate data
 		this.MASTER_CLASS.Create(data);
+		// return the new obj
 	}
 
 	public static async Read(req: Request, res: Response, next: NextFunction) {
@@ -27,7 +31,10 @@ export class CRUDController {
 		for (var i in req.body) {
 			data.push(Object.assign(new this.MASTER_CLASS(), req.body[i]));
 		}
+		// verify user access here
+		// validate data
 		this.MASTER_CLASS.Update(data);
+		// return the new obj
 	}
 
 	public static async Delete(req: Request, res: Response, next: NextFunction) {
@@ -35,7 +42,10 @@ export class CRUDController {
 		for (var i in req.body) {
 			data.push(Object.assign(new this.MASTER_CLASS(), req.body[i]));
 		}
+		// verify user access here
+		// validate data
 		this.MASTER_CLASS.Delete(data);
+		// return the new obj
 	}
 
 }

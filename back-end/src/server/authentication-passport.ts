@@ -33,7 +33,7 @@ class AuthenticationPassport {
 		};
 
 		this.localLogin = new PassportLocal.Strategy(this.localOptions, async (req, email, password, done) => {
-			let res = await User.Read('email', email);
+			let res = await User.Read({ email: email });
 			let user = res[0];
 
 			if (!user) {
