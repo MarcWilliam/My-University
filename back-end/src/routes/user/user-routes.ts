@@ -5,6 +5,8 @@ import authenticationPassport from '../../server/authentication-passport';
 
 export class UserRouter {
 
+	static CONTROLLER = UserController;
+
 	/**
 	 * Take each handler, and attach to one of the Express.Router's endpoints.
 	 */
@@ -13,14 +15,14 @@ export class UserRouter {
 		let requireAuth = authenticationPassport.authenticate('jwt', { session: false }),
 			requireLogin = authenticationPassport.authenticate('local', { session: false });
 
-		router.post('/register/', UserController.Register);
-		router.post('/login/', requireLogin, UserController.Login);
-		router.post('/logout/', requireAuth, UserController.Logout);
+		router.post('/register/', this.CONTROLLER.Register.bind(this.CONTROLLER));
+		router.post('/login/', requireLogin, this.CONTROLLER.Login.bind(this.CONTROLLER));
+		router.post('/logout/', requireAuth, this.CONTROLLER.Logout.bind(this.CONTROLLER));
 
-		router.post('/', requireAuth, UserController.Create);
-		router.get('/(:key=:value)?/', UserController.Read);
-		router.put('/', requireAuth, UserController.Update);
-		router.delete('/:ids/', requireAuth, UserController.Delete);
+		router.post('/', requireAuth, this.CONTROLLER.Create.bind(this.CONTROLLER));
+		router.get('/(:key=:value)?/', requireAuth, this.CONTROLLER.Read.bind(this.CONTROLLER));
+		router.put('/', requireAuth, this.CONTROLLER.Update.bind(this.CONTROLLER));
+		router.delete('/:ids/', requireAuth, this.CONTROLLER.Delete.bind(this.CONTROLLER));
 
 		router.get('/test/(:key=:value)?/', (req: Request, res: Response, next: NextFunction) => res.json({ params: req.params, query: req.query }));
 
