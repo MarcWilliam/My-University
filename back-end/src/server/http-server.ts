@@ -5,8 +5,9 @@ import * as logger from 'morgan';
 import { Express } from 'express';
 
 import CONFIG from '../config';
-import { UserRouter } from '../routes/user/user-routes';
 import authenticationPassport from './authentication-passport';
+import { UserRouter } from '../routes/user/user-routes';
+import { UserRoleRouter } from '../routes/user/user-role-routes';
 
 // Creates and configures an ExpressJS web server.
 export default class HTTPserver {
@@ -46,5 +47,6 @@ export default class HTTPserver {
 	 */
 	private routes(): void {
 		this.express.use('/api/users', UserRouter.init());
+		this.express.use('/api/user-roles', UserRoleRouter.init());
 	}
 }
