@@ -8,7 +8,7 @@ import CONFIG from '../../config';
 
 /**
  */
-export class User extends SEntity implements Searchable<User>, hasPermission {
+export class User extends SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "user",
@@ -64,10 +64,6 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 		return row;
 	}
 
-	public async isValid() {
-		return true;
-	}
-
 	/**
 	 * check user email and password
 	 * if correct start a new session and set this object data to the users
@@ -93,14 +89,6 @@ export class User extends SEntity implements Searchable<User>, hasPermission {
 	}
 
 	public sendNotification(subject?: any, Notification?: any): any {
-		return null;
-	}
-
-	public search(query: string): User[] {
-		return null;
-	}
-
-	public hasPermission(): Permission {
 		return null;
 	}
 

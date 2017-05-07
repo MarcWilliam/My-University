@@ -1,6 +1,10 @@
+import { hasPermission } from './../user/permission';
 import { DBsql } from '../core/db-sql';
+import { UserRole } from '../user/user-role';
+import { User } from '../user/user';
+import { CRUDpermission } from '../user/permission';
 
-export class SEntity {
+export class SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: "",
@@ -25,6 +29,10 @@ export class SEntity {
 		row.updated_at = this.updatedAt;
 
 		return row;
+	}
+
+	public hasPermission(user: User, role: UserRole): CRUDpermission {
+		return null;
 	}
 
 	public async isValid() {
@@ -96,14 +104,16 @@ export class SEntity {
 	/**
 	 * delete the object data in the DB
 	 * this.id must be same as the thing to be updated
-	 * 
+	 * @param data an array of id's
 	 * @return True if everything pass else false
 	 */
 	public static async Delete(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
-		for (var i in data) {
-			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, data[i].id]);
-		}
+		let ids = [];
+
+		for (var i in data) ids.push(data[i].id);
+
+		let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, ids]);
 		return true;
 	}
 
@@ -116,16 +126,19 @@ export class SEntity {
 	public async delete(): Promise<boolean> { return (<any>this.constructor).Delete([this]); }
 
 	private static _PaseReadQuery(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number): { query: string, data: [any] } {
-		let query = `SELECT * FROM ?? WHERE `;
+		let query = `SELECT * FROM ?? `;
 		let data: [any] = [this.DB_TABLE.PRIM];
 
-		let operation = DBopp.OR == opp ? `OR` : `AND`;
+		if (feilds) {
+			let operation = DBopp.OR == opp ? `OR` : `AND`;
+			var i = 0, length = Object.keys(feilds).length;
 
-		var i = 0, length = Object.keys(feilds).length;
+			if (length > 0) query += ` WHERE `;
 
-		for (var key in feilds) {
-			data.push(key, feilds[key]);
-			query += ` ?? IN (?) ${i++ == length ? operation : ""} `;
+			for (var key in feilds) {
+				data.push(key, feilds[key]);
+				query += ` ?? IN (?) ${i++ == length ? operation : ""} `;
+			}
 		}
 
 		query += ` LIMIT ? OFFSET ?`;

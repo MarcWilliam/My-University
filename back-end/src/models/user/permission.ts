@@ -1,5 +1,7 @@
 import { SEntity } from '../core/s-entity';
 import CONFIG from '../../config';
+import { UserRole } from './user-role';
+import { User } from './user';
 
 /**
  * holds the permissions of CRUD
@@ -61,5 +63,5 @@ export interface hasPermission {
 	/**
 	 * @return the current user permission
 	 */
-	hasPermission(): Permission;
+	hasPermission(user: User, role: UserRole): CRUDpermission;
 }

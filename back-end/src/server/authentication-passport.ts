@@ -1,10 +1,8 @@
-
 import { Passport } from 'passport';
 import * as PassportLocal from 'passport-local';
 import * as PassportJwt from 'passport-jwt';
 
 import CONFIG from '../config';
-import { UserController } from '../controllers/user/user-controller';
 import { User } from '../models/user/user';
 
 class AuthenticationPassport {

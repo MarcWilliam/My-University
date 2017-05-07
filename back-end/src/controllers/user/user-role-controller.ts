@@ -8,5 +8,5 @@ import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
 
 export class UserRoleController extends CRUDController {
-	static MASTER_CLASS = UserRole;
+	static MODEL = UserRole;
 }
