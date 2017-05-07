@@ -1,4 +1,5 @@
 build/
+src/config.ts
 
 # Created by https://www.gitignore.io/api/osx,node,linux,windows,eclipse,netbeans,sublimetext,visualstudio,visualstudiocode,typings
 
