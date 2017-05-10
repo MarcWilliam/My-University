@@ -11,6 +11,7 @@ import { UserRouter } from '../routes/user/user-routes';
 import { UserRoleRouter } from '../routes/user/user-role-routes';
 import { DepartmentRouter } from '../routes/registration/department-routes';
 import { SemesterRouter } from '../routes/registration/semester-routes';
+import { CourseRouter } from '../routes/registration/course-routes';
 
 /**
  * Creates and configures an ExpressJS web server.
@@ -52,9 +53,10 @@ export default class HTTPserver {
 	 * Configure API endpoints.
 	 */
 	private routes(): void {
-		this.express.use('/api/users', UserRouter.init());
-		this.express.use('/api/user-roles', UserRoleRouter.init());
-		this.express.use('/api/department', DepartmentRouter.init());
-		this.express.use('/api/semester', SemesterRouter.init());
+		this.express.use('/api/users', UserRouter.Router());
+		this.express.use('/api/user-roles', UserRoleRouter.Router());
+		this.express.use('/api/department', DepartmentRouter.Router());
+		this.express.use('/api/semester', SemesterRouter.Router());
+		this.express.use('/api/semester', CourseRouter.Router());
 	}
 }

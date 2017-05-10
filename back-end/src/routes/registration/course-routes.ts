@@ -2,12 +2,12 @@ import { Router, Request, Response, NextFunction } from 'express';
 
 import { CRUDRouter } from './../core/crud-router';
 import authenticationPassport from '../../server/authentication-passport';
-import { DepartmentController } from '../../controllers/registration/department-controller';
+import { CourseController } from '../../controllers/registration/course-controller';
 
 /**
  * @author Marc Wafik
  */
-export class DepartmentRouter extends CRUDRouter {
+export class CourseRouter extends CRUDRouter {
 
-	static CONTROLLER = DepartmentController;
+	static CONTROLLER = CourseController;
 }
