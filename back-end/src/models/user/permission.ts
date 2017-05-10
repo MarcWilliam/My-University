@@ -5,6 +5,7 @@ import { User } from './user';
 
 /**
  * holds the permissions of CRUD
+ * @author Marc Wafik
  */
 export class Permission extends SEntity {
 

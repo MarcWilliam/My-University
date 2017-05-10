@@ -1,8 +1,8 @@
+import * as BCrypt from 'bcrypt';
+
 import { SEntity } from '../core/s-entity';
-import { Searchable } from '../core/searchable';
 import { NotificationObserver } from '../core/notification';
 import { Permission, hasPermission } from './permission';
-import * as BCrypt from 'bcrypt';
 import { DBsql } from '../core/db-sql';
 import CONFIG from '../../config';
 
@@ -24,7 +24,7 @@ export class User extends SEntity implements hasPermission {
 
 	phone: number;
 	password: string;
-	hashed_password: string;
+	hashedPassword: string;
 	gender: number;
 
 	departmentID: number;
@@ -39,7 +39,7 @@ export class User extends SEntity implements hasPermission {
 		this.email = row.email;
 		this.role = row.role;
 		this.birthDate = row.birth_date;
-		this.hashed_password = row.password;
+		this.hashedPassword = row.password;
 		this.gender = row.gender;
 		this.phone = row.phone;
 		this.departmentID = row.department_id;
@@ -54,7 +54,7 @@ export class User extends SEntity implements hasPermission {
 		row.email = this.email;
 		row.role = this.role;
 		row.birth_date = this.birthDate;
-		row.password = this.hashed_password;
+		row.password = this.hashedPassword;
 		row.gender = this.gender;
 		row.phone = this.phone;
 		row.department_id = this.departmentID;
@@ -65,10 +65,12 @@ export class User extends SEntity implements hasPermission {
 		return row;
 	}
 
-	public async isValid() {
-		(await this.hashPassword()) != null;
-		//User.CheckUnique('email',)
-		return true;
+	public static async ParceData(data: any[]): Promise<SEntity[]> {
+		var ret: User[] = <any>await super.ParceData(data);
+		for (let i in ret) {
+			ret[i].hashPassword();
+		}
+		return ret;
 	}
 
 	/**
@@ -96,13 +98,14 @@ export class User extends SEntity implements hasPermission {
 	}
 
 	private async hashPassword() {
-		return this.hashed_password = (this.password ?
-			await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS) :
-			this.hashed_password);
+		if (this.password) {
+			this.hashedPassword = await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS);
+			delete this.password;
+		}
+		return this.hashedPassword;
 	}
 
-	public async comparePassword(passwordAttempt) {
-		const isMatch: boolean = await BCrypt.compare(passwordAttempt, this.password);
-		return isMatch;
+	public async comparePassword(passwordAttempt): Promise<Boolean> {
+		return await BCrypt.compare(passwordAttempt, this.password);
 	}
 }

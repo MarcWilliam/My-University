@@ -4,7 +4,7 @@ import { UserRole } from '../user/user-role';
 import { User } from '../user/user';
 import { CRUDpermission } from '../user/permission';
 
-export class SEntity implements hasPermission {
+export /*abstract*/ class SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: "",

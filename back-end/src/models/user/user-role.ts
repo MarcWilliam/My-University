@@ -3,8 +3,8 @@ import { SEntity, DBopp } from '../core/s-entity';
 import CONFIG from '../../config';
 
 /**
- * 
- * @author marcw
+ * Holds the user permissions and access
+ * @author Marc Wafik
  */
 export class UserRole extends SEntity {
 
@@ -109,7 +109,7 @@ export class UserRole extends SEntity {
 		var roles = await super.Read(feilds, opp, limit, offset);
 
 		for (let i in roles) {
-			for (let key in roles[i].permissions) { // <<<<<<<<<<<<< use prepaired for preformence LATER
+			for (let key in roles[i].permissions) { //<<<<<<<<<<<<< use prepaired for preformence LATER
 				roles[i].permissions[key] = await Permission.Read({ id: roles[i].permissions[key].id })[0];
 			}
 		}
