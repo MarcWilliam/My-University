@@ -10,11 +10,22 @@ import { User } from '../models/user/user';
  */
 export class PassportAut {
 
-	public static Passport;
+	private static _LocalOptions: any = {
+		usernameField: 'email',
+		passwordField: 'password',
+		passReqToCallback: true,
+		session: false
+	};
+
+	private static _JWTOptions: any = {
+		jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+		secretOrKey: CONFIG.AUTH.SECRET,
+	};;
+
+	private static _Passport: any = new Passport();
+
 	private static _LocalLogin: PassportLocal.Strategy;
 	private static _JWTLogin: PassportJwt.Strategy;
-	private static _LocalOptions: any;
-	private static _JWTOptions: any;
 
 	private static _AuthenticateJWT;
 	private static _AuthenticateLocal;
@@ -22,14 +33,7 @@ export class PassportAut {
 
 	private static _init() {
 
-		this.Passport = new Passport();
-
-		this._LocalOptions = {
-			usernameField: 'email',
-			passwordField: 'password',
-			passReqToCallback: true,
-			session: false
-		};
+		this._Passport = new Passport()
 
 		this._LocalLogin = new PassportLocal.Strategy(this._LocalOptions, async (req, email, password, done) => {
 			let user = await User.Login(email, password);
@@ -38,32 +42,31 @@ export class PassportAut {
 				done(null, false, { message: 'Login failed. Please try again.' });
 		});
 
-		this._JWTOptions = {
-			jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
-			secretOrKey: CONFIG.AUTH.SECRET,
-		};
+		this._JWTOptions =
+			this._JWTLogin = new PassportJwt.Strategy(this._JWTOptions, async (JwtPayLoad, done) => {
+				let user = await User.Read({ id: JwtPayLoad.id })[0];
+				return user ? done(null, user) : done(null, false);
+			});
 
-		this._JWTLogin = new PassportJwt.Strategy(this._JWTOptions, async (JwtPayLoad, done) => {
-			let user = await User.Read({ id: JwtPayLoad.id })[0];
-			return user ? done(null, user) : done(null, false);
-		});
+		this._Passport.use(this._JWTLogin);
+		this._Passport.use(this._LocalLogin);
 
-		this.Passport.use(this._JWTLogin);
-		this.Passport.use(this._LocalLogin);
+		this._AuthenticateJWT = this._Passport.authenticate('jwt', { session: false });
+		this._AuthenticateLocal = this._Passport.authenticate('local', { session: false });
+	}
 
-		this._AuthenticateJWT = this.Passport.authenticate('jwt', { session: false });
-		this._AuthenticateLocal = this.Passport.authenticate('local', { session: false });
+	static get Passport() {
+		if (!this._Passport) { this._init(); }
+		return this._Passport;
 	}
 
 	static get AuthenticateJWT() {
-		if (!this._AuthenticateJWT)
-			this._init();
+		if (!this._AuthenticateJWT) { this._init(); }
 		return this._AuthenticateJWT;
 	}
 
 	static get AuthenticateLocal() {
-		if (!this._AuthenticateLocal)
-			this._init();
+		if (!this._AuthenticateLocal) { this._init(); }
 		return this._AuthenticateJWT;
 	}
 }
