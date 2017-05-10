@@ -5,6 +5,9 @@ import * as PassportJwt from 'passport-jwt';
 import CONFIG from '../config';
 import { User } from '../models/user/user';
 
+/**
+ * @author Abdelrahman Abdelhamed
+ */
 class AuthenticationPassport {
 
 	public passport: any;

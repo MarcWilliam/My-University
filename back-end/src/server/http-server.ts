@@ -6,10 +6,16 @@ import { Express } from 'express';
 
 import CONFIG from '../config';
 import authenticationPassport from './authentication-passport';
+
 import { UserRouter } from '../routes/user/user-routes';
 import { UserRoleRouter } from '../routes/user/user-role-routes';
+import { DepartmentRouter } from '../routes/registration/department-routes';
+import { SemesterRouter } from '../routes/registration/semester-routes';
 
-// Creates and configures an ExpressJS web server.
+/**
+ * Creates and configures an ExpressJS web server.
+ * @author Marc Wafik
+ */
 export default class HTTPserver {
 	// ref to Express instance
 	public express: express.Application;
@@ -48,5 +54,7 @@ export default class HTTPserver {
 	private routes(): void {
 		this.express.use('/api/users', UserRouter.init());
 		this.express.use('/api/user-roles', UserRoleRouter.init());
+		this.express.use('/api/department', DepartmentRouter.init());
+		this.express.use('/api/semester', SemesterRouter.init());
 	}
 }

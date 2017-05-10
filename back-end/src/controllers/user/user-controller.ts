@@ -6,6 +6,9 @@ import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
 
+/**
+ * @author Abdelrahman Abdelhamed
+ */
 export class UserController extends CRUDController {
 
 	static MODEL = User;

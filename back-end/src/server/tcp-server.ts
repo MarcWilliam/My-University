@@ -4,6 +4,10 @@ import * as socketio from 'socket.io';
 
 import CONFIG from '../config';
 
+/**
+ * Creates and configures an TCP server.
+ * @author Marc Wafik
+ */
 export default class TCPserver {
 	public express: express.Application;
 	public server;

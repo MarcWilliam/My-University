@@ -3,6 +3,9 @@ import { Router, Request, Response, NextFunction } from 'express';
 import authenticationPassport from '../../server/authentication-passport';
 import { UserRoleController } from '../../controllers/user/user-role-controller';
 
+/**
+ * @author Marc Wafik
+ */
 export class UserRoleRouter {
 
 	static CONTROLLER = UserRoleController;
