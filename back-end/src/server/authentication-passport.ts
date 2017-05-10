@@ -8,46 +8,62 @@ import { User } from '../models/user/user';
 /**
  * @author Abdelrahman Abdelhamed
  */
-class AuthenticationPassport {
+export class PassportAut {
 
-	public passport: any;
-	private localLogin: PassportLocal.Strategy;
-	private jwtLogin: PassportJwt.Strategy;
-	private localOptions: any;
-	private jwtOptions: any;
+	public static Passport;
+	private static _LocalLogin: PassportLocal.Strategy;
+	private static _JWTLogin: PassportJwt.Strategy;
+	private static _LocalOptions: any;
+	private static _JWTOptions: any;
 
-	constructor() {
+	private static _AuthenticateJWT;
+	private static _AuthenticateLocal;
 
-		this.passport = new Passport();
 
-		this.localOptions = {
+	private static _init() {
+
+		this.Passport = new Passport();
+
+		this._LocalOptions = {
 			usernameField: 'email',
 			passwordField: 'password',
 			passReqToCallback: true,
 			session: false
 		};
 
-		this.jwtOptions = {
-			jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
-			secretOrKey: CONFIG.AUTH.SECRET,
-		};
-
-		this.localLogin = new PassportLocal.Strategy(this.localOptions, async (req, email, password, done) => {
+		this._LocalLogin = new PassportLocal.Strategy(this._LocalOptions, async (req, email, password, done) => {
 			let user = await User.Login(email, password);
 			return user ?
 				done(null, user) :
 				done(null, false, { message: 'Login failed. Please try again.' });
 		});
 
-		this.jwtLogin = new PassportJwt.Strategy(this.jwtOptions, async (JwtPayLoad, done) => {
+		this._JWTOptions = {
+			jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+			secretOrKey: CONFIG.AUTH.SECRET,
+		};
+
+		this._JWTLogin = new PassportJwt.Strategy(this._JWTOptions, async (JwtPayLoad, done) => {
 			let user = await User.Read({ id: JwtPayLoad.id })[0];
 			return user ? done(null, user) : done(null, false);
 		});
 
-		this.passport.use(this.jwtLogin);
-		this.passport.use(this.localLogin);
+		this.Passport.use(this._JWTLogin);
+		this.Passport.use(this._LocalLogin);
+
+		this._AuthenticateJWT = this.Passport.authenticate('jwt', { session: false });
+		this._AuthenticateLocal = this.Passport.authenticate('local', { session: false });
+	}
+
+	static get AuthenticateJWT() {
+		if (!this._AuthenticateJWT)
+			this._init();
+		return this._AuthenticateJWT;
+	}
+
+	static get AuthenticateLocal() {
+		if (!this._AuthenticateLocal)
+			this._init();
+		return this._AuthenticateJWT;
 	}
 }
-
-const authenticationPassport = new AuthenticationPassport().passport;
-export default authenticationPassport;

@@ -5,13 +5,9 @@ import * as logger from 'morgan';
 import { Express } from 'express';
 
 import CONFIG from '../config';
-import authenticationPassport from './authentication-passport';
-
-import { UserRouter } from '../routes/user/user-routes';
-import { UserRoleRouter } from '../routes/user/user-role-routes';
-import { DepartmentRouter } from '../routes/registration/department-routes';
-import { SemesterRouter } from '../routes/registration/semester-routes';
-import { CourseRouter } from '../routes/registration/course-routes';
+import { PassportAut } from './authentication-passport';
+import { UserRouter, UserRoleRouter } from '../routes/user-routers';
+import { DepartmentRouter, SemesterRouter, CourseRouter } from '../routes/registration-routers';
 
 /**
  * Creates and configures an ExpressJS web server.
@@ -28,11 +24,15 @@ export default class HTTPserver {
 		this.express = express();
 		this.middleware();
 		this.routes();
+		this.start();
+	}
 
-		// In order for the server to work with a depolyment service like 'Heroku',we must specify 'process.env.PORT'
-		// but by Also adding a second option of 'CONFIG.HTTP.PORT', it will also allow You to run the server locally with Node.
-		this.express.listen(
-			process.env.PORT || CONFIG.HTTP.PORT,
+	/**
+	 * In order for the server to work with a depolyment service like 'Heroku',we must specify 'process.env.PORT'
+	 * but by Also adding a second option of 'CONFIG.HTTP.PORT', it will also allow You to run the server locally with Node.
+	 */
+	private start(): void {
+		this.express.listen(process.env.PORT || CONFIG.HTTP.PORT,
 			() => console.log(`\t HTTP server started listening to localhost:${CONFIG.HTTP.PORT}`)
 		);
 	}
@@ -41,11 +41,11 @@ export default class HTTPserver {
 	 * Configure Express middleware
 	 */
 	private middleware(): void {
-		this.express.use(bodyParser.urlencoded({ extended: false }));  // Parses urlencoded bodies
-		this.express.use(bodyParser.json());	// Send JSON responses
-		this.express.use(logger('dev'));		// Log requests to API using morgan
-		this.express.use(cors());				// Enable Cross-origin resource sharing
-		this.express.use(authenticationPassport.initialize());	// Initialize authentication passport middleware
+		this.express.use(bodyParser.urlencoded({ extended: false }));	// Parses urlencoded bodies
+		this.express.use(bodyParser.json());							// Send JSON responses
+		this.express.use(logger('dev'));								// Log requests to API using morgan
+		this.express.use(cors());										// Enable Cross-origin resource sharing
+		this.express.use(PassportAut.Passport.initialize());			// Initialize authentication passport middleware
 
 	}
 
@@ -55,8 +55,9 @@ export default class HTTPserver {
 	private routes(): void {
 		this.express.use('/api/users', UserRouter.Router());
 		this.express.use('/api/user-roles', UserRoleRouter.Router());
+
 		this.express.use('/api/department', DepartmentRouter.Router());
 		this.express.use('/api/semester', SemesterRouter.Router());
-		this.express.use('/api/semester', CourseRouter.Router());
+		this.express.use('/api/cource', CourseRouter.Router());
 	}
 }

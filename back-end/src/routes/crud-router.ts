@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-import authenticationPassport from '../../server/authentication-passport';
-import { CRUDController } from './../../controllers/core/crud-controller';
+import { PassportAut } from '../server/authentication-passport';
+import { CRUDController } from './../controllers/core/crud-controller';
 
 /**
  * @author Marc Wafik
@@ -15,8 +15,8 @@ export class CRUDRouter {
 	 */
 	public static Router(): Router {
 		var router = Router();
-		let requireAuth = authenticationPassport.authenticate('jwt', { session: false }),
-			requireLogin = authenticationPassport.authenticate('local', { session: false });
+		let requireAuth = PassportAut.AuthenticateJWT,
+			requireLogin = PassportAut.AuthenticateLocal;
 
 		router.post('/', requireAuth, this.CONTROLLER.Create.bind(this.CONTROLLER));
 		router.get('/(:key=:value)?/', requireAuth, this.CONTROLLER.Read.bind(this.CONTROLLER));
