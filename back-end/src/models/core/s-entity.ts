@@ -39,6 +39,14 @@ export class SEntity implements hasPermission {
 		return true;
 	}
 
+	public static async ParceData(data: any[]): Promise<SEntity[]> {
+		for (let i in data) {
+			let tmp: SEntity = Object.assign(new this(), data[i]);
+			data[i] = tmp;
+		}
+		return data;
+	}
+
 	/**
 	 * update the object data in the DB
 	 * this.id must be same as the thing to be updated

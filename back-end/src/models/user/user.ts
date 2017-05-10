@@ -7,6 +7,8 @@ import { DBsql } from '../core/db-sql';
 import CONFIG from '../../config';
 
 /**
+ * hold the user data
+ * @author Marc Wafik
  */
 export class User extends SEntity implements hasPermission {
 
@@ -22,6 +24,7 @@ export class User extends SEntity implements hasPermission {
 
 	phone: number;
 	password: string;
+	hashed_password: string;
 	gender: number;
 
 	departmentID: number;
@@ -36,7 +39,7 @@ export class User extends SEntity implements hasPermission {
 		this.email = row.email;
 		this.role = row.role;
 		this.birthDate = row.birth_date;
-		this.password = row.password;
+		this.hashed_password = row.password;
 		this.gender = row.gender;
 		this.phone = row.phone;
 		this.departmentID = row.department_id;
@@ -45,15 +48,13 @@ export class User extends SEntity implements hasPermission {
 		this.isPhoneValid = row.phone_valid;
 	}
 
-	public async toRow() {
-		await this.hashPassword();
-
+	public toRow() {
 		var row = super.toRow();
 		row.name = this.name;
 		row.email = this.email;
 		row.role = this.role;
 		row.birth_date = this.birthDate;
-		row.password = this.password;
+		row.password = this.hashed_password;
 		row.gender = this.gender;
 		row.phone = this.phone;
 		row.department_id = this.departmentID;
@@ -62,6 +63,12 @@ export class User extends SEntity implements hasPermission {
 		row.phone_valid = this.isPhoneValid;
 
 		return row;
+	}
+
+	public async isValid() {
+		(await this.hashPassword()) != null;
+		//User.CheckUnique('email',)
+		return true;
 	}
 
 	/**
@@ -88,13 +95,10 @@ export class User extends SEntity implements hasPermission {
 		return false;
 	}
 
-	public sendNotification(subject?: any, Notification?: any): any {
-		return null;
-	}
-
 	private async hashPassword() {
-		const saltRounds: number = 12;
-		this.password = await BCrypt.hash(this.password, saltRounds);
+		return this.hashed_password = (this.password ?
+			await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS) :
+			this.hashed_password);
 	}
 
 	public async comparePassword(passwordAttempt) {

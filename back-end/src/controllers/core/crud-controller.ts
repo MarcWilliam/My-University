@@ -12,55 +12,10 @@ export class CRUDController {
 
 	static MODEL = SEntity;
 
-	public static async Create(req: Request, res: Response, next: NextFunction) {
-		var data = [], rejected = [], notValid = [];
-
-		var user = <User>await User.Read({ id: req.user.id })[0];
-		// <<<<<<<<<check user ==null
-		var role = <UserRole>await UserRole.Read({ id: user.userRoleID })[0];
-		// <<<<<<<<<check role ==null
-
-		for (let i in req.body) {
-			let tmp: SEntity = Object.assign(new this.MODEL(), req.body[i]);
-
-			tmp.hasPermission(user, role).create ?
-				(await tmp.isValid() ? data.push(tmp) : notValid.push(tmp))
-				: rejected.push(tmp);
-		}
-		if (notValid.length == 0 && rejected.length == 0) {
-			this.MODEL.Create(data);
-			// <<<<<<<<<<<<< return responce here
-		}
-		// <<<<<<<<<<<<< return responce here
-		return next();
-	}
-
-	public static async Read(req: Request, res: Response, next: NextFunction) {
-		let limit = req.query.limit,
-			offset = req.query.offset,
-			key = req.params.key,
-			value = req.params.value;
-		let feilds = (key && value) ? { [key]: value } : null;
-
-		var user = <User>await User.Read({ id: req.user.id })[0];
-		// <<<<<<<<<check user ==null
-		var role = <UserRole>await UserRole.Read({ id: user.userRoleID })[0];
-		// <<<<<<<<<check role ==null
-
-		var rejected = [], accepted = [], data = await this.MODEL.Read(feilds, null, limit, offset);
-
-		for (var i in data) {
-			data[i].hasPermission(user, role).update ? accepted.push(data[i]) : rejected.push(data[i]);
-		}
-
-		this.CRUDrespon(res, accepted, rejected);
-		next();
-	}
+	public static AuthFailed(req: Request, res: Response, next: NextFunction) { };
 
 	private static CRUDrespon(res, accepted = [], rejected = [], notValid = []) {
-		if (notValid.length == 0 && rejected.length == 0) {
-			res.json({ data: accepted });
-		} else if (rejected.length != 0) {
+		if (rejected.length != 0) {
 			res.json({
 				error: {
 					code: HTTPClientErr.Forbidden,
@@ -74,23 +29,57 @@ export class CRUDController {
 					message: "didn't pass the validation"
 				}
 			});
+		} else {
+			res.json({ data: accepted });
 		}
 	}
 
+	public static async Create(req: Request, res: Response, next: NextFunction) {
+
+		var role = <UserRole>await UserRole.Read({ id: req.user.userRoleID })[0];
+
+		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
+
+		for (let i in data) {
+			if (!data[i].hasPermission(req.user, role).create) { data.push(data[i]); }
+			else if (!await data[i].isValid()) { notValid.push(data[i]); }
+			else { accepted.push(data[i]); }
+		}
+
+		if (notValid.length == 0 && rejected.length == 0) {
+			this.MODEL.Create(data);
+		}
+
+		this.CRUDrespon(res, accepted, rejected, notValid);
+		return next();
+	}
+
+	public static async Read(req: Request, res: Response, next: NextFunction) {
+		var role = <UserRole>await UserRole.Read({ id: req.user.userRoleID })[0];
+
+		let limit = req.query.limit,
+			offset = req.query.offset,
+			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value } : null;
+
+		var accepted = [], rejected = [], data = await this.MODEL.Read(feilds, null, limit, offset);
+
+		for (var i in data) {
+			data[i].hasPermission(req.user, role).update ? accepted.push(data[i]) : rejected.push(data[i]);
+		}
+
+		this.CRUDrespon(res, accepted, rejected);
+		next();
+	}
+
 	public static async Update(req: Request, res: Response, next: NextFunction) {
-		var accepted = [], rejected = [], notValid = [];
+		var role = <UserRole>await UserRole.Read({ id: req.user.userRoleID })[0];
 
-		var user = <User>await User.Read({ id: req.user.id })[0];
-		// <<<<<<<<<check user ==null
-		var role = <UserRole>await UserRole.Read({ id: user.userRoleID })[0];
-		// <<<<<<<<<check role ==null
+		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
 
-		for (let i in req.body) {
-			let tmp: SEntity = Object.assign(new this.MODEL(), req.body[i]);
-
-			tmp.hasPermission(user, role).update ?
-				(await tmp.isValid() ? accepted.push(tmp) : notValid.push(tmp))
-				: rejected.push(tmp);
+		for (let i in data) {
+			if (!data[i].hasPermission(req.user, role).create) { data.push(data[i]); }
+			else if (!await data[i].isValid()) { notValid.push(data[i]); }
+			else { accepted.push(data[i]); }
 		}
 
 		if (notValid.length == 0 && rejected.length == 0) {
@@ -102,16 +91,12 @@ export class CRUDController {
 	}
 
 	public static async Delete(req: Request, res: Response, next: NextFunction) {
-		var ids = req.params.ids.split(",");
-		var accepted = [], rejected = [], data = this.MODEL.Read({ id: ids });
+		var role = <UserRole>await UserRole.Read({ id: req.user.userRoleID })[0];
 
-		var user = <User>await User.Read({ id: req.user.id })[0];
-		// <<<<<<<<<check user ==null
-		var role = <UserRole>await UserRole.Read({ id: user.userRoleID })[0];
-		// <<<<<<<<<check role ==null
+		var accepted = [], rejected = [], data = this.MODEL.Read({ id: req.params.ids.split(",") });
 
 		for (let i in data) {
-			data[i].hasPermission(user, role).delete ? accepted.push(data[i]) : rejected.push(data[i]);
+			data[i].hasPermission(req.user, role).delete ? accepted.push(data[i]) : rejected.push(data[i]);
 		}
 
 		if (rejected.length == 0) {
@@ -122,12 +107,4 @@ export class CRUDController {
 		return next();
 	}
 
-}
-
-export interface APIres {
-	data: any[];
-	error: {
-		code: number,
-		message: string
-	};
 }

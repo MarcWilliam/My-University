@@ -1,3 +1,4 @@
+
 export enum HTTPInformational {
 	Continue = 100,
 	SwitchingProtocols,
@@ -68,4 +69,9 @@ export enum HTTPServerErr {
 	LoopDetected,
 	NotExtended = 510,
 	NetworkAuthenticationRequired
+}
+
+export enum HTTPCustomErr {
+	ValidationFailed = 1000,
+	NoPermission
 }
