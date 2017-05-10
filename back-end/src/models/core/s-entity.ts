@@ -8,7 +8,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: "",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	id: number;

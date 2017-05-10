@@ -14,7 +14,7 @@ export class User extends SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "user",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	name: string;

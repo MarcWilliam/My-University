@@ -14,7 +14,7 @@ export class UserRole extends SEntity {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "user_role",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	permissions: {
@@ -104,8 +104,6 @@ export class UserRole extends SEntity {
 	}
 
 	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
-		limit = limit || 1000;
-		offset = offset || 0;
 		var roles = await super.Read(feilds, opp, limit, offset);
 
 		for (let i in roles) {

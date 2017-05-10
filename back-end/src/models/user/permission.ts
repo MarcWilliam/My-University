@@ -14,7 +14,7 @@ export class Permission extends SEntity {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "permission",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	public parseRow(row) {

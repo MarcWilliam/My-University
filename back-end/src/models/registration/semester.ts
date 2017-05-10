@@ -14,7 +14,7 @@ export class Semester extends SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "semester",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 
