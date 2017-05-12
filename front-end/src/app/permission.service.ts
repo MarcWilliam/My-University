@@ -9,7 +9,7 @@ import { Permission } from './permission';
 @Injectable()
 export class PermissionService {
 	
-	constructor(private http:http , private config:config) {}
+	constructor(private http: Http , private config:AppConfig) {}
 	public create(permission:Permission): Observable<Response>{
 		return this.http.get(`${this.config.API_URL}/user-role/` , permission).map((response: Response) => response.json());
 	}

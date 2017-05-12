@@ -25,6 +25,17 @@ import { GroupComponent } from './group/group.component';
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
+import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
+import { MdDataTableModule } from 'ng2-md-datatable';
+
+
+
+
+
+
 
 
 @NgModule({
@@ -34,7 +45,10 @@ import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from '.
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    GroupComponent
+    GroupComponent,
+    UserRoleViewComponent,
+    UserRoleEditComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +56,9 @@ import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from '.
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    MdDataTableModule
   ],
   providers: [AppConfig, UserService, AuthenticationService, AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard],
   bootstrap: [AppComponent]

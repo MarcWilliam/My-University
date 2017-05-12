@@ -10,7 +10,7 @@ export class Permission  {
     updateSelf: boolean = false;
 
     createOther: boolean = false;
-    deleteOther: boolean = flase;
+    deleteOther: boolean = false;
     readOther  : boolean = false;
     updateOther: boolean = false;
 

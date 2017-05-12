@@ -1,0 +1,14 @@
+<div *ngFor="let roles of userRole">
+    {{roles.Name}}
+    <a routerLink="/profile">
+        <p>Edit</p>
+    </a>
+    <div *ngIf="roles.Create">Create</div>
+    <div *ngIf="roles.Read">Read</div>
+    <div *ngIf="roles.Delete">Delete</div>
+    <div *ngIf="roles.CreateOthers">CreateOthers</div>
+    <div *ngIf="roles.ReadOthers">ReadOthers</div>
+    <div *ngIf="roles.DeleteOthers">DeleteOthers</div>
+    <div *ngIf="roles.UpdateOthers">UpdateOthers</div>
+
+</div>
