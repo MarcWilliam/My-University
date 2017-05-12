@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
+import * as json2xls from 'json2xls';
 import { Express } from 'express';
 
 import CONFIG from '../config';
@@ -46,7 +47,7 @@ export default class HTTPserver {
 		this.express.use(logger('dev'));								// Log requests to API using morgan
 		this.express.use(cors());										// Enable Cross-origin resource sharing
 		this.express.use(PassportAut.Passport.initialize());			// Initialize authentication passport middleware
-
+		this.express.use(json2xls.middleware);
 	}
 
 	/**

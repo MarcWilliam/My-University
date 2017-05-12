@@ -12,7 +12,9 @@ export class CRUDController {
 
 	static MODEL = SEntity;
 
-	private static CRUDrespon(res, accepted = [], rejected = [], notValid = []) {
+	private static CRUDrespon(res, accepted = [], rejected = [], notValid = [], type?) {
+		type = type ? type : 'json';
+
 		if (rejected.length != 0) {
 			res.json({
 				error: {
@@ -28,7 +30,18 @@ export class CRUDController {
 				}
 			});
 		} else {
-			res.json({ data: accepted });
+
+			switch (type) {
+				case 'xls':
+				case 'xlsx':
+					res.xls('data.xlsx', accepted);
+					break;
+				case 'json':
+				default:
+					res.json({ data: accepted });
+					break;
+			}
+
 		}
 	}
 
@@ -60,7 +73,7 @@ export class CRUDController {
 			data[i].hasPermission(req.user, req.userRole).update ? accepted.push(data[i]) : rejected.push(data[i]);
 		}
 
-		this.CRUDrespon(res, accepted, rejected);
+		this.CRUDrespon(res, accepted, rejected, [], req.params.type);
 		return next();
 	}
 

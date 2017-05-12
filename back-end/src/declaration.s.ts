@@ -4,4 +4,7 @@ declare namespace Express {
 	export interface Request {
 		userRole?: any;
 	}
+	export interface Response {
+		xls: Function;
+	}
 }

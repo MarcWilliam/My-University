@@ -20,7 +20,7 @@ export class CRUDRouter {
 			requireLogin = PassportAut.AuthenticateLocal;
 
 		router.post('/', requireAuth, ExpressMiddleware.UserRole, this.CONTROLLER.Create.bind(this.CONTROLLER));
-		router.get('/(:key=:value)?/', ExpressMiddleware.UserRole, requireAuth, this.CONTROLLER.Read.bind(this.CONTROLLER));
+		router.get('/(:key=:value)?/(.:type)?', ExpressMiddleware.UserRole, requireAuth, this.CONTROLLER.Read.bind(this.CONTROLLER));
 		router.put('/', requireAuth, ExpressMiddleware.UserRole, this.CONTROLLER.Update.bind(this.CONTROLLER));
 		router.delete('/:ids/', requireAuth, ExpressMiddleware.UserRole, this.CONTROLLER.Delete.bind(this.CONTROLLER));
 
