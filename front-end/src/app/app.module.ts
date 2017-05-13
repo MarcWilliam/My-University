@@ -30,6 +30,7 @@ import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { MdDataTableModule } from 'ng2-md-datatable';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 
@@ -47,7 +48,8 @@ import { MdDataTableModule } from 'ng2-md-datatable';
     DashboardComponent,
     GroupComponent,
     UserRoleViewComponent,
-    UserRoleEditComponent
+    UserRoleEditComponent,
+    EditProfileComponent
     
   ],
   imports: [

@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GroupComponent } from './group/group.component';
 import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+
 
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
@@ -17,9 +19,10 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [ProfessorGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
   { path: 'group', component: GroupComponent, canActivate: [StudentGuard] },
-  { path: 'profile', component: UserRoleViewComponent },
-  { path: 'edit-profile', component: UserRoleEditComponent },
-  { path: '', redirectTo: '/profile', pathMatch: 'full' }, // Default url
+  { path: 'permissions', component: UserRoleViewComponent },
+  { path: 'edit-permissions', component: UserRoleEditComponent },
+  { path: 'edit-profile', component: EditProfileComponent },
+  { path: '', redirectTo: '/edit-profile', pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];
 

@@ -1,6 +1,6 @@
 <form #userRoleView="ngForm" (ngSubmit)="onSubmit(userRoleView.value)">
 
-    <md-input-container style=" margin: 20px 150px 20px 80px;">
+    <md-input-container [(ngModel)]="Name" style=" margin: 20px 150px 20px 80px;">
         <input mdInput placeholder="Name" value="">
     </md-input-container>
     <md-input-container>
