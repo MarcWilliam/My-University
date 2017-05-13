@@ -20,14 +20,16 @@ export class CRUDController {
 				error: {
 					code: HTTPClientErr.Forbidden,
 					message: "don't have enough permissions"
-				}
+				},
+				notValid: notValid
 			});
 		} else if (notValid.length != 0) {
 			res.json({
 				error: {
 					code: HTTPClientErr.UnprocessableEntity,
 					message: "didn't pass the validation"
-				}
+				},
+				rejected: rejected
 			});
 		} else {
 
@@ -49,7 +51,7 @@ export class CRUDController {
 		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
 
 		for (let i in data) {
-			if (!data[i].hasPermission(req.user, req.userRole).create) { data.push(data[i]); }
+			if (!data[i].hasPermission(req.user, req.userRole).create) { rejected.push(data[i]); }
 			else if (!await data[i].isValid()) { notValid.push(data[i]); }
 			else { accepted.push(data[i]); }
 		}
@@ -70,7 +72,7 @@ export class CRUDController {
 		var accepted = [], rejected = [], data = await this.MODEL.Read(feilds, null, limit, offset);
 
 		for (var i in data) {
-			data[i].hasPermission(req.user, req.userRole).update ? accepted.push(data[i]) : rejected.push(data[i]);
+			data[i].hasPermission(req.user, req.userRole).read ? accepted.push(data[i]) : rejected.push(data[i].id);
 		}
 
 		this.CRUDrespon(res, accepted, rejected, [], req.params.type);
@@ -81,7 +83,7 @@ export class CRUDController {
 		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
 
 		for (let i in data) {
-			if (!data[i].hasPermission(req.user, req.userRole).create) { data.push(data[i]); }
+			if (!data[i].hasPermission(req.user, req.userRole).update) { rejected.push(data[i]); }
 			else if (!await data[i].isValid()) { notValid.push(data[i]); }
 			else { accepted.push(data[i]); }
 		}
@@ -98,7 +100,7 @@ export class CRUDController {
 		var accepted = [], rejected = [], data = this.MODEL.Read({ id: req.params.ids.split(",") });
 
 		for (let i in data) {
-			data[i].hasPermission(req.user, req.userRole).delete ? accepted.push(data[i]) : rejected.push(data[i]);
+			data[i].hasPermission(req.user, req.userRole).delete ? accepted.push(data[i]) : rejected.push(data[i].id);
 		}
 
 		if (rejected.length == 0) {
