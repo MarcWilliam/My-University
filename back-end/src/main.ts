@@ -21,6 +21,6 @@ if (CONFIG.CLUSTER.USE && cluster.isMaster) {
 	});
 
 } else {
-	var httpServer = new HTTPserver(),
-		tcpServer = new TCPserver();
+	var httpServer = new HTTPserver();
+	// var tcpServer = new TCPserver();
 }

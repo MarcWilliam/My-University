@@ -1,7 +1,7 @@
 {
 	"name": "my-university",
 	"version": "0.0.1",
-	"description": "a learning management system for universityes",
+	"description": "a learning management system for universities",
 	"keywords": [
 		"my-uni",
 		"my-university",
@@ -21,10 +21,8 @@
 	"typings": "build/",
 	"scripts": {
 		"build": "tsc",
-		"build-watch": "tsc -w",
-		"serve": "node ./build/main.js",
-		"serve-watch": "nodemon --inspect --watch ./build --delay 1 ./build/main.js",
-		"run": "npm run -s build & npm run -s serve",
+		"serve": "tsc & node ./build/main.js",
+		"watch": "concurrently \"tsc -w\" \"nodemon --inspect --watch ./build --delay 1 ./build/main.js\"",
 		"test": "mocha build/test"
 	},
 	"dependencies": {
@@ -60,6 +58,7 @@
 		"@types/passport-local": "^1.0.30",
 		"@types/socket.io": "^1.4.29",
 		"chai": "^3.5.0",
+		"concurrently": "^3.4.0",
 		"mocha": "^3.2.0",
 		"nodemon": "^1.11.0",
 		"typescript": "^2.2.2"
