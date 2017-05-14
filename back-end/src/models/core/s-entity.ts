@@ -1,10 +1,14 @@
+import { hasPermission } from './../user/permission';
 import { DBsql } from '../core/db-sql';
+import { UserRole } from '../user/user-role';
+import { User } from '../user/user';
+import { CRUDpermission } from '../user/permission';
 
-export class SEntity {
+export /*abstract*/ class SEntity implements hasPermission {
 
 	static DB_TABLE = {
 		PRIM: "",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	id: number;
@@ -27,8 +31,20 @@ export class SEntity {
 		return row;
 	}
 
+	public hasPermission(user: User, role: UserRole): CRUDpermission {
+		return null;
+	}
+
 	public async isValid() {
 		return true;
+	}
+
+	public static async ParceData(data: any[]): Promise<SEntity[]> {
+		for (let i in data) {
+			let tmp: SEntity = Object.assign(new this(), data[i]);
+			data[i] = tmp;
+		}
+		return data;
 	}
 
 	/**
@@ -96,14 +112,16 @@ export class SEntity {
 	/**
 	 * delete the object data in the DB
 	 * this.id must be same as the thing to be updated
-	 * 
+	 * @param data an array of id's
 	 * @return True if everything pass else false
 	 */
 	public static async Delete(data): Promise<boolean> {
 		let connection = await DBsql.getConnection();
-		for (var i in data) {
-			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, data[i].id]);
-		}
+		let ids = [];
+
+		for (var i in data) ids.push(data[i].id);
+
+		let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, ids]);
 		return true;
 	}
 
@@ -115,16 +133,35 @@ export class SEntity {
 	 */
 	public async delete(): Promise<boolean> { return (<any>this.constructor).Delete([this]); }
 
-	/**
-	 * select the object data from the DB
-	 * set this object data to the current
-	 * 
-	 * @return True if everything pass else false
-	 */
-	public static async Read(colum: string, data: any, limit?: number, offset?: number) {
+	private static _PaseReadQuery(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number): { query: string, data: [any] } {
+		let query = `SELECT * FROM ?? `;
+		let data: [any] = [this.DB_TABLE.PRIM];
+
+		if (feilds) {
+			let operation = DBopp.OR == opp ? `OR` : `AND`;
+			var i = 0, length = Object.keys(feilds).length;
+
+			if (length > 0) query += ` WHERE `;
+
+			for (var key in feilds) {
+				data.push(key, feilds[key]);
+				query += ` ?? IN (?) ${i++ == length ? operation : ""} `;
+			}
+		}
+
+		query += ` LIMIT ? OFFSET ?`;
+		data.push(
+			limit ? limit : 1000,
+			offset ? offset : 0
+		);
+
+		return { query: query, data: data };
+	}
+
+	public static async SelectQuery(query: string, data: [any]) {
 		let connection = await DBsql.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT * FROM ?? WHERE ?? IN (?) LIMIT ? OFFSET ?`, [this.DB_TABLE.PRIM, colum, data, limit, offset]);
+		let [rows, fields] = await connection.query(query, data);
 		var ret = [];
 
 		for (var key in rows) {
@@ -135,6 +172,17 @@ export class SEntity {
 		return ret;
 	}
 
+	/**
+	 * select the object data from the DB
+	 * set this object data to the current
+	 * 
+	 * @return True if everything pass else false
+	 */
+	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
+		let parsed = this._PaseReadQuery(feilds, opp, limit, offset);
+		return this.SelectQuery(parsed.query, parsed.data);
+	}
+
 	public static async CheckUnique(colum: string, data: any) {
 		let connection = await DBsql.getConnection();
 
@@ -142,3 +190,5 @@ export class SEntity {
 		return rows.length == 0;
 	}
 }
+
+export enum DBopp { AND, OR }

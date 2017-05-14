@@ -1,8 +1,11 @@
 import { SEntity } from '../core/s-entity';
 import CONFIG from '../../config';
+import { UserRole } from './user-role';
+import { User } from './user';
 
 /**
  * holds the permissions of CRUD
+ * @author Marc Wafik
  */
 export class Permission extends SEntity {
 
@@ -11,7 +14,7 @@ export class Permission extends SEntity {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "permission",
-		RELATIONAL: {}
+		REL: {}
 	};
 
 	public parseRow(row) {
@@ -61,5 +64,5 @@ export interface hasPermission {
 	/**
 	 * @return the current user permission
 	 */
-	hasPermission(): Permission;
+	hasPermission(user: User, role: UserRole): CRUDpermission;
 }

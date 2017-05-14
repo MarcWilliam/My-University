@@ -1,69 +1,72 @@
-
 import { Passport } from 'passport';
 import * as PassportLocal from 'passport-local';
 import * as PassportJwt from 'passport-jwt';
 
 import CONFIG from '../config';
-import { UserController } from '../controllers/user/user-controller';
 import { User } from '../models/user/user';
 
-class AuthenticationPassport {
-	userController: UserController;
+/**
+ * @author Abdelrahman Abdelhamed
+ */
+export class PassportAut {
 
-	public passport: any;
-	private localLogin: PassportLocal.Strategy;
-	private jwtLogin: PassportJwt.Strategy;
-	private localOptions: any;
-	private jwtOptions: any;
+	private static _LocalOptions: any = {
+		usernameField: 'email',
+		passwordField: 'password',
+		passReqToCallback: true,
+		session: false
+	};
 
-	constructor() {
+	private static _JWTOptions: any = {
+		jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+		secretOrKey: CONFIG.AUTH.SECRET,
+	};;
 
-		this.passport = new Passport();
+	private static _Passport: any = new Passport();
 
-		this.localOptions = {
-			usernameField: 'email',
-			passwordField: 'password',
-			passReqToCallback: true,
-			session: false
-		};
+	private static _LocalLogin: PassportLocal.Strategy;
+	private static _JWTLogin: PassportJwt.Strategy;
 
-		this.jwtOptions = {
-			jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
-			secretOrKey: CONFIG.AUTH.SECRET,
-		};
+	private static _AuthenticateJWT;
+	private static _AuthenticateLocal;
 
-		this.localLogin = new PassportLocal.Strategy(this.localOptions, async (req, email, password, done) => {
-			let res = await User.Read('email', email);
-			let user = res[0];
 
-			if (!user) {
-				return done(null, false, { message: 'Login failed. Please try again.' });
-			}
+	private static _init() {
 
-			let isMatch = await user.comparePassword(password);
-			if (!isMatch) {
-				return done(null, false, { message: 'Login failed. Please try again.' });
-			}
-			return done(null, user);
+		this._Passport = new Passport()
+
+		this._LocalLogin = new PassportLocal.Strategy(this._LocalOptions, async (req, email, password, done) => {
+			let user = await User.Login(email, password);
+			return user ?
+				done(null, user) :
+				done(null, false, { message: 'Login failed. Please try again.' });
 		});
 
-		this.jwtLogin = new PassportJwt.Strategy(this.jwtOptions, async (JwtPayLoad, done) => {
+		this._JWTOptions =
+			this._JWTLogin = new PassportJwt.Strategy(this._JWTOptions, async (JwtPayLoad, done) => {
+				let user = await User.Read({ id: JwtPayLoad.id })[0];
+				return user ? done(null, user) : done(null, false);
+			});
 
-			let res = await User.Read('id', JwtPayLoad.id);
-			let user = res[0];
+		this._Passport.use(this._JWTLogin);
+		this._Passport.use(this._LocalLogin);
 
-			if (user) {
-				done(null, user);
-			} else {
-				done(null, false);
-			}
+		this._AuthenticateJWT = this._Passport.authenticate('jwt', { session: false });
+		this._AuthenticateLocal = this._Passport.authenticate('local', { session: false });
+	}
 
-		});
+	static get Passport() {
+		if (!this._Passport) { this._init(); }
+		return this._Passport;
+	}
 
-		this.passport.use(this.jwtLogin);
-		this.passport.use(this.localLogin);
+	static get AuthenticateJWT() {
+		if (!this._AuthenticateJWT) { this._init(); }
+		return this._AuthenticateJWT;
+	}
+
+	static get AuthenticateLocal() {
+		if (!this._AuthenticateLocal) { this._init(); }
+		return this._AuthenticateJWT;
 	}
 }
-
-const authenticationPassport = new AuthenticationPassport().passport;
-export default authenticationPassport;

@@ -21,7 +21,7 @@ const CONFIG = {
 		HOST: "localhost",
 		DATABASE: "my_uni",
 		USERNAME: "root",
-		PASSWORD: "",
+		PASSWORD: "root",
 		CHARSET: "utf8",
 		COLLATE: "",
 		TABLE_PREFIX: ""

@@ -6,9 +6,12 @@ import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
 
+/**
+ * @author Abdelrahman Abdelhamed
+ */
 export class UserController extends CRUDController {
 
-	static MASTER_CLASS = User;
+	static MODEL = User;
 
 	private static _GenerateToken(user): string {
 		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: 10080 });
@@ -31,11 +34,10 @@ export class UserController extends CRUDController {
 	public static async Login(req: Request, res: Response, next: NextFunction) {
 		delete req.user.password;
 
-		res.status(200)
-			.json({
-				token: 'Bearer ' + UserController._GenerateToken(req.user),
-				user: req.user
-			});
+		res.status(200).json({
+			token: 'Bearer ' + UserController._GenerateToken(req.user),
+			user: req.user
+		});
 	}
 
 	public static async Logout(req: Request, res: Response, next: NextFunction) {

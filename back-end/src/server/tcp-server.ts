@@ -4,6 +4,10 @@ import * as socketio from 'socket.io';
 
 import CONFIG from '../config';
 
+/**
+ * Creates and configures an TCP server.
+ * @author Marc Wafik
+ */
 export default class TCPserver {
 	public express: express.Application;
 	public server;
@@ -17,13 +21,14 @@ export default class TCPserver {
 		this.server = http.createServer(this.express).listen(CONFIG.TCP.PORT, () => console.log(
 			`\t TCP  server started listening to localhost:${CONFIG.TCP.PORT}`));
 		this.io = socketio(this.server);
+		this.events();
 	}
 
 
 	/**
 	 * Configure socket events
 	 */
-	private routes(): void {
+	private events(): void {
 		this.io.on("connection", (socket) => {
 
 			socket.on("something", (data) => { });
