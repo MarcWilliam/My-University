@@ -1,0 +1,293 @@
+<form #userRoleView="ngForm" (ngSubmit)="onSubmit(userRoleView.value)">
+
+    <md-input-container [(ngModel)]="Name" style=" margin: 20px 150px 20px 80px;">
+        <input mdInput placeholder="Name" value="">
+    </md-input-container>
+    <md-input-container>
+        <input mdInput placeholder="Description" value="">
+    </md-input-container>
+
+    <ng2-md-datatable>
+        <ng2-md-datatable-header>
+            <ng2-md-datatable-column class="headers">Permissions</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Create</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Read</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Delete</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Update</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Create Others</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Read Others</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Delete Others</ng2-md-datatable-column>
+            <ng2-md-datatable-column class="headers">Update Others</ng2-md-datatable-column>
+        </ng2-md-datatable-header>
+        <tbody>
+            <ng2-md-datatable-row>
+
+                <p class="headers">User Role</p>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="userRoleUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Permission</p>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="PermissionUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">User</p>
+                <td>
+                    <md-checkbox [(ngModel)]="UserCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="UserUpdateOthers"></md-checkbox>
+                </td>
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Departemnt</p>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="DepartemntUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Course</p>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Semester</p>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="SemesterUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Group</p>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="GroupUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Course Offering</p>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="CourseOfferingUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+            <ng2-md-datatable-row>
+
+                <p class="headers">Enrollment</p>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentCreate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentRead"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentDelete"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentUpdate"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentCreateOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentReadOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentDeleteOthers"></md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox [(ngModel)]="EnrollmentUpdateOthers"></md-checkbox>
+                </td>
+
+            </ng2-md-datatable-row>
+
+
+
+
+        </tbody>
+
+    </ng2-md-datatable>
+    <button type="submit" md-raised-button color="primary" style=" margin: 20px 150px 20px 500px;">
+                                    Update
+                            </button>
+</form>
