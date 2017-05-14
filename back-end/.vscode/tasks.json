@@ -21,11 +21,15 @@
 		},
 		{
 			"taskName": "run",
-			"args": ["run", "run"]
+			"args": ["run", "serve"]
 		},
 		{
 			"taskName": "build",
 			"args": ["run", "build"]
+		},
+		{
+			"taskName": "watch",
+			"args": ["run", "watch"]
 		}
 	]
 }
