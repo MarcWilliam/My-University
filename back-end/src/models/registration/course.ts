@@ -1,6 +1,6 @@
 import { SEntity } from '../core/s-entity';
 import { Department } from './department';
-import { DBcrud, DBconnection, DBopp } from '../core/db';
+import { DBcrud, DBconn, DBopp } from '../core/db';
 import CONFIG from '../../config';
 
 /**
@@ -47,12 +47,12 @@ export class Course extends SEntity {
 	}
 
 	public static async Create(data): Promise<boolean> {
-		let connection = await DBconnection.getConnection();
+		let conn = await DBconn.getConnection();
 		await super.Create(data);
 
 		for (var i in <Course>data) {
 			for (var j in data[i].prerequisitesIDs) {
-				let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`,
+				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
 					[this.DB_TABLE.REL.prerequisite, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
 			}
 		}
@@ -61,9 +61,9 @@ export class Course extends SEntity {
 	}
 
 	public static async Delete(data): Promise<boolean> {
-		let connection = await DBconnection.getConnection();
+		let conn = await DBconn.getConnection();
 		for (var i in <Course>data) {
-			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE ?? IN (?) OR ?? IN (?)`,
+			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?) OR ?? IN (?)`,
 				[this.DB_TABLE.REL.prerequisite, 'prerequisite_id', data[i].id, 'course_id', data[i].id]);
 		}
 		await super.Delete(data);
@@ -71,16 +71,16 @@ export class Course extends SEntity {
 	}
 
 	public static async Update(data): Promise<boolean> {
-		let connection = await DBconnection.getConnection();
+		let conn = await DBconn.getConnection();
 		await super.Update(data);
 
 		for (var i in <Course[]>data) {
 			// delete all the prerequisites b4 insrting new ones
-			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE ?? IN (?)`,
+			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
 				[this.DB_TABLE.REL.prerequisite, 'course_id', data[i].id]);
 
 			for (var j in data[i].prerequisitesIDs) {
-				let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`,
+				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
 					[this.DB_TABLE.REL.prerequisite, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
 			}
 		}
@@ -89,11 +89,11 @@ export class Course extends SEntity {
 	}
 
 	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
-		let connection = await DBconnection.getConnection();
+		let conn = await DBconn.getConnection();
 		var data = await super.Read(feilds, opp, limit, offset);
 
 		for (var i in <Course[]>data) {
-			let [rows, fields] = await connection.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
+			let [rows, fields] = await conn.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
 				['prerequisite_id', this.DB_TABLE.REL.prerequisite, 'course_id', data[i].id]);
 			data[i].prerequisitesIDs = [];
 
