@@ -56,7 +56,7 @@ export class CRUDController {
 				rejected.push(data[i]);
 			} else {
 				let errors = await data[i].getErrors(DBcrud.CREATE);
-				errors.length > 0 ? notValid.push(errors) : accepted.push(data[i]);
+				errors.length != 0 ? notValid.push(errors) : accepted.push(data[i]);
 			}
 		}
 
@@ -91,7 +91,7 @@ export class CRUDController {
 				rejected.push(data[i]);
 			} else {
 				let errors = await data[i].getErrors(DBcrud.UPDATE);
-				errors.length > 0 ? notValid.push(data[i]) : accepted.push(data[i]);
+				errors.length != 0 ? notValid.push(data[i]) : accepted.push(data[i]);
 			}
 		}
 
