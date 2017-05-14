@@ -24,7 +24,7 @@ export class UserController extends CRUDController {
 
 		let errors = await user.getErrors(DBcrud.CREATE);
 
-		if (errors.length < 0) {
+		if (errors.length == 0) {
 			user.create();
 			delete user.password;
 			res.status(201).json({

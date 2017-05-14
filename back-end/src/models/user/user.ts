@@ -18,7 +18,6 @@ export class User extends SEntity implements hasPermission {
 
 	name: string;
 	email: string;
-	role: string;
 	birthDate: Date;
 
 	phone: number;
@@ -36,7 +35,6 @@ export class User extends SEntity implements hasPermission {
 		super.parseRow(row);
 		this.name = row.name;
 		this.email = row.email;
-		this.role = row.role;
 		this.birthDate = row.birth_date;
 		this.hashedPassword = row.password;
 		this.gender = row.gender;
@@ -51,7 +49,6 @@ export class User extends SEntity implements hasPermission {
 		var row = super.toRow();
 		row.name = this.name;
 		row.email = this.email;
-		row.role = this.role;
 		row.birth_date = this.birthDate;
 		row.password = this.hashedPassword;
 		row.gender = this.gender;
