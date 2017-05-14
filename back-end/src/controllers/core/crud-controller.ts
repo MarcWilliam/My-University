@@ -7,7 +7,7 @@ import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { hasPermission } from '../../models/user/permission';
 import { HTTPClientErr } from './http-stats';
-import { DBcrud } from '../../models/core/db-sql';
+import { DBcrud } from '../../models/core/db';
 
 export class CRUDController {
 

@@ -5,7 +5,7 @@ import CONFIG from '../../config';
 import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
-import { DBcrud } from '../../models/core/db-sql';
+import { DBcrud } from '../../models/core/db';
 import { HTTPClientErr } from '../core/http-stats';
 
 /**

@@ -1,6 +1,6 @@
-import { SEntity, DBopp } from '../core/s-entity';
+import { SEntity } from '../core/s-entity';
 import { Department } from './department';
-import { DBsql } from '../core/db-sql';
+import { DBcrud, DBconnection, DBopp } from '../core/db';
 import CONFIG from '../../config';
 
 /**
@@ -47,7 +47,7 @@ export class Course extends SEntity {
 	}
 
 	public static async Create(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 		await super.Create(data);
 
 		for (var i in <Course>data) {
@@ -61,7 +61,7 @@ export class Course extends SEntity {
 	}
 
 	public static async Delete(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 		for (var i in <Course>data) {
 			let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE ?? IN (?) OR ?? IN (?)`,
 				[this.DB_TABLE.REL.prerequisite, 'prerequisite_id', data[i].id, 'course_id', data[i].id]);
@@ -71,7 +71,7 @@ export class Course extends SEntity {
 	}
 
 	public static async Update(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 		await super.Update(data);
 
 		for (var i in <Course[]>data) {
@@ -89,14 +89,14 @@ export class Course extends SEntity {
 	}
 
 	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 		var data = await super.Read(feilds, opp, limit, offset);
 
 		for (var i in <Course[]>data) {
 			let [rows, fields] = await connection.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
 				['prerequisite_id', this.DB_TABLE.REL.prerequisite, 'course_id', data[i].id]);
 			data[i].prerequisitesIDs = [];
-			
+
 			for (var j in rows) {
 				data[i].prerequisitesIDs.push(rows[i].prerequisite_id);
 			}

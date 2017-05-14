@@ -3,7 +3,7 @@ import { UserRole } from '../user/user-role';
 import { User } from '../user/user';
 import { CRUDpermission } from '../user/permission';
 import { CError } from "./error";
-import { DBcrud, DBsql } from './db-sql';
+import { DBcrud, DBconnection, DBopp } from './db';
 
 export /*abstract*/ class SEntity implements hasPermission {
 
@@ -63,7 +63,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Update(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 
 		for (var i in data) {
 			var row = data[i].toRow();
@@ -95,7 +95,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Create(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 
 		for (var i in data) {
 			var row = data[i].toRow();
@@ -117,7 +117,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Delete(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 		let ids = [];
 
 		for (var i in data) ids.push(data[i].id);
@@ -160,7 +160,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public static async SelectQuery(query: string, data: [any]) {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 
 		let [rows, fields] = await connection.query(query, data);
 		var ret = [];
@@ -185,7 +185,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public static async CheckUnique(colum: string, data: any) {
-		let connection = await DBsql.getConnection();
+		let connection = await DBconnection.getConnection();
 
 		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]);
 		return rows.length == 0;
