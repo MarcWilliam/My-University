@@ -20,7 +20,7 @@ export class UserController extends CRUDController {
 	}
 
 	public static async Register(req: Request, res: Response, next: NextFunction) {
-		let user: User = Object.assign(new User(), req.body);
+		let user = <User>(await this.MODEL.ParceData([req.body]))[0];
 
 		let errors = await user.getErrors(DBcrud.CREATE);
 
