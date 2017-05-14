@@ -3,12 +3,12 @@ import * as bluebird from 'bluebird';
 
 import CONFIG from '../../config';
 
-export class DBsql {
+export class DBconn {
 
 	private static _connection = null;
 
 	public static async getConnection() {
-		return DBsql._connection = DBsql._connection ||
+		return DBconn._connection = DBconn._connection ||
 			await mysql.createConnection({
 				host: CONFIG.DB.HOST,
 				user: CONFIG.DB.USERNAME,
@@ -16,5 +16,13 @@ export class DBsql {
 				database: CONFIG.DB.DATABASE,
 				Promise: bluebird
 			});
+
 	}
+}
+
+export enum DBopp {
+	AND, OR
+}
+export enum DBcrud {
+	CREATE, READ, UPDATE, DELETE
 }

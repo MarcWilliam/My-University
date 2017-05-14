@@ -1,8 +1,9 @@
 import { hasPermission } from './../user/permission';
-import { DBsql } from '../core/db-sql';
 import { UserRole } from '../user/user-role';
 import { User } from '../user/user';
 import { CRUDpermission } from '../user/permission';
+import { CError } from "./error";
+import { DBcrud, DBconn, DBopp } from './db';
 
 export /*abstract*/ class SEntity implements hasPermission {
 
@@ -32,11 +33,11 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public hasPermission(user: User, role: UserRole): CRUDpermission {
-		return null;
+		return role.permissions[this.constructor.name].others;
 	}
 
-	public async isValid() {
-		return true;
+	public async getErrors(action: DBcrud): Promise<CError[]> {
+		return [];
 	}
 
 	public static async ParceData(data: any[]): Promise<SEntity[]> {
@@ -62,7 +63,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Update(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let conn = await DBconn.getConnection();
 
 		for (var i in data) {
 			var row = data[i].toRow();
@@ -70,7 +71,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 			delete row.created_at;
 			delete row.updated_at;
 
-			let [rows, fields] = await connection.query(`UPDATE ?? SET ? where id = ?`, [this.DB_TABLE.PRIM, row]);
+			let [rows, fields] = await conn.query(`UPDATE ?? SET ? where id = ?`, [this.DB_TABLE.PRIM, row]);
 			data[i].id = rows.insertId;
 		}
 
@@ -94,7 +95,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Create(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let conn = await DBconn.getConnection();
 
 		for (var i in data) {
 			var row = data[i].toRow();
@@ -102,7 +103,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 			delete row.created_at;
 			delete row.updated_at;
 
-			let [rows, fields] = await connection.query(`INSERT INTO ?? SET ?`, [this.DB_TABLE.PRIM, row]);
+			let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`, [this.DB_TABLE.PRIM, row]);
 			data[i].id = rows.insertId;
 		}
 
@@ -116,12 +117,12 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * @return True if everything pass else false
 	 */
 	public static async Delete(data): Promise<boolean> {
-		let connection = await DBsql.getConnection();
+		let conn = await DBconn.getConnection();
 		let ids = [];
 
 		for (var i in data) ids.push(data[i].id);
 
-		let [rows, fields] = await connection.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, ids]);
+		let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, ids]);
 		return true;
 	}
 
@@ -159,9 +160,9 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public static async SelectQuery(query: string, data: [any]) {
-		let connection = await DBsql.getConnection();
+		let conn = await DBconn.getConnection();
 
-		let [rows, fields] = await connection.query(query, data);
+		let [rows, fields] = await conn.query(query, data);
 		var ret = [];
 
 		for (var key in rows) {
@@ -184,11 +185,9 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public static async CheckUnique(colum: string, data: any) {
-		let connection = await DBsql.getConnection();
+		let conn = await DBconn.getConnection();
 
-		let [rows, fields] = await connection.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]);
+		let [rows, fields] = await conn.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]);
 		return rows.length == 0;
 	}
 }
-
-export enum DBopp { AND, OR }

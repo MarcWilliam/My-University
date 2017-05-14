@@ -5,6 +5,8 @@ import CONFIG from '../../config';
 import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
+import { DBcrud } from '../../models/core/db';
+import { HTTPClientErr } from '../core/http-stats';
 
 /**
  * @author Abdelrahman Abdelhamed
@@ -20,15 +22,25 @@ export class UserController extends CRUDController {
 	public static async Register(req: Request, res: Response, next: NextFunction) {
 		let user: User = Object.assign(new User(), req.body);
 
-		if (await user.isValid() && await user.create()) {
+		let errors = await user.getErrors(DBcrud.CREATE);
+
+		if (errors.length < 0) {
+			user.create();
 			delete user.password;
 			res.status(201).json({
 				token: 'Bearer ' + UserController._GenerateToken(user),
 				user: user
 			});
 		} else {
-			return false;
+			res.json({
+				error: {
+					code: HTTPClientErr.UnprocessableEntity,
+					message: "didn't pass the validation"
+				},
+				notValid: errors
+			});
 		}
+		next();
 	}
 
 	public static async Login(req: Request, res: Response, next: NextFunction) {
@@ -38,10 +50,11 @@ export class UserController extends CRUDController {
 			token: 'Bearer ' + UserController._GenerateToken(req.user),
 			user: req.user
 		});
+		next();
 	}
 
 	public static async Logout(req: Request, res: Response, next: NextFunction) {
-
+		next();
 	}
 
 }

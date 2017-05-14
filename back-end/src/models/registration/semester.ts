@@ -3,7 +3,6 @@ import * as BCrypt from 'bcrypt';
 import { SEntity } from '../core/s-entity';
 import { NotificationObserver } from '../core/notification';
 import { Permission, hasPermission } from '../user/permission';
-import { DBsql } from '../core/db-sql';
 import CONFIG from '../../config';
 
 /**

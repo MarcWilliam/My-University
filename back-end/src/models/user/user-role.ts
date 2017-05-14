@@ -1,5 +1,6 @@
 import { Permission } from './permission';
-import { SEntity, DBopp } from '../core/s-entity';
+import { SEntity } from '../core/s-entity';
+import { DBopp } from '../core/db';
 import CONFIG from '../../config';
 
 /**
