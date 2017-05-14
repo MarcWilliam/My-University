@@ -3,9 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AppConfig } from './app.config';
-
-
+import CONFIG from '../app.config';
 
 @Injectable()
 export class CRUDService {
@@ -13,25 +11,25 @@ export class CRUDService {
    ApiRoute:string ="";
 
 
-  constructor(private http:http , private config:config) {}
+  constructor(private http:Http) {}
 
 
 
   public read(Id:string): Observable<Response> {
-    return this.http.get(`${this.config.API_URL}/${this.ApiRoute}/id=Id`,this.jwt()).map((response: Response) => response.json());
+    return this.http.get(`${CONFIG.API_URL}/${this.ApiRoute}/id=Id`,this.jwt()).map((response: Response) => response.json());
   }
 
 
 
   public readGroup(from:string,Offset:string): Observable<Response> {
     var apiRequest="limit="+from+"&offset="+Offset;
-    return this.http.get(`${this.config.API_URL}/${this.ApiRoute}/?apiRequest`,this.jwt()).map((response: Response) => response.json());
+    return this.http.get(`${CONFIG.API_URL}/${this.ApiRoute}/?apiRequest`,this.jwt()).map((response: Response) => response.json());
   }
 
 
   public create(permission:Permission): Observable<Response>{
 
-    return this.http.post(`${this.config.API_URL}/${this.ApiRoute}/permission`,this.jwt()).map((response: Response) => response.json());
+    return this.http.post(`${CONFIG.API_URL}/${this.ApiRoute}/permission`,this.jwt()).map((response: Response) => response.json());
   }
   
 
@@ -40,11 +38,11 @@ export class CRUDService {
   	for (var i = 1; i < ids.length; i++) {
   		apiRequest=apiRequest+","+ids[i];
   	}
-    return this.http.delete(`${this.config.API_URL}/${this.ApiRoute}/apiRequest`,this.jwt()).map((response: Response) => response.json());
+    return this.http.delete(`${CONFIG.API_URL}/${this.ApiRoute}/apiRequest`,this.jwt()).map((response: Response) => response.json());
   }
  
   public update(permission:Permission):Observable<Response>{
-    return this.http.put(`${this.config.API_URL}/${this.ApiRoute}/permission`,this.jwt()).map((response: Response) => response.json());   
+    return this.http.put(`${CONFIG.API_URL}/${this.ApiRoute}/permission`,this.jwt()).map((response: Response) => response.json());   
   }
   private jwt(): RequestOptions {
         // create authorization header with jwt token

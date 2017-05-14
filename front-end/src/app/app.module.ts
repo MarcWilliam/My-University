@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { MaterialModule } from '@angular/material';
 
-import { AppConfig } from './app.config';
-
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 
@@ -25,7 +23,6 @@ import { GroupComponent } from './group/group.component';
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
-
 
 @NgModule({
   declarations: [
@@ -44,7 +41,7 @@ import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from '.
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [AppConfig, UserService, AuthenticationService, AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard],
+  providers: [UserService, AuthenticationService, AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

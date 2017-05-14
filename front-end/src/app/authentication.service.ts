@@ -5,13 +5,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 
-import { AppConfig } from './app.config';
 import { UserService } from './user.service';
+
+import CONFIG from '../app.config';
 
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http, private config: AppConfig, private userService: UserService, private router: Router) { }
+    constructor(private http: Http, private userService: UserService, private router: Router) { }
 
     public signUp(user: any): void {
         this.userService.register(user).subscribe(data => {
