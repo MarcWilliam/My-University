@@ -8,7 +8,7 @@ import { Express } from 'express';
 import CONFIG from '../config';
 import { PassportAut } from './authentication-passport';
 import { UserRouter, UserRoleRouter } from '../routes/user-routers';
-import { DepartmentRouter, SemesterRouter, CourseRouter } from '../routes/registration-routers';
+import { DepartmentRouter, SemesterRouter, CourseRouter, CourseOfferingRouter } from '../routes/registration-routers';
 
 /**
  * Creates and configures an ExpressJS web server.
@@ -60,5 +60,6 @@ export default class HTTPserver {
 		this.express.use('/api/departments', DepartmentRouter.Router());
 		this.express.use('/api/semesters', SemesterRouter.Router());
 		this.express.use('/api/cources', CourseRouter.Router());
+		this.express.use('/api/cource_offerings', CourseOfferingRouter.Router());
 	}
 }

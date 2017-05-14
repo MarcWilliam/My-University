@@ -1,10 +1,10 @@
 import { SEntity } from '../core/s-entity';
-import { Department } from './department';
 import { DBcrud, DBconn, DBopp } from '../core/db';
 import CONFIG from '../../config';
 
 /**
  * a passive representation of a course
+ * @author Marc Wafik
  */
 export class Course extends SEntity {
 
