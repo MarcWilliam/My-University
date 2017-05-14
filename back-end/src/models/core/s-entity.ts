@@ -1,8 +1,9 @@
 import { hasPermission } from './../user/permission';
-import { DBsql } from '../core/db-sql';
 import { UserRole } from '../user/user-role';
 import { User } from '../user/user';
 import { CRUDpermission } from '../user/permission';
+import { CError } from "./error";
+import { DBcrud, DBsql } from './db-sql';
 
 export /*abstract*/ class SEntity implements hasPermission {
 
@@ -32,11 +33,11 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public hasPermission(user: User, role: UserRole): CRUDpermission {
-		return null;
+		return role.permissions[this.constructor.name].others;
 	}
 
-	public async isValid() {
-		return true;
+	public async getErrors(action: DBcrud): Promise<CError[]> {
+		return [];
 	}
 
 	public static async ParceData(data: any[]): Promise<SEntity[]> {
@@ -190,5 +191,3 @@ export /*abstract*/ class SEntity implements hasPermission {
 		return rows.length == 0;
 	}
 }
-
-export enum DBopp { AND, OR }

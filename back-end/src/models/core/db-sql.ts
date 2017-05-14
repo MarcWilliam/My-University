@@ -18,3 +18,10 @@ export class DBsql {
 			});
 	}
 }
+
+export enum DBopp {
+	AND, OR
+}
+export enum DBcrud {
+	CREATE, READ, UPDATE, DELETE
+}

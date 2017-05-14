@@ -7,6 +7,7 @@ import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { hasPermission } from '../../models/user/permission';
 import { HTTPClientErr } from './http-stats';
+import { DBcrud } from '../../models/core/db-sql';
 
 export class CRUDController {
 
@@ -51,9 +52,12 @@ export class CRUDController {
 		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
 
 		for (let i in data) {
-			if (!data[i].hasPermission(req.user, req.userRole).create) { rejected.push(data[i]); }
-			else if (!await data[i].isValid()) { notValid.push(data[i]); }
-			else { accepted.push(data[i]); }
+			if (!data[i].hasPermission(req.user, req.userRole).create) {
+				rejected.push(data[i]);
+			} else {
+				let errors = await data[i].getErrors(DBcrud.CREATE);
+				errors.length > 0 ? notValid.push(errors) : accepted.push(data[i]);
+			}
 		}
 
 		if (notValid.length == 0 && rejected.length == 0) {
@@ -83,9 +87,12 @@ export class CRUDController {
 		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
 
 		for (let i in data) {
-			if (!data[i].hasPermission(req.user, req.userRole).update) { rejected.push(data[i]); }
-			else if (!await data[i].isValid()) { notValid.push(data[i]); }
-			else { accepted.push(data[i]); }
+			if (!data[i].hasPermission(req.user, req.userRole).update) {
+				rejected.push(data[i]);
+			} else {
+				let errors = await data[i].getErrors(DBcrud.UPDATE);
+				errors.length > 0 ? notValid.push(data[i]) : accepted.push(data[i]);
+			}
 		}
 
 		if (notValid.length == 0 && rejected.length == 0) {
@@ -100,7 +107,9 @@ export class CRUDController {
 		var accepted = [], rejected = [], data = this.MODEL.Read({ id: req.params.ids.split(",") });
 
 		for (let i in data) {
-			data[i].hasPermission(req.user, req.userRole).delete ? accepted.push(data[i]) : rejected.push(data[i].id);
+			data[i].hasPermission(req.user, req.userRole).delete ?
+				accepted.push(data[i]) :
+				rejected.push(data[i].id);
 		}
 
 		if (rejected.length == 0) {
