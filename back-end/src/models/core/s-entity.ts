@@ -41,11 +41,12 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	public static async ParceData(data: any[]): Promise<SEntity[]> {
+		var ret = [];
 		for (let i in data) {
 			let tmp: SEntity = Object.assign(new this(), data[i]);
-			data[i] = tmp;
+			ret[i] = tmp;
 		}
-		return data;
+		return ret;
 	}
 
 	/**

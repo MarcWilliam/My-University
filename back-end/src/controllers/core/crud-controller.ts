@@ -56,7 +56,7 @@ export class CRUDController {
 				rejected.push(data[i]);
 			} else {
 				let errors = await data[i].getErrors(DBcrud.CREATE);
-				errors.length > 0 ? notValid.push(errors) : accepted.push(data[i]);
+				errors.length != 0 ? notValid.push(errors) : accepted.push(data[i]);
 			}
 		}
 
@@ -71,7 +71,7 @@ export class CRUDController {
 	public static async Read(req: Request, res: Response, next: NextFunction) {
 		let limit = req.query.limit,
 			offset = req.query.offset,
-			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value } : null;
+			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value.split(",") } : null;
 
 		var accepted = [], rejected = [], data = await this.MODEL.Read(feilds, null, limit, offset);
 
@@ -91,7 +91,7 @@ export class CRUDController {
 				rejected.push(data[i]);
 			} else {
 				let errors = await data[i].getErrors(DBcrud.UPDATE);
-				errors.length > 0 ? notValid.push(data[i]) : accepted.push(data[i]);
+				errors.length != 0 ? notValid.push(data[i]) : accepted.push(data[i]);
 			}
 		}
 

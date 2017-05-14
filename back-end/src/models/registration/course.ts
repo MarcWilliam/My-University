@@ -1,16 +1,16 @@
 import { SEntity } from '../core/s-entity';
-import { Department } from './department';
 import { DBcrud, DBconn, DBopp } from '../core/db';
 import CONFIG from '../../config';
 
 /**
  * a passive representation of a course
+ * @author Marc Wafik
  */
 export class Course extends SEntity {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "course",
-		REL: { prerequisite: "prerequisite" }
+		REL: { PREREQUISITE: "prerequisite" }
 	};
 
 	name: string;
@@ -53,7 +53,7 @@ export class Course extends SEntity {
 		for (var i in <Course>data) {
 			for (var j in data[i].prerequisitesIDs) {
 				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.prerequisite, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
+					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
 			}
 		}
 
@@ -64,7 +64,7 @@ export class Course extends SEntity {
 		let conn = await DBconn.getConnection();
 		for (var i in <Course>data) {
 			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?) OR ?? IN (?)`,
-				[this.DB_TABLE.REL.prerequisite, 'prerequisite_id', data[i].id, 'course_id', data[i].id]);
+				[this.DB_TABLE.REL.PREREQUISITE, 'prerequisite_id', data[i].id, 'course_id', data[i].id]);
 		}
 		await super.Delete(data);
 		return true;
@@ -77,11 +77,11 @@ export class Course extends SEntity {
 		for (var i in <Course[]>data) {
 			// delete all the prerequisites b4 insrting new ones
 			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
-				[this.DB_TABLE.REL.prerequisite, 'course_id', data[i].id]);
+				[this.DB_TABLE.REL.PREREQUISITE, 'course_id', data[i].id]);
 
 			for (var j in data[i].prerequisitesIDs) {
 				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.prerequisite, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
+					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]);
 			}
 		}
 
@@ -94,7 +94,7 @@ export class Course extends SEntity {
 
 		for (var i in <Course[]>data) {
 			let [rows, fields] = await conn.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
-				['prerequisite_id', this.DB_TABLE.REL.prerequisite, 'course_id', data[i].id]);
+				['prerequisite_id', this.DB_TABLE.REL.PREREQUISITE, 'course_id', data[i].id]);
 			data[i].prerequisitesIDs = [];
 
 			for (var j in rows) {

@@ -119,7 +119,7 @@ export class UserRole extends SEntity {
 
 		for (let i in roles) {
 			for (let key in roles[i].permissions) { //<<<<<<<<<<<<< use prepaired for preformence LATER
-				roles[i].permissions[key] = await Permission.Read({ id: roles[i].permissions[key].id })[0];
+				roles[i].permissions[key] = await (Permission.Read({ id: roles[i].permissions[key].id }))[0];
 			}
 		}
 
