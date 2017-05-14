@@ -9,15 +9,15 @@ import CONFIG from '../../config';
  */
 export class UserRole extends SEntity {
 
-	name: string;
-	description: string;
-	isStaff: boolean;
-	canEditOptions: boolean;
-
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "user_role",
 		REL: {}
 	};
+
+	name: string;
+	description: string;
+	isStaff: boolean;
+	canEditOptions: boolean;
 
 	permissions: {
 		user_role: Permission,
