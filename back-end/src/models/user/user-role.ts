@@ -20,16 +20,36 @@ export class UserRole extends SEntity {
 	canEditOptions: boolean;
 
 	permissions: {
-		user_role: Permission,
-		user: Permission,
-		department: Permission,
-		course: Permission,
-		semester: Permission,
-		course_offering: Permission,
-		group: Permission,
-		semester_enrollment: Permission,
-		cource_offering_enrollment: Permission
+		UserRole: Permission,
+		User: Permission,
+		Department: Permission,
+		Course: Permission,
+		Semester: Permission,
+		CourseOffering: Permission,
+		Group: Permission,
+		SemesterEnrollment: Permission,
+		CourceOfferingEnrollment: Permission
 	};
+
+	constructor() {
+		super();
+		this.name = "";
+		this.description = "";
+		this.isStaff = false;
+		this.canEditOptions = false;
+
+		this.permissions = {
+			UserRole: new Permission(),
+			User: new Permission(),
+			Department: new Permission(),
+			Course: new Permission(),
+			Semester: new Permission(),
+			CourseOffering: new Permission(),
+			Group: new Permission(),
+			SemesterEnrollment: new Permission(),
+			CourceOfferingEnrollment: new Permission()
+		};
+	}
 
 	public parseRow(row) {
 		super.parseRow(row);
@@ -38,27 +58,15 @@ export class UserRole extends SEntity {
 		this.isStaff = row.is_staff;
 		this.canEditOptions = row.can_edit_options;
 
-		this.permissions = {
-			user_role: new Permission(),
-			user: new Permission(),
-			department: new Permission(),
-			course: new Permission(),
-			semester: new Permission(),
-			course_offering: new Permission(),
-			group: new Permission(),
-			semester_enrollment: new Permission(),
-			cource_offering_enrollment: new Permission()
-		};
-
-		this.permissions.user_role.id = row.user_role;
-		this.permissions.user.id = row.user;
-		this.permissions.department.id = row.department;
-		this.permissions.course.id = row.course;
-		this.permissions.semester.id = row.semester;
-		this.permissions.course_offering.id = row.course_offering;
-		this.permissions.group.id = row.group;
-		this.permissions.semester_enrollment.id = row.semester_enrollment;
-		this.permissions.cource_offering_enrollment.id = row.cource_offering_enrollment;
+		this.permissions.UserRole.id = row.user_role;
+		this.permissions.User.id = row.user;
+		this.permissions.Department.id = row.department;
+		this.permissions.Course.id = row.course;
+		this.permissions.Semester.id = row.semester;
+		this.permissions.CourseOffering.id = row.course_offering;
+		this.permissions.Group.id = row.group;
+		this.permissions.SemesterEnrollment.id = row.semester_enrollment;
+		this.permissions.CourceOfferingEnrollment.id = row.cource_offering_enrollment;
 	}
 
 	public toRow() {
@@ -69,15 +77,15 @@ export class UserRole extends SEntity {
 		row.is_staff = this.isStaff;
 		row.can_edit_options = this.canEditOptions;
 
-		row.user_role = this.permissions.user_role.id;
-		row.user = this.permissions.user.id;
-		row.department = this.permissions.department.id;
-		row.course = this.permissions.course.id;
-		row.semester = this.permissions.semester.id;
-		row.course_offering = this.permissions.course_offering.id;
-		row.group = this.permissions.group.id;
-		row.semester_enrollment = this.permissions.semester_enrollment.id;
-		row.cource_offering_enrollment = this.permissions.cource_offering_enrollment.id;
+		row.user_role = this.permissions.UserRole.id;
+		row.user = this.permissions.User.id;
+		row.department = this.permissions.Department.id;
+		row.course = this.permissions.Course.id;
+		row.semester = this.permissions.Semester.id;
+		row.course_offering = this.permissions.CourseOffering.id;
+		row.group = this.permissions.Group.id;
+		row.semester_enrollment = this.permissions.SemesterEnrollment.id;
+		row.cource_offering_enrollment = this.permissions.CourceOfferingEnrollment.id;
 
 		return row;
 	}
