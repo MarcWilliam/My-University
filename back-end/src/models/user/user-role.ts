@@ -12,6 +12,7 @@ export class UserRole extends SEntity {
 	name: string;
 	description: string;
 	isStaff: boolean;
+	canEditOptions: boolean;
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "user_role",
@@ -20,14 +21,14 @@ export class UserRole extends SEntity {
 
 	permissions: {
 		user_role: Permission,
-		permission: Permission,
 		user: Permission,
 		department: Permission,
 		course: Permission,
 		semester: Permission,
 		course_offering: Permission,
 		group: Permission,
-		enrollment: Permission
+		semester_enrollment: Permission,
+		cource_offering_enrollment: Permission
 	};
 
 	public parseRow(row) {
@@ -35,29 +36,29 @@ export class UserRole extends SEntity {
 		this.name = row.name;
 		this.description = row.description;
 		this.isStaff = row.is_staff;
+		this.canEditOptions = row.can_edit_options;
 
 		this.permissions = {
 			user_role: new Permission(),
-			permission: new Permission(),
 			user: new Permission(),
 			department: new Permission(),
 			course: new Permission(),
 			semester: new Permission(),
 			course_offering: new Permission(),
 			group: new Permission(),
-			enrollment: new Permission()
+			semester_enrollment: new Permission(),
+			cource_offering_enrollment: new Permission()
 		};
 
 		this.permissions.user_role.id = row.user_role;
-		this.permissions.permission.id = row.permission;
 		this.permissions.user.id = row.user;
 		this.permissions.department.id = row.department;
 		this.permissions.course.id = row.course;
 		this.permissions.semester.id = row.semester;
 		this.permissions.course_offering.id = row.course_offering;
 		this.permissions.group.id = row.group;
-		this.permissions.enrollment.id = row.enrollment;
-
+		this.permissions.semester_enrollment.id = row.semester_enrollment;
+		this.permissions.cource_offering_enrollment.id = row.cource_offering_enrollment;
 	}
 
 	public toRow() {
@@ -66,16 +67,17 @@ export class UserRole extends SEntity {
 		row.name = this.name;
 		row.description = this.description;
 		row.is_staff = this.isStaff;
+		row.can_edit_options = this.canEditOptions;
 
 		row.user_role = this.permissions.user_role.id;
-		row.permission = this.permissions.permission.id;
 		row.user = this.permissions.user.id;
 		row.department = this.permissions.department.id;
 		row.course = this.permissions.course.id;
 		row.semester = this.permissions.semester.id;
 		row.course_offering = this.permissions.course_offering.id;
 		row.group = this.permissions.group.id;
-		row.enrollment = this.permissions.enrollment.id;
+		row.semester_enrollment = this.permissions.semester_enrollment.id;
+		row.cource_offering_enrollment = this.permissions.cource_offering_enrollment.id;
 
 		return row;
 	}

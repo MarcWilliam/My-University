@@ -57,8 +57,8 @@ export default class HTTPserver {
 		this.express.use('/api/users', UserRouter.Router());
 		this.express.use('/api/user-roles', UserRoleRouter.Router());
 
-		this.express.use('/api/department', DepartmentRouter.Router());
-		this.express.use('/api/semester', SemesterRouter.Router());
-		this.express.use('/api/cource', CourseRouter.Router());
+		this.express.use('/api/departments', DepartmentRouter.Router());
+		this.express.use('/api/semesters', SemesterRouter.Router());
+		this.express.use('/api/cources', CourseRouter.Router());
 	}
 }
