@@ -45,10 +45,11 @@ export class UserController extends CRUDController {
 
 	public static async Login(req: Request, res: Response, next: NextFunction) {
 		delete req.user.password;
-
+		req.userRole = <UserRole>(await UserRole.Read({ id: req.user.userRoleID }))[0];
 		res.status(200).json({
 			token: 'Bearer ' + UserController._GenerateToken(req.user),
-			user: req.user
+			user: req.user,
+			UserRole: req.userRole
 		});
 		next();
 	}

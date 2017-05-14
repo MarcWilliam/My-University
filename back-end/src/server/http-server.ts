@@ -6,7 +6,7 @@ import * as json2xls from 'json2xls';
 import { Express } from 'express';
 
 import CONFIG from '../config';
-import { PassportAut } from './authentication-passport';
+import { PassportAuth } from '../middleware/authentication-passport';
 import { UserRouter, UserRoleRouter } from '../routes/user-routers';
 import { DepartmentRouter, SemesterRouter, CourseRouter, CourseOfferingRouter } from '../routes/registration-routers';
 
@@ -46,7 +46,7 @@ export default class HTTPserver {
 		this.express.use(bodyParser.json());							// Send JSON responses
 		this.express.use(logger('dev'));								// Log requests to API using morgan
 		this.express.use(cors());										// Enable Cross-origin resource sharing
-		this.express.use(PassportAut.Passport.initialize());			// Initialize authentication passport middleware
+		this.express.use(PassportAuth.Passport.initialize());			// Initialize authentication passport middleware
 		this.express.use(json2xls.middleware);
 	}
 
