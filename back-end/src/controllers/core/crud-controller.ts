@@ -71,7 +71,7 @@ export class CRUDController {
 	public static async Read(req: Request, res: Response, next: NextFunction) {
 		let limit = req.query.limit,
 			offset = req.query.offset,
-			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value } : null;
+			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value.split(",") } : null;
 
 		var accepted = [], rejected = [], data = await this.MODEL.Read(feilds, null, limit, offset);
 
