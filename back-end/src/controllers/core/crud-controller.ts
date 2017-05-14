@@ -49,13 +49,13 @@ export class CRUDController {
 	}
 
 	public static async Create(req: Request, res: Response, next: NextFunction) {
-		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
+		var accepted = [], rejected = [], notValid = [], data = (await this.MODEL.ParceData(req.body));
 
 		for (let i in data) {
 			if (!data[i].hasPermission(req.user, req.userRole).create) {
 				rejected.push(data[i]);
 			} else {
-				let errors = await data[i].getErrors(DBcrud.CREATE);
+				let errors = (await data[i].getErrors(DBcrud.CREATE));
 				errors.length != 0 ? notValid.push(errors) : accepted.push(data[i]);
 			}
 		}
@@ -73,7 +73,7 @@ export class CRUDController {
 			offset = req.query.offset,
 			feilds = (req.params.key && req.params.value) ? { [req.params.key]: req.params.value.split(",") } : null;
 
-		var accepted = [], rejected = [], data = await this.MODEL.Read(feilds, null, limit, offset);
+		var accepted = [], rejected = [], data = (await this.MODEL.Read(feilds, null, limit, offset));
 
 		for (var i in data) {
 			data[i].hasPermission(req.user, req.userRole).read ? accepted.push(data[i]) : rejected.push(data[i].id);
@@ -84,13 +84,13 @@ export class CRUDController {
 	}
 
 	public static async Update(req: Request, res: Response, next: NextFunction) {
-		var accepted = [], rejected = [], notValid = [], data = await this.MODEL.ParceData(req.body);
+		var accepted = [], rejected = [], notValid = [], data = (await this.MODEL.ParceData(req.body));
 
 		for (let i in data) {
 			if (!data[i].hasPermission(req.user, req.userRole).update) {
 				rejected.push(data[i]);
 			} else {
-				let errors = await data[i].getErrors(DBcrud.UPDATE);
+				let errors = (await data[i].getErrors(DBcrud.UPDATE));
 				errors.length != 0 ? notValid.push(data[i]) : accepted.push(data[i]);
 			}
 		}

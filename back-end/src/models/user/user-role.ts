@@ -92,34 +92,35 @@ export class UserRole extends SEntity {
 
 	public static async Create(data): Promise<boolean> {
 		for (var i in data) {
-			await Permission.Create(data[i].permissions);
+			(await Permission.Create(data[i].permissions));
 		}
-		await super.Create(data);
+		(await super.Create(data));
 		return true;
 	}
 
 	public static async Delete(data): Promise<boolean> {
-		await super.Delete(data); // must delete the object first befor delete links
+		(await super.Delete(data)); // must delete the object first befor delete links
 		for (var i in data) {
-			await Permission.Delete(data[i].permissions);
+			(await Permission.Delete(data[i].permissions));
 		}
 		return true;
 	}
 
 	public static async Update(data): Promise<boolean> {
 		for (var i in data) {
-			await Permission.Update(data[i].permissions);
+			(await Permission.Update(data[i].permissions));
 		}
-		await super.Update(data);
+		(await super.Update(data));
 		return true;
 	}
 
 	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
-		var roles = await super.Read(feilds, opp, limit, offset);
+		var roles = (await super.Read(feilds, opp, limit, offset));
 
 		for (let i in roles) {
 			for (let key in roles[i].permissions) { //<<<<<<<<<<<<< use prepaired for preformence LATER
-				roles[i].permissions[key] = await (Permission.Read({ id: roles[i].permissions[key].id }))[0];
+				var x = (await Permission.Read({ id: roles[i].permissions[key].id }))[0];
+				roles[i].permissions[key] = x;
 			}
 		}
 

@@ -62,9 +62,9 @@ export class User extends SEntity implements hasPermission {
 	}
 
 	public static async ParceData(data: any[]): Promise<SEntity[]> {
-		var ret: User[] = <any>await super.ParceData(data);
+		var ret = <User[]>(await super.ParceData(data));
 		for (let i in ret) {
-			ret[i].hashedPassword = await ret[i].hashPassword();
+			ret[i].hashedPassword = (await ret[i].hashPassword());
 		}
 		return ret;
 	}
@@ -78,9 +78,9 @@ export class User extends SEntity implements hasPermission {
 	 * @return true if login success else false
 	 */
 	public static async Login(email: string, password: string) {
-		let user = await (User.Read({ email: email }))[0];
+		let user = (await User.Read({ email: email }))[0];
 		if (!user) return null;
-		let isMatch = await user.comparePassword(password);
+		let isMatch = (await user.comparePassword(password));
 		return isMatch ? user : null;
 	}
 
@@ -95,13 +95,13 @@ export class User extends SEntity implements hasPermission {
 
 	private async hashPassword() {
 		if (this.password) {
-			this.hashedPassword = await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS);
+			this.hashedPassword = (await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS));
 			delete this.password;
 		}
 		return this.hashedPassword;
 	}
 
 	public async comparePassword(passwordAttempt): Promise<Boolean> {
-		return await BCrypt.compare(passwordAttempt, this.password);
+		return (await BCrypt.compare(passwordAttempt, this.password));
 	}
 }

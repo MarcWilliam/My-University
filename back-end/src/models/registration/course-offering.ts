@@ -35,8 +35,8 @@ export class CourseOffering extends SEntity {
 	}
 
 	public static async Create(data): Promise<boolean> {
-		let conn = await DBconn.getConnection();
-		await super.Create(data);
+		let conn = (await DBconn.getConnection());
+		(await super.Create(data));
 
 		for (var i in data) {
 			for (var j in data[i].staffIDs) {
@@ -49,27 +49,27 @@ export class CourseOffering extends SEntity {
 	}
 
 	public static async Delete(data): Promise<boolean> {
-		let conn = await DBconn.getConnection();
+		let conn = (await DBconn.getConnection());
 		for (var i in <CourseOffering>data) {
-			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
-				[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id }]);
+			let [rows, fields] = (await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
+				[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id }]));
 		}
-		await super.Delete(data);
+		(await super.Delete(data));
 		return true;
 	}
 
 	public static async Update(data): Promise<boolean> {
-		let conn = await DBconn.getConnection();
+		let conn = (await DBconn.getConnection());
 		await super.Update(data);
 
 		for (var i in data) {
 			// delete all the prerequisites b4 insrting new ones
-			let [rows, fields] = await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
-				[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id }]);
+			let [rows, fields] = (await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`,
+				[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id }]));
 
 			for (var j in data[i].staffIDs) {
-				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]);
+				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
+					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]));
 			}
 		}
 
@@ -77,12 +77,12 @@ export class CourseOffering extends SEntity {
 	}
 
 	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
-		let conn = await DBconn.getConnection();
-		var data = await super.Read(feilds, opp, limit, offset);
+		let conn = (await DBconn.getConnection());
+		var data = (await super.Read(feilds, opp, limit, offset));
 
 		for (var i in data) {
-			let [rows, fields] = await conn.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
-				['user_id', this.DB_TABLE.REL.STAFF, 'course_offering_id', data[i].id]);
+			let [rows, fields] = (await conn.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`,
+				['user_id', this.DB_TABLE.REL.STAFF, 'course_offering_id', data[i].id]));
 			data[i].staffIDs = [];
 
 			for (var j in rows) {

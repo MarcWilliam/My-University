@@ -9,13 +9,13 @@ export class DBconn {
 
 	public static async getConnection() {
 		return DBconn._connection = DBconn._connection ||
-			await mysql.createConnection({
+			(await mysql.createConnection({
 				host: CONFIG.DB.HOST,
 				user: CONFIG.DB.USERNAME,
 				password: CONFIG.DB.PASSWORD,
 				database: CONFIG.DB.DATABASE,
 				Promise: bluebird
-			});
+			}));
 
 	}
 }

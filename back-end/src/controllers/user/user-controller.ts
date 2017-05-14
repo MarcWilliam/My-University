@@ -22,7 +22,7 @@ export class UserController extends CRUDController {
 	public static async Register(req: Request, res: Response, next: NextFunction) {
 		let user = <User>(await this.MODEL.ParceData([req.body]))[0];
 
-		let errors = await user.getErrors(DBcrud.CREATE);
+		let errors = (await user.getErrors(DBcrud.CREATE));
 
 		if (errors.length == 0) {
 			user.create();

@@ -36,7 +36,7 @@ export class PassportAut {
 		this._Passport = new Passport()
 
 		this._LocalLogin = new PassportLocal.Strategy(this._LocalOptions, async (req, email, password, done) => {
-			let user = await User.Login(email, password);
+			let user = (await User.Login(email, password));
 			return user ?
 				done(null, user) :
 				done(null, false, { message: 'Login failed. Please try again.' });
@@ -44,7 +44,7 @@ export class PassportAut {
 
 		this._JWTOptions =
 			this._JWTLogin = new PassportJwt.Strategy(this._JWTOptions, async (JwtPayLoad, done) => {
-				let user = await (User.Read({ id: JwtPayLoad.id }))[0];
+				let user = (await User.Read({ id: JwtPayLoad.id }))[0];
 				return user ? done(null, user) : done(null, false);
 			});
 
