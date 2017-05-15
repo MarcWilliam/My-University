@@ -16,13 +16,13 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [ProfessorGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
-  { path: 'group', component: GroupComponent, canActivate: [StudentGuard] },
+  { path: 'home', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'group', component: GroupComponent },
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
   { path: 'edit-profile', component: EditProfileComponent },
-  { path: '', redirectTo: '/edit-profile', pathMatch: 'full' }, // Default url
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];
 

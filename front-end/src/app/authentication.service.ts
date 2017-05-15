@@ -17,17 +17,8 @@ export class AuthenticationService {
     public signUp(user: any): void {
         this.userService.register(user).subscribe(data => {
             if (data.user && data.token) {
-                localStorage.setItem('current_user', JSON.stringify(data.user));
-                localStorage.setItem('id_token', data.token);
-                if (data.user.role == "admin") {
-                    this.router.navigate(['/dashboard']);
-                }
-                else if (data.user.role == "professor") {
-                    this.router.navigate(['/home']);
-                }
-                else if (data.user.role == "student") {
-                    this.router.navigate(['/group']);
-                }
+                this.setCurrentUser(data);
+                this.router.navigate(['/dashboard']);
             }
         });
     }
@@ -35,37 +26,37 @@ export class AuthenticationService {
     signIn(credentials: any) {
         this.userService.login(credentials).subscribe(data => {
             if (data.user && data.token) {
-                localStorage.setItem('current_user', JSON.stringify(data.user));
-                localStorage.setItem('id_token', data.token);
-                if (data.user.role == "admin") {
-                    this.router.navigate(['/dashboard']);
-                }
-                else if (data.user.role == "professor") {
-                    this.router.navigate(['/home']);
-                }
-                else if (data.user.role == "student") {
-                    this.router.navigate(['/group']);
-                }
+                this.setCurrentUser(data);
+                this.router.navigate(['/dashboard']);
             }
         });
     }
 
     signOut() {
-        // remove the user and the user's token from local storage to log user out
-        localStorage.removeItem('current_user');
-        localStorage.removeItem('id_token');
+        this.deleteCurrentUser();
         this.router.navigate(['/login']);
     }
     isloggedIn() {
-        return tokenNotExpired('id_token');
+        return tokenNotExpired();
     }
 
     getCurrentUser() {
-        if (this.isloggedIn) {
-            let user = localStorage.getItem('current_user');
+        if (this.isloggedIn()) {
+            let user = localStorage.getItem('user');
             if (user) {
                 return JSON.parse(user);
             }
         }
+    }
+
+    setCurrentUser(data) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+    }
+
+    deleteCurrentUser() {
+        // remove the user and the user's token from local storage
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
     }
 }
