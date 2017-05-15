@@ -10,7 +10,7 @@ export class CourseOffering extends SEntity {
 
 	static DB_TABLE = {
 		PRIM: CONFIG.DB.TABLE_PREFIX + "course_offering",
-		REL: { STAFF: "course_offering_staff" }
+		REL: { STAFF: CONFIG.DB.TABLE_PREFIX + "course_offering_staff" }
 	};
 
 
