@@ -6,7 +6,7 @@ import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
 import { DBcrud } from '../../models/core/db';
-import { HTTPClientErr } from '../core/http-stats';
+import { HTTPClientErr, HTTPSuccess } from '../core/http-stats';
 import { EmailHandler } from './../../models/core/email-handler';
 import { EmailTemplaites } from './../../models/core/email-templaites';
 
@@ -30,7 +30,7 @@ export class UserController extends CRUDController {
 			EmailHandler.sendMail(EmailTemplaites.SigunUp({ userEmail: user.email, userName: user.name }));
 			user.create();
 			delete user.password;
-			res.status(201).json({
+			res.status(HTTPSuccess.Created).json({
 				token: 'Bearer ' + UserController._GenerateToken(user),
 				user: user
 			});
@@ -49,7 +49,7 @@ export class UserController extends CRUDController {
 	public static async Login(req: Request, res: Response, next: NextFunction) {
 		delete req.user.password;
 		req.userRole = <UserRole>(await UserRole.Read({ id: req.user.userRoleID }))[0];
-		res.status(200).json({
+		res.status(HTTPSuccess.OK).json({
 			token: 'Bearer ' + UserController._GenerateToken(req.user),
 			user: req.user,
 			UserRole: req.userRole
