@@ -22,6 +22,7 @@ import { GroupComponent } from './group/group.component';
 
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
+import { AuthHttpModule } from './auth-http.module';
 import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
 import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
 import {Component} from '@angular/core';
@@ -29,11 +30,6 @@ import {FormsModule} from '@angular/forms';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { MdDataTableModule } from 'ng2-md-datatable';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-
-
-
-
-
 
 
 @NgModule({
@@ -53,6 +49,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
+    AuthHttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

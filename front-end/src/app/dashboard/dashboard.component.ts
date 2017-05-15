@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +10,17 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private userService: UserService) { }
 
   ngOnInit() {
   }
 
-    onLogOutTapped(): any {
+  onLogOutTapped(): any {
     this.authenticationService.signOut();
+  }
+
+  onTest(): any {
+    this.userService.read('7').subscribe((user) => { console.log(user) });
   }
 
 }
