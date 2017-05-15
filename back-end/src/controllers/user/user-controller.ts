@@ -31,7 +31,7 @@ export class UserController extends CRUDController {
 			user.create();
 			delete user.password;
 			res.status(HTTPstat.Success.Created).json({
-				token: 'Bearer ' + UserController._GenerateToken(user),
+				token: UserController._GenerateToken(user),
 				user: user
 			});
 		} else {
@@ -50,7 +50,7 @@ export class UserController extends CRUDController {
 		delete req.user.password;
 		req.userRole = <UserRole>(await UserRole.Read({ id: req.user.userRoleID }))[0];
 		res.status(HTTPstat.Success.OK).json({
-			token: 'Bearer ' + UserController._GenerateToken(req.user),
+			token: UserController._GenerateToken(req.user),
 			user: req.user,
 			UserRole: req.userRole
 		});

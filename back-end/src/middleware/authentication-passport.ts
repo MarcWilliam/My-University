@@ -18,7 +18,7 @@ export class PassportAuth {
 	};
 
 	private static _JWTOptions: any = {
-		jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+		jwtFromRequest: PassportJwt.ExtractJwt.fromAuthHeaderWithScheme(CONFIG.AUTH.SCHEME),
 		secretOrKey: CONFIG.AUTH.SECRET,
 	};
 
