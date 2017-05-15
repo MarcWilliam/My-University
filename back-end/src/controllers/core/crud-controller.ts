@@ -6,7 +6,7 @@ import { SEntity } from './../../models/core/s-entity';
 import { User } from '../../models/user/user';
 import { UserRole } from '../../models/user/user-role';
 import { hasPermission } from '../../models/user/permission';
-import { HTTPClientErr } from './http-stats';
+import { HTTPstat } from './http-stats';
 import { DBcrud } from '../../models/core/db';
 
 export class CRUDController {
@@ -19,7 +19,7 @@ export class CRUDController {
 		if (rejected.length != 0) {
 			res.json({
 				error: {
-					code: HTTPClientErr.Forbidden,
+					code: HTTPstat.ClientErr.Forbidden,
 					message: "don't have enough permissions"
 				},
 				notValid: notValid
@@ -27,7 +27,7 @@ export class CRUDController {
 		} else if (notValid.length != 0) {
 			res.json({
 				error: {
-					code: HTTPClientErr.UnprocessableEntity,
+					code: HTTPstat.ClientErr.UnprocessableEntity,
 					message: "didn't pass the validation"
 				},
 				rejected: rejected
