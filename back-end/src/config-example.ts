@@ -30,6 +30,13 @@ const CONFIG = {
 	},
 	HASH: {
 		SALT_ROUNDS: 12
+	},
+	EMAIL: {
+		service: 'gmail',
+		auth: {
+			user: 'poparab11@gmail.com',
+			pass: '33151732'
+		}
 	}
 }
 
