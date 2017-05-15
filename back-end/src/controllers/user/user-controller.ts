@@ -7,6 +7,8 @@ import { UserRole } from '../../models/user/user-role';
 import { CRUDController } from '../core/crud-controller';
 import { DBcrud } from '../../models/core/db';
 import { HTTPClientErr } from '../core/http-stats';
+import { EmailHandler } from './../../models/core/email-handler';
+import { EmailTemplaites } from './../../models/core/email-templaites';
 
 /**
  * @author Abdelrahman Abdelhamed
@@ -25,6 +27,7 @@ export class UserController extends CRUDController {
 		let errors = (await user.getErrors(DBcrud.CREATE));
 
 		if (errors.length == 0) {
+			EmailHandler.sendMail(EmailTemplaites.SigunUp({ userEmail: user.email, userName: user.name }));
 			user.create();
 			delete user.password;
 			res.status(201).json({
