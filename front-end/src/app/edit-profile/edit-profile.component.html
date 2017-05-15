@@ -1,24 +1,47 @@
-<form #editProfile="ngForm" (ngSubmit)="onSubmit(editProfile.value)">
+<form #editProfile="ngForm" (ngSubmit)="onSave()">
+    <md-card>
+        <md-grid-list cols="3" rowHeight="100px">
 
-    <md-input-container [(ngModel)]="Name" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Name" value="">
-    </md-input-container>
-    <md-input-container [(ngModel)]="Email" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Email" value="">
-    </md-input-container>
-    <br>
-    <md-input-container [(ngModel)]="Birthdate" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Birthdate" value="">
-    </md-input-container>
-    <md-input-container [(ngModel)]="Password" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Password" value="">
-    </md-input-container>
-    <br>
-    <md-input-container [(ngModel)]="Gender" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Gender" value="">
-    </md-input-container>
-    <md-input-container [(ngModel)]="Phone" style=" margin: 20px 150px 20px 80px;">
-        <input mdInput placeholder="Phone" value="">
-    </md-input-container>
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.name" name="name" placeholder="Name" value="">
+                </md-input-container>
+            </md-grid-tile>
 
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.email" name="email" placeholder="Email" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.birthDate" name="birthDate" placeholder="Birthdate" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.hashedPassword" type="password" name="password" placeholder="Password" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.gender" name="gender" placeholder="Gender" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="user.phone" name="phone" placeholder="Phone" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile colspan="3">
+                <button color="primary" md-raised-button>Save</button>
+            </md-grid-tile>
+
+        </md-grid-list>
+    </md-card>
 </form>
