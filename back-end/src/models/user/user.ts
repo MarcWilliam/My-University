@@ -102,6 +102,6 @@ export class User extends SEntity implements hasPermission {
 	}
 
 	public async comparePassword(passwordAttempt): Promise<Boolean> {
-		return (await BCrypt.compare(passwordAttempt, this.password));
+		return (await BCrypt.compare(passwordAttempt, this.hashedPassword));
 	}
 }
