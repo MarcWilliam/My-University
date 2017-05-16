@@ -61,7 +61,7 @@ export class CRUDController {
 		}
 
 		if (notValid.length == 0 && rejected.length == 0) {
-			this.MODEL.Create(data);
+			(await this.MODEL.Create(data));
 		}
 
 		this.CRUDrespon(res, accepted, rejected, notValid);
@@ -96,7 +96,7 @@ export class CRUDController {
 		}
 
 		if (notValid.length == 0 && rejected.length == 0) {
-			this.MODEL.Update(accepted);
+			(await this.MODEL.Update(accepted));
 		}
 
 		this.CRUDrespon(res, accepted, rejected, notValid);
@@ -104,7 +104,7 @@ export class CRUDController {
 	}
 
 	public static async Delete(req: Request, res: Response, next: NextFunction) {
-		var accepted = [], rejected = [], data = this.MODEL.Read({ id: req.params.ids.split(",") });
+		var accepted = [], rejected = [], data = (await this.MODEL.Read({ id: req.params.ids.split(",") }));
 
 		for (let i in data) {
 			data[i].hasPermission(req.user, req.userRole).delete ?
@@ -113,7 +113,7 @@ export class CRUDController {
 		}
 
 		if (rejected.length == 0) {
-			this.MODEL.Delete(accepted);
+			(await this.MODEL.Delete(accepted));
 		}
 
 		this.CRUDrespon(res, accepted, rejected);

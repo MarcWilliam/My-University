@@ -40,8 +40,8 @@ export class CourseOffering extends SEntity {
 
 		for (var i in data) {
 			for (var j in data[i].staffIDs) {
-				let [rows, fields] = await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]);
+				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
+					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]));
 			}
 		}
 

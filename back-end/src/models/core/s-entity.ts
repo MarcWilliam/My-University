@@ -25,9 +25,9 @@ export /*abstract*/ class SEntity implements hasPermission {
 	public toRow() {
 		var row: any = {};
 
-		this.id = row.id;
-		row.created_at = this.createdAt;
-		row.updated_at = this.updatedAt;
+		// this.id = row.id;
+		// row.created_at = this.createdAt;
+		// row.updated_at = this.updatedAt;
 
 		return row;
 	}
@@ -68,9 +68,6 @@ export /*abstract*/ class SEntity implements hasPermission {
 
 		for (var i in data) {
 			var row = data[i].toRow();
-			delete row.id;
-			delete row.created_at;
-			delete row.updated_at;
 
 			let [rows, fields] = (await conn.query(`UPDATE ?? SET ? where ?? = ?`, [this.DB_TABLE.PRIM, row, "id", data[i].id]));
 		}
@@ -99,9 +96,6 @@ export /*abstract*/ class SEntity implements hasPermission {
 
 		for (var i in data) {
 			var row = data[i].toRow();
-			delete row.id;
-			delete row.created_at;
-			delete row.updated_at;
 
 			let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`, [this.DB_TABLE.PRIM, row]));
 			data[i].id = rows.insertId;
@@ -122,7 +116,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 
 		for (var i in data) ids.push(data[i].id);
 
-		let [rows, fields] = (await conn.query(`DELETE FROM ?? WHERE id IN (?)`, [this.DB_TABLE.PRIM, ids]));
+		let [rows, fields] = (await conn.query(`DELETE FROM ?? WHERE ?? IN (?)`, [this.DB_TABLE.PRIM, "id", ids]));
 		return true;
 	}
 
