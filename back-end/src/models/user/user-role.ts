@@ -1,7 +1,8 @@
 import { Permission } from './permission';
 import { SEntity } from '../core/s-entity';
-import { DBopp } from '../core/db';
+import { DBopp, DBcrud } from '../core/db';
 import CONFIG from '../../config';
+import { CError } from '../core/error';
 
 /**
  * Holds the user permissions and access
@@ -88,6 +89,10 @@ export class UserRole extends SEntity {
 		row.cource_offering_enrollment = this.permissions.CourceOfferingEnrollment.id;
 
 		return row;
+	}
+
+	public async getErrors(action: DBcrud): Promise<CError[]> {
+		return [];
 	}
 
 	public static async Create(data): Promise<boolean> {

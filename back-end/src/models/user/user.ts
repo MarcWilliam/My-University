@@ -4,6 +4,8 @@ import { SEntity } from '../core/s-entity';
 import { NotificationObserver } from '../core/notification';
 import { Permission, hasPermission } from './permission';
 import CONFIG from '../../config';
+import { DBcrud } from '../core/db';
+import { CError, CErrorCode } from '../core/error';
 
 /**
  * hold the user data
@@ -67,6 +69,21 @@ export class User extends SEntity implements hasPermission {
 			ret[i].hashedPassword = (await ret[i].hashPassword());
 		}
 		return ret;
+	}
+
+	public async getErrors(action: DBcrud): Promise<CError[]> {
+		var errs: CError[] = (await super.getErrors(action));
+
+		var uniqueErrs = this.parseUniquenessErrors({
+			email: (await (<any>this.constructor).CheckUnique('email', this.email)),
+			phone: (await (<any>this.constructor).CheckUnique('phone', this.phone))
+		});
+
+		errs.concat(uniqueErrs);
+
+		// department dosen't exists
+		// user role dosen't exists
+		return errs;
 	}
 
 	/**
