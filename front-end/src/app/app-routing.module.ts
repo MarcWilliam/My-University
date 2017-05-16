@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'edit-departement', component: EditDepartementComponent },
   { path: 'edit-semester', component: EditSemesterComponent },
 
-  { path: '', redirectTo: '/edit-profile', pathMatch: 'full' }, // Default url
+  { path: '', redirectTo: '/edit-course', pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];
 
