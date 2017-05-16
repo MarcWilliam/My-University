@@ -1,6 +1,7 @@
 import { SEntity } from '../core/s-entity';
 import { DBcrud, DBconn, DBopp } from '../core/db';
 import CONFIG from '../../config';
+import { CError } from '../core/error';
 
 /**
  * a passive representation of a course
@@ -44,6 +45,19 @@ export class Course extends SEntity {
 		row.department_id = this.departmentID;
 
 		return row;
+	}
+
+	public async getErrors(action: DBcrud): Promise<CError[]> {
+		var errs: CError[] = (await super.getErrors(action));
+
+		var uniqueErrs = this.parseUniquenessErrors({
+			email: (await (<any>this.constructor).CheckUnique('code', this.code))
+		});
+
+		errs.concat(uniqueErrs);
+
+		// check prerequisites exists
+		return errs;
 	}
 
 	public static async Create(data): Promise<boolean> {

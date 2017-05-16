@@ -2,7 +2,7 @@ import { hasPermission } from './../user/permission';
 import { UserRole } from '../user/user-role';
 import { User } from '../user/user';
 import { CRUDpermission } from '../user/permission';
-import { CError } from "./error";
+import { CError, CErrorCode } from './error';
 import { DBcrud, DBconn, DBopp } from './db';
 
 export /*abstract*/ class SEntity implements hasPermission {
@@ -72,8 +72,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 			delete row.created_at;
 			delete row.updated_at;
 
-			let [rows, fields] = (await conn.query(`UPDATE ?? SET ? where id = ?`, [this.DB_TABLE.PRIM, row]));
-			data[i].id = rows.insertId;
+			let [rows, fields] = (await conn.query(`UPDATE ?? SET ? where ?? = ?`, [this.DB_TABLE.PRIM, row, "id", data[i].id]));
 		}
 
 		return true;
@@ -188,7 +187,22 @@ export /*abstract*/ class SEntity implements hasPermission {
 	public static async CheckUnique(colum: string, data: any) {
 		let conn = (await DBconn.getConnection());
 
-		let [rows, fields] = (await conn.query(`SELECT 1 FROM ?? WHERE ?? IN (?) LIMIT 1`, [this.DB_TABLE.PRIM, colum, data]));
-		return rows.length == 0;
+		let [rows, fields] = (await conn.query(`SELECT ?? FROM ?? WHERE ?? IN (?) LIMIT 1`, ["id", this.DB_TABLE.PRIM, colum, data]));
+		return rows[0] ? rows[0] : null;
+	}
+
+	public parseUniquenessErrors(uniquenessID: {}) {
+		var errs: CError[] = [];
+		for (var key in uniquenessID) {
+
+			var element = uniquenessID[key];
+			(uniquenessID[key] || uniquenessID[key] != this.id) ? errs.push({
+				param: key,
+				msg: `${key} already taken`,
+				value: this[key],
+				errCode: CErrorCode.notUnique,
+			}) : 0;
+		}
+		return errs;
 	}
 }
