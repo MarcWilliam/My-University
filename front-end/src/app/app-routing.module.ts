@@ -11,6 +11,10 @@ import { GroupComponent } from './group/group.component';
 import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditDepartementComponent } from './edit-departement/edit-departement.component';
+import { EditSemesterComponent } from './edit-semester/edit-semester.component';
+
 
 
 const appRoutes: Routes = [
@@ -22,7 +26,11 @@ const appRoutes: Routes = [
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
   { path: 'edit-profile', component: EditProfileComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default url
+  { path: 'edit-course', component: EditCourseComponent },
+  { path: 'edit-departement', component: EditDepartementComponent },
+  { path: 'edit-semester', component: EditSemesterComponent },
+
+  { path: '', redirectTo: '/edit-profile', pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];
 

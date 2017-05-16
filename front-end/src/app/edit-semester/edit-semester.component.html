@@ -1,0 +1,53 @@
+<form #editProfile="ngForm" (ngSubmit)="onSave()">
+    <md-card>
+        <md-grid-list cols="3" rowHeight="100px">
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.name" name="name" placeholder="Name" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.maxCrediHour" name="maxCrediHour" placeholder="maxCrediHour" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.startDate" name="startDate" placeholder="startDate" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.endDate" name="endDate" placeholder="endDate" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.registrationStartDate" name="registrationStartDate" placeholder="registrationStartDate" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.registrationEndDate" name="registrationEndDate" placeholder="registrationEndDate" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile>
+                <md-input-container class="input-profile">
+                    <input mdInput [(ngModel)]="semester.departement" name="departement" placeholder="Departement" value="">
+                </md-input-container>
+            </md-grid-tile>
+
+            <md-grid-tile colspan="3">
+                <button color="primary" md-raised-button>Save</button>
+            </md-grid-tile>
+
+        </md-grid-list>
+    </md-card>
+</form>

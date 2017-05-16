@@ -30,6 +30,9 @@ import {FormsModule} from '@angular/forms';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { MdDataTableModule } from 'ng2-md-datatable';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditDepartementComponent } from './edit-departement/edit-departement.component';
+import { EditSemesterComponent } from './edit-semester/edit-semester.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     GroupComponent,
     UserRoleViewComponent,
     UserRoleEditComponent,
-    EditProfileComponent
+    EditProfileComponent,
+	EditCourseComponent,
+	EditDepartementComponent,
+	EditSemesterComponent
     
   ],
   imports: [
