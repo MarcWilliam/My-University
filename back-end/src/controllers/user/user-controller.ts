@@ -28,11 +28,13 @@ export class UserController extends CRUDController {
 
 		if (errors.length == 0) {
 			EmailHandler.sendMail(EmailTemplaites.SigunUp({ userEmail: user.email, userName: user.name }));
-			user.create();
+			(await user.create());
 			delete user.password;
+			req.userRole = <UserRole>(await UserRole.Read({ id: req.user.userRoleID }))[0];
 			res.status(HTTPstat.Success.Created).json({
 				token: UserController._GenerateToken(user),
-				user: user
+				user: user,
+				UserRole: req.userRole
 			});
 		} else {
 			res.json({
