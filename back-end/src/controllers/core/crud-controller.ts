@@ -83,6 +83,21 @@ export class CRUDController {
 		return next();
 	}
 
+	public static async Search(req: Request, res: Response, next: NextFunction) {
+		let limit = req.query.limit == null ? null : parseInt(req.query.limit),
+			offset = req.query.offset == null ? null : parseInt(req.query.offset),
+			keys = req.params.keys.split(",");
+
+		var accepted = [], rejected = [], data = (await this.MODEL.Read(keys, req.params.value, limit, offset));
+
+		for (var i in data) {
+			data[i].hasPermission(req.user, req.userRole).read ? accepted.push(data[i]) : rejected.push(data[i].id);
+		}
+
+		this.CRUDrespon(res, accepted, rejected, [], req.params.type);
+		return next();
+	}
+
 	public static async Update(req: Request, res: Response, next: NextFunction) {
 		var accepted = [], rejected = [], notValid = [], data = (await this.MODEL.ParceData(req.body));
 

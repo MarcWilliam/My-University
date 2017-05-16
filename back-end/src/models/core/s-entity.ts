@@ -178,6 +178,11 @@ export /*abstract*/ class SEntity implements hasPermission {
 		return this.SelectQuery(parsed.query, parsed.data);
 	}
 
+	public static Search(feilds: any[], search: string, limit?: number, offset?: number) {
+		return this.SelectQuery(`SELECT * FROM ?? WHERE CONCAT_WS('', ??) LIKE ? LIMIT ? OFFSET ?`,
+			[this.DB_TABLE.PRIM, feilds, `%${search}%`, limit ? limit : 1000, offset ? offset : 0]);
+	}
+
 	public static async CheckUnique(colum: string, data: any) {
 		let conn = (await DBconn.getConnection());
 
