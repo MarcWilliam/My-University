@@ -4,7 +4,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 import { Observable } from 'rxjs/Observable';
 
-import CONFIG from '../app.config';
+import CONFIG from '../../app.config';
 
 @Injectable()
 export class CRUDService {
@@ -21,7 +21,7 @@ export class CRUDService {
     offset = offset ? +offset : '';
     type = type ? '.' + type : '';
     const stringValues = values ? '=' + values.join() : '';
-    
+
     return this.authHttp.get(`${CONFIG.API_URL}/${this.apiRoute}/${key}${stringValues}/${type}?limit=${limit}&offest=${offset}`)
       .map((response: Response) => response.json());
   }

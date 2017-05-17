@@ -5,9 +5,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 
-import { UserService } from './user.service';
+import { UserService } from '../services';
 
-import CONFIG from '../app.config';
+import CONFIG from '../../app.config';
 
 
 @Injectable()

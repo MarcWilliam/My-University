@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { User } from './user';
+import { User } from '../models';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { DatePipe } from '@angular/common';
 
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../services';
 import { AuthHttp } from 'angular2-jwt';
 
-import CONFIG from '../app.config';
-import { CRUDService } from './CRUD.service';
+import CONFIG from '../../app.config';
+import { CRUDService } from '../services';
 
 @Injectable()
 export class UserService extends CRUDService {
@@ -39,8 +39,8 @@ export class UserService extends CRUDService {
     }
 
     private _parseData(data: any[]) {
-        for (let i in data) {
-            data[i] = this._parseEntry(data[i]);
+        for (const field of Object.keys(data)) {
+            data[field] = this._parseEntry(data[field]);
         }
         return data;
     }

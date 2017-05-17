@@ -17,8 +17,7 @@ import {
   DatatableSortType,
 } from 'ng2-md-datatable';
 
-import { CRUDService } from '../CRUD.service';
-import { ServiceFactory } from '../service-factory';
+import { CRUDService, ServiceFactory } from '../../services';
 
 @Component({
   selector: 'app-list-all',

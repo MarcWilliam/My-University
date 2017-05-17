@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AuthenticationService } from '../authentication.service';
-import { UserService } from '../user.service';
+import { UserService, AuthenticationService } from '../../services';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   public signInForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService, private userService: UserService) {
   }
 
   ngOnInit(): void {

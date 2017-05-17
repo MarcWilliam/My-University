@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './guards';
 
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { GroupComponent } from './group/group.component';
-import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
-import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { EditCourseComponent } from './edit-course/edit-course.component';
-import { ListAllComponent } from './list-all/list-all.component';
-import { EditDepartementComponent } from './edit-departement/edit-departement.component';
-import { EditSemesterComponent } from './edit-semester/edit-semester.component';
+
+import {
+  RegistrationComponent,
+  LoginComponent,
+  HomeComponent,
+  DashboardComponent,
+  GroupComponent,
+  UserRoleViewComponent,
+  UserRoleEditComponent,
+  EditProfileComponent,
+  EditCourseComponent,
+  ListAllComponent,
+  EditDepartementComponent,
+  EditSemesterComponent
+} from './components';
+
 
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },

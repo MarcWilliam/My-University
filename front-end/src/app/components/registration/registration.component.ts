@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AuthenticationService } from '../authentication.service';
-import { User } from '../user';
+import { AuthenticationService } from '../../services';
+import { User } from '../../models';
 
 
 @Component({
@@ -21,7 +21,8 @@ export class RegistrationComponent implements OnInit {
     { value: 'professor', viewValue: 'Professor' }
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private route: ActivatedRoute, private router: Router,
+    private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
