@@ -173,7 +173,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * 
 	 * @return True if everything pass else false
 	 */
-	public static async Read(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
+	public static async Read(feilds?: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
 		let parsed = this._PaseReadQuery(feilds, opp, limit, offset);
 		return this.SelectQuery(parsed.query, parsed.data);
 	}
