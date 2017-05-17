@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
+import { AuthenticationGuard } from './authentication.guard';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -12,9 +12,9 @@ import { UserRoleViewComponent } from './user-role-view/user-role-view.component
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { ListAllComponent } from './list-all/list-all.component';
 import { EditDepartementComponent } from './edit-departement/edit-departement.component';
 import { EditSemesterComponent } from './edit-semester/edit-semester.component';
-
 
 
 const appRoutes: Routes = [
@@ -25,8 +25,9 @@ const appRoutes: Routes = [
   { path: 'group', component: GroupComponent },
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'list-all', component: ListAllComponent },
   { path: 'edit-course', component: EditCourseComponent },
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthenticationGuard] },
   { path: 'edit-departement', component: EditDepartementComponent },
   { path: 'edit-semester', component: EditSemesterComponent },
 
