@@ -24,13 +24,6 @@ export class UserService extends CRUDService {
         this.apiRoute = 'users';
     }
 
-    /*public read(key?: string, values?: any[], limit?: any, offset?: any, type?: string): any {
-        super.read(key, values, limit, offset, type).subscribe(response => {
-            this.userSubject.next(this.parseData(response.data));
-        });
-        return this.userSubject;
-    }*/
-
     public register(user: User): Observable<any> {
         return this.http.post(`${CONFIG.API_URL}/${this.apiRoute}/register`, user).map((response: Response) => response.json());
     }
@@ -40,7 +33,7 @@ export class UserService extends CRUDService {
     }
 
     public viewDetailsPage(id: string) {
-        this.router.navigate(['/edit-profile'], { queryParams: { otherUserId: id } });
+        this.router.navigate(['/edit-profile'], {skipLocationChange: true, queryParams: { otherUserId: id } });
     }
 
     public parseData(data: any[]) {

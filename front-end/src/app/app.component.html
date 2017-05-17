@@ -14,8 +14,31 @@
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
+        </button> {{ title }}
+
+        <span class="fill-space"></span>
+
+        <span>{{ user?.name }}</span>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>more_vert</md-icon>
         </button>
-         {{ title }}
+
+        <md-menu #menu="mdMenu">
+
+            <button *ngIf="authenticationService.isloggedIn(); else login" md-menu-item (click)="onLogout()">
+                <md-icon>lock</md-icon>
+                <span>Log out</span>
+            </button>
+
+            <ng-template #login>
+                <button md-menu-item (click)="onLogin()">
+                    <md-icon>lock_open</md-icon>
+                    <span>Log in</span>
+                </button>
+            </ng-template>
+
+        </md-menu>
+
     </md-toolbar>
 
     <div class="main-content">

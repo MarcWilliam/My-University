@@ -34,19 +34,16 @@ export class AuthenticationService {
 
     signOut() {
         this.deleteCurrentUser();
-        this.router.navigate(['/login']);
     }
     isloggedIn() {
         return tokenNotExpired();
     }
 
     getCurrentUser() {
-        if (this.isloggedIn()) {
             let user = localStorage.getItem('user');
             if (user) {
                 return JSON.parse(user);
             }
-        }
     }
 
     setCurrentUser(data) {

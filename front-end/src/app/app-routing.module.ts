@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   { path: 'group', component: GroupComponent },
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
-  { path: 'list-all', component: ListAllComponent },
+  { path: 'list-all', component: ListAllComponent, canActivate: [AuthenticationGuard] },
   { path: 'edit-course', component: EditCourseComponent },
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthenticationGuard] },
   { path: 'edit-departement', component: EditDepartementComponent },
