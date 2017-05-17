@@ -20,6 +20,9 @@ import { UserRoleViewComponent } from './user-role-view/user-role-view.component
 import { ListAllComponent } from './list-all/list-all.component';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditDepartementComponent } from './edit-departement/edit-departement.component';
+import { EditSemesterComponent } from './edit-semester/edit-semester.component';
 
 import { CRUDService } from './CRUD.service';
 import { UserService } from './user.service';
@@ -28,10 +31,7 @@ import { AuthenticationService } from './authentication.service';
 import { AuthHttpModule } from './auth-http.module';
 import { FormsModule } from '@angular/forms';
 import { MdDataTableModule } from 'ng2-md-datatable';
-import { EditCourseComponent } from './edit-course/edit-course.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { EditDepartementComponent } from './edit-departement/edit-departement.component';
-import { EditSemesterComponent } from './edit-semester/edit-semester.component';
+
 
 import { AuthenticationGuard } from './authentication.guard';
 import { ServiceFactory } from './service-factory';
