@@ -14,7 +14,7 @@ export class CourseService extends CRUDService implements Service {
   }
 
   // If you need to edit the data before sending it to the view. (Optional you might even remove it from here)
-  protected _parseEntry(entry: any) {
+  public parseEntry(entry: any) {
     return entry;
   }
 
