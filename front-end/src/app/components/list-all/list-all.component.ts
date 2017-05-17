@@ -28,7 +28,7 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
   public data: any;
   public headers: any;
 
-  private crudService;
+  private crudService: CRUDService;
   private currentSelection$: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private unmount$: Subject<void> = new Subject<void>();
 

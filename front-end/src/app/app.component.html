@@ -24,7 +24,7 @@
 
         <md-menu #menu="mdMenu">
 
-            <button md-menu-item (click)="onEditProfile()">
+            <button *ngIf="authenticationService.isloggedIn()" md-menu-item (click)="onEditProfile()">
                 <md-icon>account_circle</md-icon>
                 <span>Edit Profile</span>
             </button>
