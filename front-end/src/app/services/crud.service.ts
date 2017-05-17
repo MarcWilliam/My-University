@@ -44,5 +44,4 @@ export class CRUDService {
     return this.authHttp.put(`${CONFIG.API_URL}/${this.apiRoute}/`, data)
       .map((response: Response) => response.json());
   }
-
 }
