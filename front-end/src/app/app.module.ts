@@ -26,7 +26,7 @@ import {
   EditSemesterComponent
 } from './components';
 
-import { ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService } from './services';
+import { ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, CourseService } from './services';
 
 import { AuthHttpModule } from './modules';
 import { FormsModule } from '@angular/forms';
@@ -62,7 +62,7 @@ import { AuthenticationGuard } from './guards';
     FormsModule,
     MdDataTableModule
   ],
-  providers: [ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, AuthenticationGuard],
+  providers: [ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, CourseService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
