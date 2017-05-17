@@ -19,11 +19,44 @@
                         </md-grid-tile>
                         <md-grid-tile>
                             <md-input-container color="primary">
+                                <input mdInput type="name" placeholder="Name" name="name" formControlName="name" />
+                                <md-hint *ngIf="signUpForm.controls['name'].hasError('minlength')" align="end" required>
+                                    Enter at least 6 characters
+                                </md-hint>
+                            </md-input-container>
+                        </md-grid-tile>
+
+                        <md-grid-tile>
+                            <md-input-container color="primary">
+                                <input mdInput type="phone" placeholder="phone" name="phone" formControlName="phone" />
+                                <md-hint *ngIf="signUpForm.controls['phone'].hasError('minlength')&&signUpForm.controls['phone'].hasError('pattern')" align="end" required>
+                                    Enter a valid phone number
+                                </md-hint>
+                            </md-input-container>
+                        </md-grid-tile>
+
+                        <md-grid-tile>
+                            <md-input-container color="primary">
+                                <input mdInput type="birthDate" placeholder="birthDate" name="birthDate" formControlName="birthDate" />
+                                <md-hint *ngIf="signUpForm.controls['birthDate'].hasError('pattern')" align="end" required>
+                                    Enter The Date in this form YYYY-MM-DD
+                                </md-hint>
+                            </md-input-container>
+                        </md-grid-tile>
+                        <md-grid-tile>
+                            <md-input-container color="primary">
                                 <input mdInput type="password" placeholder="Password" name="password" formControlName="password" required />
                                 <md-hint *ngIf="signUpForm.controls['password'].hasError('minlength')" align="end">
                                     Enter at least 6 characters
                                 </md-hint>
                             </md-input-container>
+                        </md-grid-tile>
+                        <md-grid-tile>
+                            <md-select placeholder="gender" name="gender" formControlName="gender">
+                                <md-option *ngFor="let gender of genders" [value]="gender.value">
+                                    {{gender.viewValue}}
+                                </md-option>
+                            </md-select>
                         </md-grid-tile>
                         <md-grid-tile>
                             <md-select placeholder="User Role" name="role" formControlName="role">

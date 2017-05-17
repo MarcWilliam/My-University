@@ -21,6 +21,11 @@ export class RegistrationComponent implements OnInit {
     { value: 'professor', viewValue: 'Professor' }
   ];
 
+  public genders = [
+    { value: 'male', viewValue: 'Male' },
+    { value: 'female', viewValue: 'Female' }
+  ];
+
   constructor(private route: ActivatedRoute, private router: Router,
     private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
   }
@@ -33,17 +38,27 @@ export class RegistrationComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', []]
+      role: ['', []],
+	  name: ['', [Validators.required, Validators.minLength(6)]],
+      birthDate: ['', [Validators.required, Validators.pattern(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/)]],
+	  gender: ['', []],
+	  phone: ['', [Validators.required, Validators.minLength(10),Validators.pattern(/^01[0-2][0-9]{8}$/)]]
+
+
+	  
+
+
     })
   }
 
   onSignUpFormSubmit(): void {
     const user = new User();
-    user.name = "Abdelrahman Abdelhamed";
-    user.phone = 1128551888;
+    user.name = this.signUpForm.value.name;
+    user.phone = this.signUpForm.value.phone;
     user.email = this.signUpForm.value.email;
     user.password = this.signUpForm.value.password;
     user.role = this.signUpForm.value.role;
+	user.gender = this.signUpForm.value.gender;
     this.authenticationService.signUp(user);
   }
 
