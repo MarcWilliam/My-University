@@ -4,10 +4,12 @@ import { AuthHttp } from 'angular2-jwt';
 
 import { Observable } from 'rxjs/Observable';
 
+import { Service } from '../services';
+
 import CONFIG from '../../app.config';
 
 @Injectable()
-export class CRUDService {
+export class CRUDService implements Service {
 
   public static SubServices = [];
 
@@ -47,13 +49,16 @@ export class CRUDService {
 
   public parseData(data: any[]) {
     for (const field of Object.keys(data)) {
-      data[field] = this._parseEntry(data[field]);
+      data[field] = this.parseEntry(data[field]);
     }
     return data;
   }
 
-  protected _parseEntry(entry: any) {
+  public viewDetailsPage(id: string) {
+  }
+
+  public parseEntry(entry: any) {
     return entry;
   }
-  
+
 }

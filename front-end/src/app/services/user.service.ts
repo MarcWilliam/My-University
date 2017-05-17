@@ -7,14 +7,14 @@ import { AuthHttp } from 'angular2-jwt';
 
 import { Observable } from 'rxjs/Observable';
 
-import { CRUDService, AuthenticationService } from '../services';
+import {Service, CRUDService, AuthenticationService } from '../services';
 
 import { User } from '../models';
 
 import CONFIG from '../../app.config';
 
 @Injectable()
-export class UserService extends CRUDService {
+export class UserService extends CRUDService implements Service {
 
     private datePipe = new DatePipe('en-US');
 

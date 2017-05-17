@@ -1,4 +1,5 @@
-﻿export * from './crud.service';
+﻿export * from './service.interface';
+export * from './crud.service';
 export * from './user.service';
 export * from './authentication.service';
 export * from './user-role.service';
