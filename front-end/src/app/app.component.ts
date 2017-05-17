@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  onEditProfile() {
+    this.router.navigate(['/edit-profile']);
+  }
+
   onLogout() {
     this.authenticationService.signOut();
     this.router.navigate(['/login']);

@@ -35,7 +35,7 @@ export class UserService extends CRUDService implements Service {
         this.router.navigate(['/edit-profile'], {skipLocationChange: true, queryParams: { otherUserId: id } });
     }
 
-    protected _parseEntry(entry: any) {
+    public parseEntry(entry: any) {
         delete entry.hashedPassword;
         delete entry.isEmailValid;
         delete entry.isPhoneValid;

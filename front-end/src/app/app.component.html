@@ -4,7 +4,6 @@
         <md-nav-list>
             <a md-list-item routerLink="/dashboard">Dashboard</a>
             <a md-list-item routerLink="/home">Home</a>
-            <a md-list-item routerLink="/edit-profile">Edit Profile</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }" skipLocationChange>Users</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: UserRoleService.apiRoute }" skipLocationChange>User Roles</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: courseService.apiRoute }" skipLocationChange>Courses</a>
@@ -24,6 +23,11 @@
         </button>
 
         <md-menu #menu="mdMenu">
+
+            <button md-menu-item (click)="onEditProfile()">
+                <md-icon>account_circle</md-icon>
+                <span>Edit Profile</span>
+            </button>
 
             <button *ngIf="authenticationService.isloggedIn(); else login" md-menu-item (click)="onLogout()">
                 <md-icon>lock</md-icon>
