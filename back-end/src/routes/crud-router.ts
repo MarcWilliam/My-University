@@ -25,7 +25,7 @@ export class CRUDRouter {
 			PassportAuth.AuthenticateJWT, ExpressMiddleware.UserRole,
 			this.CONTROLLER.Read.bind(this.CONTROLLER)
 		);
-		router.get('/search/:keys=:value(/.:type)?',
+		router.get('/search/(:keys=:value)(/.:type)?',
 			PassportAuth.AuthenticateJWT, ExpressMiddleware.UserRole,
 			this.CONTROLLER.Search.bind(this.CONTROLLER)
 		);

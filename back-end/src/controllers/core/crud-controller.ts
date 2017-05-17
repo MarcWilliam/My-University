@@ -88,7 +88,7 @@ export class CRUDController {
 			offset = req.query.offset == null ? null : parseInt(req.query.offset),
 			keys = req.params.keys.split(",");
 
-		var accepted = [], rejected = [], data = (await this.MODEL.Read(keys, req.params.value, limit, offset));
+		var accepted = [], rejected = [], data = (await this.MODEL.Search(keys, req.params.value, limit, offset));
 
 		for (var i in data) {
 			data[i].hasPermission(req.user, req.userRole).read ? accepted.push(data[i]) : rejected.push(data[i].id);
