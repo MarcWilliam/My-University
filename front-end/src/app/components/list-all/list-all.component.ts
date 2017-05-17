@@ -18,6 +18,7 @@ import {
 } from 'ng2-md-datatable';
 
 import { CRUDService, ServiceFactory } from '../../services';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-list-all',
@@ -37,7 +38,25 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private route: ActivatedRoute, private serviceFactory: ServiceFactory) { }
 
   onViewDetails(id: string) {
-     this.crudService.viewDetailsPage(id);
+    this.crudService.viewDetailsPage(id);
+  }
+
+  onAddNew() {
+    this.crudService.viewDetailsPage('0');
+  }
+
+  onDelete(arrayIndex: any) {
+    this.currentSelection$.first().subscribe(selectedData => {
+
+      for (const id of selectedData) {
+        this.data = this.data.filter(selectedData => selectedData.id !== id);
+      }
+
+      this.crudService.delete(selectedData).subscribe(response => {
+
+      });
+
+    });
   }
 
   ngOnInit() {
@@ -62,6 +81,5 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
     this.unmount$.next();
     this.unmount$.complete();
   }
-
 
 }

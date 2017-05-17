@@ -1,3 +1,16 @@
+<md-card>
+
+<md-card-title>
+  <button md-raised-button color="warn" (click)="onDelete()">
+        <span>Delete Selected</span>
+        <md-icon>delete_forever</md-icon>
+  </button>
+  <button md-raised-button color="accent" (click)="onAddNew()">
+        <span>Add new</span>
+        <md-icon>add_box</md-icon>
+  </button>
+  </md-card-title>
+
 <ng2-md-datatable selectable>
   <ng2-md-datatable-header>
     <ng2-md-datatable-column *ngFor="let header of headers">{{header}}</ng2-md-datatable-column>
@@ -6,10 +19,11 @@
     <ng2-md-datatable-row *ngFor="let entry of data" [selectableValue]="entry.id">
       <td *ngFor="let header of headers">{{ entry[header] }}</td>
       <td>
-        <button md-icon-button #viewDetails (click)="onViewDetails(entry.id)">
+        <button md-icon-button (click)="onViewDetails(entry.id)">
             <md-icon>visibility</md-icon>
         </button>
       </td>
     </ng2-md-datatable-row>
   </tbody>
 </ng2-md-datatable>
+</md-card>
