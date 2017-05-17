@@ -22,7 +22,7 @@ export class CRUDController {
 					code: HTTPstat.ClientErr.Forbidden,
 					message: "don't have enough permissions"
 				},
-				notValid: notValid
+				rejected: rejected
 			});
 		} else if (notValid.length != 0) {
 			res.json({
@@ -30,7 +30,7 @@ export class CRUDController {
 					code: HTTPstat.ClientErr.UnprocessableEntity,
 					message: "didn't pass the validation"
 				},
-				rejected: rejected
+				notValid: notValid
 			});
 		} else {
 
