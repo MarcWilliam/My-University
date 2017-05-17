@@ -27,8 +27,8 @@ export class EditProfileComponent implements OnInit {
       const otherUserId = params['otherUserId'] || '0';
 
       if (otherUserId !== '0') {
-        this.userService.read(otherUserId).subscribe(otherUser => {
-          this.user = <User>otherUser['data'][0];
+        this.userService.read('id', [otherUserId]).subscribe(response => {
+          this.user = <User>response['data'][0];
         });
       } else {
         this.user = <User>this.authenticationService.getCurrentUser();
