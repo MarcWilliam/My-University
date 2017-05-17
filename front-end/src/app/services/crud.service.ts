@@ -33,12 +33,9 @@ export class CRUDService implements Service {
       .map((response: Response) => response.json());
   }
 
-  public delete(ids: Array<string>): Observable<Response> {
-    let apiRequest = ids[0];
-    for (let i = 1; i < ids.length; i++) {
-      apiRequest = apiRequest + ',' + ids[i];
-    }
-    return this.authHttp.delete(`${CONFIG.API_URL}/${this.apiRoute}/${apiRequest}`)
+  public delete(ids: string[]): Observable<Response> {
+    const data = ids.join()
+    return this.authHttp.delete(`${CONFIG.API_URL}/${this.apiRoute}/${data}`)
       .map((response: Response) => response.json());
   }
 

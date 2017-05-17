@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     private UserRoleService: UserRoleService, private courseService: CourseService, private router: Router, private departmentService : DepartmentService , private semesterService : SemesterService) {
 
     this.title = 'My University';
+
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.setCurrentUser();

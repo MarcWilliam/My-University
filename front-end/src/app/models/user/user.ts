@@ -8,21 +8,21 @@ import { Permission, hasPermission } from './permission';
  */
 export class User extends SEntity implements hasPermission {
 
-	name: string;
-	email: string;
-	birthDate: Date;
+	name: string = '';
+	email: string = '';
+	birthDate: Date = new Date();
 
-	phone: number;
-	password: string;
-	hashedPassword: string;
-	gender: number;
+	phone: number = 0;
+	password: string = '';
+	hashedPassword: string = '';
+	gender: number = 0;
 
-	departmentID: number;
-	userRoleID: number;
+	departmentID: number = 1;
+	userRoleID: number = 1;
 
 	isEmailValid: boolean = false;
 	isPhoneValid: boolean = false;
 
-	role: string; // To be removed
+	role: string = ''; // To be removed
 
 }
