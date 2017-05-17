@@ -1,8 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
+import { Router } from '@angular/router';
+
+import { Service, CRUDService } from '../services';
 
 @Injectable()
-export class CourseService {
+export class CourseService extends CRUDService implements Service {
 
-  constructor() { }
+  constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
+    super(http, authHttp);
+    this.apiRoute = 'cources';
+  }
+
+  // If you need to edit the data before sending it to the view. (Optional you might even remove it from here)
+  protected _parseEntry(entry: any) {
+    return entry;
+  }
 
 }
