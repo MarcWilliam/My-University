@@ -28,7 +28,7 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
   public data: any;
   public headers: any;
 
-  private crudService: CRUDService;
+  private crudService;
   private currentSelection$: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private unmount$: Subject<void> = new Subject<void>();
 
@@ -42,6 +42,7 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      console.log(params['apiRoute']);
       this.crudService = this.serviceFactory.getService(params['apiRoute']);
       this.crudService.read().subscribe(response => {
         this.data = this.crudService.parseData(response['data']);
