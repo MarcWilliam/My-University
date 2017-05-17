@@ -18,9 +18,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSave() {
-    /*this.userService.update(this.user).subscribe(result => {
-      console.log(result);
-    });*/
+    this.userService.update([this.user]).subscribe(result => {
+    });
   }
 
   ngOnInit() {

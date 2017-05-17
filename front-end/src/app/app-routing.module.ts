@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthenticationGuard, AdminGuard, ProfessorGuard, StudentGuard } from './authentication.guard';
+import { AuthenticationGuard } from './authentication.guard';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -11,7 +11,7 @@ import { GroupComponent } from './group/group.component';
 import { UserRoleViewComponent } from './user-role-view/user-role-view.component';
 import { UserRoleEditComponent } from './user-role-edit/user-role-edit.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-
+import { ListAllComponent } from './list-all/list-all.component';
 
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
@@ -21,7 +21,8 @@ const appRoutes: Routes = [
   { path: 'group', component: GroupComponent },
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'list-all', component: ListAllComponent },
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthenticationGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];

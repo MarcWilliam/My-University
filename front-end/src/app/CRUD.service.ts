@@ -9,24 +9,25 @@ import CONFIG from '../app.config';
 @Injectable()
 export class CRUDService {
 
-  protected apiRoute = '';
+  public static SubServices = [];
+
+  public apiRoute = '';
 
   constructor(protected http: Http, protected authHttp: AuthHttp) { }
 
-  public read(Id: string): Observable<Response> {
-    return this.authHttp.get(`${CONFIG.API_URL}/${this.apiRoute}/id=${Id}`)
+  public read(key?: string, values?: any[], limit?: any, offset?: any, type?: string): Observable<any> {
+    key = key ? key : '';
+    limit = limit ? +limit : '';
+    offset = offset ? +offset : '';
+    type = type ? '.' + type : '';
+    const stringValues = values ? '=' + values.join() : '';
+    
+    return this.authHttp.get(`${CONFIG.API_URL}/${this.apiRoute}/${key}${stringValues}/${type}?limit=${limit}&offest=${offset}`)
       .map((response: Response) => response.json());
   }
 
-  public readGroup(from: string, Offset: string): Observable<Response> {
-    const apiRequest = 'limit=' + from + '&offset=' + Offset;
-    return this.authHttp.get(`${CONFIG.API_URL}/${this.apiRoute}/?${apiRequest}`)
-      .map((response: Response) => response.json());
-  }
-
-  public create(permission: Permission, data: any): Observable<Response> {
-
-    return this.authHttp.post(`${CONFIG.API_URL}/${this.apiRoute}/permission`, data)
+  public create(data: any): Observable<Response> {
+    return this.authHttp.post(`${CONFIG.API_URL}/${this.apiRoute}/`, data)
       .map((response: Response) => response.json());
   }
 
@@ -39,26 +40,9 @@ export class CRUDService {
       .map((response: Response) => response.json());
   }
 
-  public update(permission: Permission, data: any): Observable<Response> {
-    return this.authHttp.put(`${CONFIG.API_URL}/${this.apiRoute}/permission`, data)
+  public update(data: any[]): Observable<Response> {
+    return this.authHttp.put(`${CONFIG.API_URL}/${this.apiRoute}/`, data)
       .map((response: Response) => response.json());
   }
-
-}
-export class Permission {
-
-  id: number = 0;
-  createdAt: Date = null;
-  updatedAt: Date = null;
-
-  createSelf: boolean = false;
-  deleteSelf: boolean = false;
-  readSelf: boolean = false;
-  updateSelf: boolean = false;
-
-  createOther: boolean = false;
-  deleteOther: boolean = false;
-  readOther: boolean = false;
-  updateOther: boolean = false;
 
 }

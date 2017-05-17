@@ -12,11 +12,12 @@ export class AppComponent implements OnInit {
   private title;
   private user;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, public userService: UserService) {
     this.title = 'My University';
   }
 
   ngOnInit() {
     this.user = this.authenticationService.getCurrentUser();
   }
+  
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../authentication.service';
 import { UserService } from '../user.service';
+import { ServiceFactory } from '../service-factory';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { UserService } from '../user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private userService: UserService) { }
+  constructor(private serviceFactory: ServiceFactory, private authenticationService: AuthenticationService, private userService: UserService) { }
 
   ngOnInit() {
   }

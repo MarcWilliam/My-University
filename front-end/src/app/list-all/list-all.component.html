@@ -1,0 +1,10 @@
+<ng2-md-datatable selectable>
+  <ng2-md-datatable-header>
+    <ng2-md-datatable-column *ngFor="let header of headers" sortableValue="{{header}}" numeric>{{header}}</ng2-md-datatable-column>
+  </ng2-md-datatable-header>
+  <tbody>
+    <ng2-md-datatable-row *ngFor="let entry of data" [selectableValue]="entry.id">
+      <td *ngFor="let header of headers">{{ entry[header] }}</td>
+    </ng2-md-datatable-row>
+  </tbody>
+</ng2-md-datatable>
