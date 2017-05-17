@@ -29,6 +29,7 @@ import { AuthHttpModule } from './auth-http.module';
 import { FormsModule } from '@angular/forms';
 import { MdDataTableModule } from 'ng2-md-datatable';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditDepartementComponent } from './edit-departement/edit-departement.component';
 import { EditSemesterComponent } from './edit-semester/edit-semester.component';
 

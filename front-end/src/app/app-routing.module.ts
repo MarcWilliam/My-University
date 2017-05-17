@@ -16,7 +16,6 @@ import { ListAllComponent } from './list-all/list-all.component';
 import { EditDepartementComponent } from './edit-departement/edit-departement.component';
 import { EditSemesterComponent } from './edit-semester/edit-semester.component';
 
-
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
