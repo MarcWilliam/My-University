@@ -44,4 +44,16 @@ export class CRUDService {
     return this.authHttp.put(`${CONFIG.API_URL}/${this.apiRoute}/`, data)
       .map((response: Response) => response.json());
   }
+
+  public parseData(data: any[]) {
+    for (const field of Object.keys(data)) {
+      data[field] = this._parseEntry(data[field]);
+    }
+    return data;
+  }
+
+  protected _parseEntry(entry: any) {
+    return entry;
+  }
+  
 }

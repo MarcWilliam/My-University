@@ -6,8 +6,8 @@
             <a md-list-item routerLink="/home">Home</a>
             <a md-list-item routerLink="/edit-profile">Edit Profile</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }" skipLocationChange>Users</a>
-            <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }">User Roles</a>
-            <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }">Courses</a>
+            <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: UserRoleService.apiRoute }" skipLocationChange>User Roles</a>
+            <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }" skipLocationChange>Courses</a>
         </md-nav-list>
     </md-sidenav>
 

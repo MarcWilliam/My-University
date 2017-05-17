@@ -1,6 +1,5 @@
 ﻿export * from './crud.service';
 export * from './user.service';
-export * from './service-factory';
 export * from './authentication.service';
 export * from './user-role.service';
 export * from './group.service';
@@ -8,3 +7,4 @@ export * from './course-offering.service';
 export * from './course.service';
 export * from './semester.service';
 export * from './department.service';
+export * from './service-factory';

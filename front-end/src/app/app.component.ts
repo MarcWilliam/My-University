@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService, AuthenticationService } from './services';
+import { UserService, AuthenticationService, UserRoleService } from './services';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -12,7 +12,9 @@ export class AppComponent implements OnInit {
   private title;
   private user;
 
-  constructor(private authenticationService: AuthenticationService, public userService: UserService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, public userService: UserService,
+    private UserRoleService: UserRoleService, private router: Router) {
+
     this.title = 'My University';
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
