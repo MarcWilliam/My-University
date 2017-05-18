@@ -16,7 +16,8 @@ import {
   EditCourseComponent,
   ListAllComponent,
   EditDepartementComponent,
-  EditSemesterComponent
+  EditSemesterComponent,
+  EnrollmentComponent
 } from './components';
 
 
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
   { path: 'list-all', component: ListAllComponent, canActivate: [AuthenticationGuard] },
+  { path: 'enrollment', component: EnrollmentComponent },
   { path: 'edit-course', component: EditCourseComponent },
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthenticationGuard] },
   { path: 'edit-departement', component: EditDepartementComponent },

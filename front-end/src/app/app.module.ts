@@ -23,7 +23,8 @@ import {
   EditProfileComponent,
   EditCourseComponent,
   EditDepartementComponent,
-  EditSemesterComponent
+  EditSemesterComponent,
+  EnrollmentComponent
 } from './components';
 
 import { ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, CourseService , DepartmentService ,SemesterService } from './services';
@@ -48,7 +49,8 @@ import { AuthenticationGuard } from './guards';
     EditProfileComponent,
     EditCourseComponent,
     EditDepartementComponent,
-    EditSemesterComponent
+    EditSemesterComponent,
+    EnrollmentComponent
 
   ],
   imports: [

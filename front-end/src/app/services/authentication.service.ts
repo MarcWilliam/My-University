@@ -5,10 +5,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 
+import { User } from '../models';
+
 import { UserService } from '../services';
 
 import CONFIG from '../../app.config';
-
 
 @Injectable()
 export class AuthenticationService {
@@ -39,11 +40,15 @@ export class AuthenticationService {
         return tokenNotExpired();
     }
 
-    getCurrentUser() {
-            let user = localStorage.getItem('user');
-            if (user) {
-                return JSON.parse(user);
-            }
+    public static GetCurrentUser(): User {
+        let user = localStorage.getItem('user');
+        if (user) {
+            return JSON.parse(user);
+        }
+    }
+
+    public getCurrentUser(): User {
+        return AuthenticationService.GetCurrentUser();
     }
 
     setCurrentUser(data) {

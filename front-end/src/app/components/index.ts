@@ -10,3 +10,4 @@ export * from './login/login.component';
 export * from './registration/registration.component';
 export * from './user-role-edit/user-role-edit.component';
 export * from './user-role-view/user-role-view.component';
+export * from './enrollment/enrollment.component';
