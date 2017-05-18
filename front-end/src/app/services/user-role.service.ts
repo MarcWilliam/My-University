@@ -16,8 +16,12 @@ export class UserRoleService extends CRUDService implements Service {
     super(http, authHttp);
     this.apiRoute = 'user_roles';
   }
+   public viewDetailsPage(id: string) {
+        this.router.navigate(['/edit-permissions'], {skipLocationChange: true, queryParams: { userRoleId: id } });
+    }
 
-  protected _parseEntry(entry: any) {
+  public parseEntry(entry: any) {
+    //console.log(entry.permissions);
     delete entry.permissions;
     entry.createdAt = this.datePipe.transform(entry.createdAt, 'medium');
     entry.updatedAt = this.datePipe.transform(entry.updatedAt, 'medium');

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CRUDService, UserService, UserRoleService, CourseService , DepartmentService ,SemesterService } from '../services';
+import { CRUDService, UserService, UserRoleService, CourseService , DepartmentService ,SemesterService , } from '../services';
 
 @Injectable()
 export class ServiceFactory {
