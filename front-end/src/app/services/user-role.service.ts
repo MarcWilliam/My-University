@@ -17,7 +17,7 @@ export class UserRoleService extends CRUDService implements Service {
     this.apiRoute = 'user_roles';
   }
 
-  protected _parseEntry(entry: any) {
+  public parseEntry(entry: any) {
     delete entry.permissions;
     entry.createdAt = this.datePipe.transform(entry.createdAt, 'medium');
     entry.updatedAt = this.datePipe.transform(entry.updatedAt, 'medium');
