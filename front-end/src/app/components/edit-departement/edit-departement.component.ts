@@ -24,8 +24,7 @@ export class EditDepartementComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const departmentId = params['departmentId'];
       this.isNew = departmentId == '0';
-      const isOther: boolean = departmentId != null && departmentId != '0';
-      if (isOther) {
+      if (!this.isNew) {
         this.departmentService.read('id', [departmentId]).subscribe(response => {
           this.department = <Department>response['data'][0];
         });
