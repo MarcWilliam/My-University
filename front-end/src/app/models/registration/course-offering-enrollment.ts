@@ -14,5 +14,15 @@ export class CourseOfferingEnrollment extends SEntity implements hasPermission {
 	letterGrade;
 	userID;
 	semesterID;
+	constructor(){
+		super();
+		this.courseOfferingID=0;
+		this.groupID=0;
+		this.sectionID=0;
+		this.totalGrade=0;
+		this.letterGrade='NA';
+		this.userID=0;
+		this.semesterID=0;
+	}
 
 }

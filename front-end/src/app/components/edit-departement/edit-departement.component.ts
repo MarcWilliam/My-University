@@ -11,6 +11,7 @@ import { DepartmentService } from '../../services';
 export class EditDepartementComponent implements OnInit {
 
   private department : Department;
+  private isNew: boolean;
 
 
   constructor(private route: ActivatedRoute, private departmentService: DepartmentService) {
@@ -22,16 +23,23 @@ export class EditDepartementComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       const departmentId = params['departmentId'];
+      this.isNew = departmentId == '0';
+      const isOther: boolean = departmentId != null && departmentId != '0';
+      if (isOther) {
         this.departmentService.read('id', [departmentId]).subscribe(response => {
           this.department = <Department>response['data'][0];
-          console.log(this.department);
         });
+      }
     });
-    
   }
-  onSave() {
+  onSave(){
+    if(this.isNew){
+    this.departmentService.create([this.department]).subscribe(result => {
+    });
+  }else{
     this.departmentService.update([this.department]).subscribe(result => {
     });
+  }
   }
 }
  
