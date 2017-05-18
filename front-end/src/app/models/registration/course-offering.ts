@@ -5,8 +5,8 @@ import { SEntity } from '../core/s-entity';
  * @author Marc Wafik
  */
 export class CourseOffering extends SEntity {
-	courseID: number;
-	semesterID: number;
+	courseID: number = 0;
+	semesterID: number = 0;
 	staffIDs: number[];
 	constructor(){
 		super();
