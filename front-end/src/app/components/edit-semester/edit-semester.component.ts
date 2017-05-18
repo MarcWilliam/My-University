@@ -10,23 +10,32 @@ import { SemesterService } from '../../services';
 export class EditSemesterComponent implements OnInit {
 
  	private semester : Semester;
-
+  private isNew: boolean;
 
   constructor(private route: ActivatedRoute, private semesterService: SemesterService) { 
   	this.semester = new Semester();
   }
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
       const semesterId = params['semesterId'];
+      this.isNew = semesterId == '0';
+      if(!this.isNew){
         this.semesterService.read('id', [semesterId]).subscribe(response => {
           this.semester = <Semester>response['data'][0];
         });
+      }
     });
   }
   onSave() {
-    this.semesterService.update([this.semester]).subscribe(result => {
+    if (this.isNew) {
+    this.semesterService.create([this.semester]).subscribe(result => {
     });
+  }else {
+      this.semesterService.update([this.semester]).subscribe(result => {
+      });
+    }
   }
 }
  

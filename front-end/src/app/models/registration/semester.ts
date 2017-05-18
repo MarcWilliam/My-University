@@ -16,5 +16,16 @@ export class Semester extends SEntity implements hasPermission {
 	registrationStartDate: Date;
 	registrationEndDate: Date;
 	departmentID: number;
+	constructor(){
+		super();
+		this.year=0;
+		this.name='';
+		this.maxCreditHour=0;
+		this.endDate=new Date();
+		this.registrationEndDate=new Date();
+		this.startDate=new Date();
+		this.registrationStartDate=new Date();
+		this.departmentID=0;
+	}
 
 }

@@ -13,5 +13,15 @@ export class Course extends SEntity {
 	level: number;
 	departmentID: number;
 	prerequisitesIDs: number[];
+	constructor(){
+		super();
+		this.name='';
+		this.code='';
+		this.description='';
+		this.creditHours=0;
+		this.level=0;
+		this.departmentID=0;
+		this.prerequisitesIDs=[0];
+	}
 
 }
