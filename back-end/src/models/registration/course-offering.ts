@@ -22,15 +22,15 @@ export class CourseOffering extends SEntity {
 	public parseRow(row) {
 		super.parseRow(row);
 
-		row.course_id = this.courseID;
-		row.semester_id = this.semesterID;
+		this.courseID = row.course_id;
+		this.semesterID = row.semester_id;
 	}
 
 	public toRow() {
 		var row = super.toRow();
 
-		row.Course_id = this.courseID;
-		row.Semester_id = this.semesterID;
+		row.course_id = this.courseID;
+		row.semester_id = this.semesterID;
 
 		return row;
 	}
@@ -42,7 +42,7 @@ export class CourseOffering extends SEntity {
 		for (var i in data) {
 			for (var j in data[i].staffIDs) {
 				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]));
+					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[j] }]));
 			}
 		}
 
@@ -70,7 +70,7 @@ export class CourseOffering extends SEntity {
 
 			for (var j in data[i].staffIDs) {
 				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[i] }]));
+					[this.DB_TABLE.REL.STAFF, { 'course_offering_id': data[i].id, 'user_id': data[i].staffIDs[j] }]));
 			}
 		}
 

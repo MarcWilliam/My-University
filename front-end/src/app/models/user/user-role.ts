@@ -21,7 +21,7 @@ export class UserRole extends SEntity {
 		CourseOffering: Permission,
 		Group: Permission,
 		SemesterEnrollment: Permission,
-		CourceOfferingEnrollment: Permission
+		CourseOfferingEnrollment: Permission
 	};
 
 	constructor() {
@@ -40,7 +40,7 @@ export class UserRole extends SEntity {
 			CourseOffering: new Permission(),
 			Group: new Permission(),
 			SemesterEnrollment: new Permission(),
-			CourceOfferingEnrollment: new Permission()
+			CourseOfferingEnrollment: new Permission()
 		};
 	}
 

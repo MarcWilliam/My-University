@@ -45,7 +45,8 @@ import {
   DepartmentService,
   SemesterService,
   GroupService,
-  CourseOfferingService
+  CourseOfferingService,
+  CourseOfferingEnrollmentService,
 } from './services';
 
 
@@ -90,7 +91,8 @@ import {
     DepartmentService,
     SemesterService,
     GroupService,
-    CourseOfferingService
+    CourseOfferingService,
+    CourseOfferingEnrollmentService
   ],
   bootstrap: [AppComponent]
 })

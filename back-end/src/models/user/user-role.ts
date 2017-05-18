@@ -29,7 +29,7 @@ export class UserRole extends SEntity {
 		CourseOffering: Permission,
 		Group: Permission,
 		SemesterEnrollment: Permission,
-		CourceOfferingEnrollment: Permission
+		CourseOfferingEnrollment: Permission
 	};
 
 	constructor() {
@@ -48,7 +48,7 @@ export class UserRole extends SEntity {
 			CourseOffering: new Permission(),
 			Group: new Permission(),
 			SemesterEnrollment: new Permission(),
-			CourceOfferingEnrollment: new Permission()
+			CourseOfferingEnrollment: new Permission()
 		};
 	}
 
@@ -67,7 +67,7 @@ export class UserRole extends SEntity {
 		this.permissions.CourseOffering.id = row.course_offering;
 		this.permissions.Group.id = row.group;
 		this.permissions.SemesterEnrollment.id = row.semester_enrollment;
-		this.permissions.CourceOfferingEnrollment.id = row.cource_offering_enrollment;
+		this.permissions.CourseOfferingEnrollment.id = row.cource_offering_enrollment;
 	}
 
 	public toRow() {
@@ -86,7 +86,7 @@ export class UserRole extends SEntity {
 		row.course_offering = this.permissions.CourseOffering.id;
 		row.group = this.permissions.Group.id;
 		row.semester_enrollment = this.permissions.SemesterEnrollment.id;
-		row.cource_offering_enrollment = this.permissions.CourceOfferingEnrollment.id;
+		row.cource_offering_enrollment = this.permissions.CourseOfferingEnrollment.id;
 
 		return row;
 	}
