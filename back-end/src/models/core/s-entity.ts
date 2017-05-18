@@ -32,14 +32,29 @@ export /*abstract*/ class SEntity implements hasPermission {
 		return row;
 	}
 
+	/**
+	 * check if the user has permission to update that object
+	 * @param user used to check if the user own the object ( not implemented on all ... only on case by case basis )
+	 * @param role 
+	 */
 	public hasPermission(user: User, role: UserRole): CRUDpermission {
 		return role.permissions[this.constructor.name].others;
 	}
 
+	/**
+	 * 
+	 * @param action
+	 * @return an array of errors if any errors found else return an empty array
+	 */
 	public async getErrors(action: DBcrud): Promise<CError[]> {
 		return [];
 	}
 
+	/**
+	 * 
+	 * @param data an array of data to be parsed to this class
+	 * @return an array of that objects from this class
+	 */
 	public static async ParceData(data: any[]): Promise<SEntity[]> {
 		var ret = [];
 		for (let i in data) {
@@ -89,6 +104,7 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 * this.id must 0
 	 * this.id will be updated to the new id
 	 * 
+	 * @param data an array of objects from this class to be created
 	 * @return True if everything pass else false
 	 */
 	public static async Create(data): Promise<boolean> {
@@ -128,6 +144,14 @@ export /*abstract*/ class SEntity implements hasPermission {
 	 */
 	public async delete(): Promise<boolean> { return (<any>this.constructor).Delete([this]); }
 
+	/**
+	 * parse the db read query
+	 * @param feilds key value pair of  key in ( array of value )
+	 * @param opp the operation to be don ebettern the feilds ( AND , OR )
+	 * @param limit max row lenth default 1000
+	 * @param offset the start indedx default 0
+	 * @return the query and it's data bindings
+	 */
 	private static _PaseReadQuery(feilds: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number): { query: string, data: [any] } {
 		let query = `SELECT * FROM ?? `;
 		let data: [any] = [this.DB_TABLE.PRIM];
@@ -153,6 +177,11 @@ export /*abstract*/ class SEntity implements hasPermission {
 		return { query: query, data: data };
 	}
 
+	/**
+	 * run a select query then parse the result to an array can be used for search or read
+	 * @param query the db query ex: ( SELECT * from ?? )
+	 * @param data the data to be bound to the query
+	 */
 	public static async SelectQuery(query: string, data: [any]) {
 		let conn = (await DBconn.getConnection());
 
@@ -168,21 +197,37 @@ export /*abstract*/ class SEntity implements hasPermission {
 	}
 
 	/**
-	 * select the object data from the DB
-	 * set this object data to the current
 	 * 
-	 * @return True if everything pass else false
+	 * @param feilds key value pair of  key in ( array of value )
+	 * @param opp the operation to be don ebettern the feilds ( AND , OR )
+	 * @param limit max row lenth default 1000
+	 * @param offset the start indedx default 0
+	 * @return and array of objects from this class
 	 */
 	public static async Read(feilds?: {}, opp: DBopp = DBopp.AND, limit?: number, offset?: number) {
 		let parsed = this._PaseReadQuery(feilds, opp, limit, offset);
 		return this.SelectQuery(parsed.query, parsed.data);
 	}
 
+	/**
+	 * 
+	 * @param feilds an array of keys
+	 * @param search the value   %  will be added to the start and end
+	 * @param limit max row lenth default 1000
+	 * @param offset the start indedx default 0
+	 * @return and array of objects from this class
+	 */
 	public static Search(feilds: any[], search: string, limit?: number, offset?: number) {
 		return this.SelectQuery(`SELECT * FROM ?? WHERE CONCAT_WS('', ??) LIKE ? LIMIT ? OFFSET ?`,
 			[this.DB_TABLE.PRIM, feilds, `%${search}%`, limit ? limit : 1000, offset ? offset : 0]);
 	}
 
+	/**
+	 * check if the key / value exists in db
+	 * @param colum 
+	 * @param data 
+	 * @return they id of the row if found or null if not found
+	 */
 	public static async CheckUnique(colum: string, data: any) {
 		let conn = (await DBconn.getConnection());
 
@@ -190,6 +235,10 @@ export /*abstract*/ class SEntity implements hasPermission {
 		return rows[0] ? rows[0] : null;
 	}
 
+	/**
+	 * parse errors from unique key already exists
+	 * @param uniquenessID 
+	 */
 	public parseUniquenessErrors(uniquenessID: {}) {
 		var errs: CError[] = [];
 		for (var key in uniquenessID) {

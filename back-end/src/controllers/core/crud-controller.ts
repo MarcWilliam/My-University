@@ -9,10 +9,21 @@ import { hasPermission } from '../../models/user/permission';
 import { HTTPstat } from './http-stats';
 import { DBcrud } from '../../models/core/db';
 
-export class CRUDController {
+export abstract class CRUDController {
 
+	/**
+	 * behavior pattern hold the behavior to be overiten upon inheritence
+	 */
 	static MODEL = SEntity;
 
+	/**
+	 * 
+	 * @param res the express responce
+	 * @param accepted the accepted data
+	 * @param rejected the rejected data ids' ( didn't have permission)
+	 * @param notValid the not valid data erros ( and array of errors for each object )
+	 * @param type the type of responce default JSON but can also be xls
+	 */
 	private static CRUDrespon(res, accepted = [], rejected = [], notValid = [], type?) {
 		type = type ? type : 'json';
 
@@ -48,6 +59,11 @@ export class CRUDController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param req an array of data of be created
+	 * @param res the data after creation
+	 */
 	public static async Create(req: Request, res: Response, next: NextFunction) {
 		var accepted = [], rejected = [], notValid = [], data = (await this.MODEL.ParceData(req.body));
 
@@ -68,6 +84,11 @@ export class CRUDController {
 		return next();
 	}
 
+	/**
+	 * 
+	 * @param req limit and offset , then key / values + responce type ( json , xls)
+	 * @param res an array of data
+	 */
 	public static async Read(req: Request, res: Response, next: NextFunction) {
 		let limit = req.query.limit == null ? null : parseInt(req.query.limit),
 			offset = req.query.offset == null ? null : parseInt(req.query.offset),
@@ -83,6 +104,11 @@ export class CRUDController {
 		return next();
 	}
 
+	/**
+	 * 
+	 * @param req limit and offset , then keys / value to serach for + responce type ( json , xls)
+	 * @param res an array of data
+	 */
 	public static async Search(req: Request, res: Response, next: NextFunction) {
 		let limit = req.query.limit == null ? null : parseInt(req.query.limit),
 			offset = req.query.offset == null ? null : parseInt(req.query.offset),
@@ -98,6 +124,11 @@ export class CRUDController {
 		return next();
 	}
 
+	/**
+	 * 
+	 * @param req an array of data of be updated
+	 * @param res the data after update
+	 */
 	public static async Update(req: Request, res: Response, next: NextFunction) {
 		var accepted = [], rejected = [], notValid = [], data = (await this.MODEL.ParceData(req.body));
 
@@ -118,6 +149,11 @@ export class CRUDController {
 		return next();
 	}
 
+	/**
+	 * 
+	 * @param req takes an array of ids to be deleted (12,32,59)
+	 * @param res an array of deleted itmes
+	 */
 	public static async Delete(req: Request, res: Response, next: NextFunction) {
 		var accepted = [], rejected = [], data = (await this.MODEL.Read({ id: req.params.ids.split(",") }));
 

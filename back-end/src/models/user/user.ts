@@ -88,9 +88,9 @@ export class User extends SEntity implements hasPermission {
 
 	/**
 	 * check user email and password
-	 * if correct start a new session and set this object data to the users
+	 * if correct return the user data
 	 * 
-	 * @param unique user email
+	 * @param email user email
 	 * @param password user password
 	 * @return true if login success else false
 	 */
@@ -110,7 +110,11 @@ export class User extends SEntity implements hasPermission {
 		return false;
 	}
 
-	private async hashPassword() {
+	/**
+	 * hash the user pw to this.hashedPassword then delete this.password
+	 * @return 
+	 */
+	private async hashPassword(): Promise<string> {
 		if (this.password) {
 			this.hashedPassword = (await BCrypt.hash(this.password, CONFIG.HASH.SALT_ROUNDS));
 			delete this.password;
@@ -118,6 +122,11 @@ export class User extends SEntity implements hasPermission {
 		return this.hashedPassword;
 	}
 
+	/**
+	 * 
+	 * @param passwordAttempt the password to be compared with this.hashedpassword
+	 * @return true if same password else false
+	 */
 	public async comparePassword(passwordAttempt): Promise<Boolean> {
 		return (await BCrypt.compare(passwordAttempt, this.hashedPassword));
 	}

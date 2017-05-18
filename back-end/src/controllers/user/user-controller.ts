@@ -21,6 +21,12 @@ export class UserController extends CRUDController {
 		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: "7d" });
 	}
 
+	/**
+	 * inserts a new user to db 
+	 * sends email to user
+	 * generate token for user
+	 * @return responce contain user & UserRole & jwt token
+	 */
 	public static async Register(req: Request, res: Response, next: NextFunction) {
 		let user = <User>(await this.MODEL.ParceData([req.body]))[0];
 
@@ -48,6 +54,11 @@ export class UserController extends CRUDController {
 		next();
 	}
 
+	/**
+	 * check if user email / password are valid
+	 * generate token for user
+	 * @return responce contain user & UserRole & jwt token
+	 */
 	public static async Login(req: Request, res: Response, next: NextFunction) {
 		delete req.user.password;
 		req.userRole = <UserRole>(await UserRole.Read({ id: req.user.userRoleID }))[0];

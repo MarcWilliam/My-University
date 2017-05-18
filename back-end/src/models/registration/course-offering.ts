@@ -93,10 +93,4 @@ export class CourseOffering extends SEntity {
 		return data;
 	}
 
-	public static async ReadByUserPrerequisite(userID: number, semesterID: number) {
-		//let conn = (await DBconn.getConnection());
-		//var completedCourseOffEnrol = (await super.Read({}, opp)),
-		//cources = (await Course.Read());
-
-	}
 }

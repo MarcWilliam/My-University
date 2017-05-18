@@ -7,8 +7,11 @@ import { ExpressMiddleware } from '../middleware/express-middleware';
 /**
  * @author Marc Wafik
  */
-export class CRUDRouter {
+export abstract class CRUDRouter {
 
+	/**
+	 * Behavior pattern , holds an instance of crud controller
+	 */
 	static CONTROLLER = CRUDController;
 
 	/**
