@@ -10,11 +10,12 @@ import { UserRoleService, AuthenticationService } from '../../services';
 })
 export class UserRoleEditComponent implements OnInit {
 
-  private userRole: UserRole;
+  private userRole: UserRole = new UserRole();
   private isNew: boolean;
 
   constructor(private route: ActivatedRoute, private authenticationService: AuthenticationService, private userRoleService: UserRoleService) {
     this.userRole = new UserRole();
+	console.log(this.userRole);
   }
 
   ngOnInit() {

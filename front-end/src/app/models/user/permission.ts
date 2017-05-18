@@ -8,8 +8,18 @@ import { User } from './user';
  */
 export class Permission extends SEntity {
 
-	self: CRUDpermission;
-	others: CRUDpermission;
+	self: CRUDpermission = {
+		create: false,
+		read: false,
+		update: false,
+		delete: false,
+	};
+	others: CRUDpermission = {
+		create: false,
+		read: false,
+		update: false,
+		delete: false,
+	};
 
 }
 
