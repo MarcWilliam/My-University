@@ -18,7 +18,7 @@ export class UserController extends CRUDController {
 	static MODEL = User;
 
 	private static _GenerateToken(user): string {
-		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: 10080 });
+		return jwt.sign(user, CONFIG.AUTH.SECRET, { expiresIn: "7d" });
 	}
 
 	public static async Register(req: Request, res: Response, next: NextFunction) {
