@@ -1,31 +1,222 @@
 <md-card>
-<ng2-md-datatable selectable>
-  <ng2-md-datatable-header>
-    <ng2-md-datatable-column sortableValue="article">Article</ng2-md-datatable-column>
-    <ng2-md-datatable-column sortableValue="product">Product</ng2-md-datatable-column>
-    <ng2-md-datatable-column sortableValue="quantity" numeric>Quantity</ng2-md-datatable-column>
-  </ng2-md-datatable-header>
-  <tbody>
-    <ng2-md-datatable-row selectableValue="K003-0350-001">
-      <td>K003-0350-001</td>
-      <td>Yirgacheffe Kaffee, 350g ganze Bohne</td>
-      <td class="numeric">232</td>
-    </ng2-md-datatable-row>
-    <ng2-md-datatable-row selectableValue="K003-0350-002">
-      <td>K003-0350-002</td>
-      <td>Yirgacheffe Kaffee, 350g gemahlen</td>
-      <td class="numeric">124</td>
-    </ng2-md-datatable-row>
-    <ng2-md-datatable-row selectableValue="K003-0350-003">
-      <td>K003-0350-003</td>
-      <td>Yirgacheffe Kaffee, 1kg ganze Bohne</td>
-      <td class="numeric">464</td>
-    </ng2-md-datatable-row>
-    <ng2-md-datatable-row selectableValue="K003-0350-004">
-      <td>K003-0350-003</td>
-      <td>Yirgacheffe Kaffee, 1kg gemahlen</td>
-      <td class="numeric">243</td>
-    </ng2-md-datatable-row>
-  </tbody>
-</ng2-md-datatable>
+  <ng2-md-datatable>
+    <ng2-md-datatable-header>
+      <ng2-md-datatable-column>Day</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Slot 1</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Slot 2</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Slot 3</ng2-md-datatable-column>
+    </ng2-md-datatable-header>
+
+    <tbody>
+
+      <ng2-md-datatable-row>
+        <td>
+          Sunday
+        </td>
+        <td>
+          <md-radio-group class="radio-group" [(ngModel)]="favoriteSeason">
+            <md-radio-button class="radio-button" value = true>
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button" value = false>
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+      <ng2-md-datatable-row>
+        <td>Monday</td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+      <ng2-md-datatable-row>
+        <td>Tuesday</td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+      <ng2-md-datatable-row>
+        <td>Wednesday</td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+      <ng2-md-datatable-row>
+        <td>Thursday</td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+      <ng2-md-datatable-row>
+        <td>Saturday</td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button">
+              Item 1
+            </md-radio-button>
+            <md-radio-button class="radio-button">
+              Item 2
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+      </ng2-md-datatable-row>
+
+    </tbody>
+
+  </ng2-md-datatable>
+
 </md-card>

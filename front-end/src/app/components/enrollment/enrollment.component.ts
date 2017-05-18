@@ -17,6 +17,10 @@ import {
 
 export class EnrollmentComponent implements OnInit {
 
+  favoriteSeason: string;
+
+  seasons = 'sunday';
+
   constructor() { }
 
   ngOnInit() {
