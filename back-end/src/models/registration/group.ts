@@ -30,7 +30,7 @@ export class Group extends SEntity implements hasPermission {
 		this.maxStudents = row.max_students;
 		this.slot = row.slot;
 		this.dayOfWeek = row.day_of_week;
-		this.courseOfferingID = row.ourse_offering_id;
+		this.courseOfferingID = row.course_offering_id;
 		this.groupID = row.group_id;
 	}
 

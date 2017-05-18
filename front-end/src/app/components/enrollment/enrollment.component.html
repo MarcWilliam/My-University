@@ -13,67 +13,56 @@
         <td>
           Sunday
         </td>
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="favoriteSeason">
-            <md-radio-button class="radio-button" value = true>
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button" value = false>
-              Item 2
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
+        <td>
+          <md-radio-group class="radio-group">
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
+            </md-radio-button>
+          </md-radio-group>
+        </td>
+
       </ng2-md-datatable-row>
 
       <ng2-md-datatable-row>
         <td>Monday</td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
@@ -83,31 +72,24 @@
         <td>Tuesday</td>
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
@@ -117,31 +99,24 @@
         <td>Wednesday</td>
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
@@ -151,31 +126,24 @@
         <td>Thursday</td>
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
@@ -185,31 +153,24 @@
         <td>Saturday</td>
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot1">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot2">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>
+
         <td>
           <md-radio-group class="radio-group">
-            <md-radio-button class="radio-button">
-              Item 1
-            </md-radio-button>
-            <md-radio-button class="radio-button">
-              Item 2
+            <md-radio-button class="radio-button" *ngFor="let group of groups | callback: filterGroupSlot3">
+              {{group.slot}}
             </md-radio-button>
           </md-radio-group>
         </td>

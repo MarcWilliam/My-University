@@ -87,7 +87,7 @@ export class CourseOffering extends SEntity {
 			data[i].staffIDs = [];
 
 			for (var j in rows) {
-				data[i].staffIDs.push(rows[i].user_id);
+				data[i].staffIDs.push(rows[j].user_id);
 			}
 		}
 		return data;

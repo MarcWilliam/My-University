@@ -33,6 +33,8 @@ import { MdDataTableModule } from 'ng2-md-datatable';
 
 import { AuthenticationGuard } from './guards';
 
+import { CallbackPipe } from './pipes';
+
 import {
   ServiceFactory,
   CRUDService,
@@ -42,7 +44,8 @@ import {
   CourseService,
   DepartmentService,
   SemesterService,
-  GroupService
+  GroupService,
+  CourseOfferingService
 } from './services';
 
 
@@ -61,7 +64,8 @@ import {
     EditCourseComponent,
     EditDepartementComponent,
     EditSemesterComponent,
-    EnrollmentComponent
+    EnrollmentComponent,
+    CallbackPipe
 
   ],
   imports: [
@@ -75,7 +79,8 @@ import {
     FormsModule,
     MdDataTableModule
   ],
-  providers: [ServiceFactory,
+  providers: [
+    ServiceFactory,
     CRUDService,
     UserService,
     AuthenticationService,
@@ -84,7 +89,9 @@ import {
     AuthenticationGuard,
     DepartmentService,
     SemesterService,
-    GroupService],
+    GroupService,
+    CourseOfferingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
