@@ -32,6 +32,15 @@ export class UserRole extends SEntity {
 		CourceOfferingEnrollment: Permission
 	};
 
+	public static async ParceData(data: any[]): Promise<SEntity[]> {
+		var ret = <UserRole[]>(await super.ParceData(data));
+		for (let i in ret) {
+			ret[i].permissions = <any>(await Permission.ParceData(<any>ret[i].permissions));
+		}
+		return ret;
+	}
+
+
 	constructor() {
 		super();
 		this.name = "";
