@@ -8,12 +8,12 @@ import { Service, CRUDService } from '../services';
 @Injectable()
 export class SemesterService extends CRUDService implements Service {
 
-  constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) { 
-  	super(http, authHttp);
-    this.apiRoute = 'semesters';
-  }
-  public viewDetailsPage(id: string) {
-        this.router.navigate(['/edit-semester'], {skipLocationChange: true, queryParams: { semesterId: id } });
-    }
+	constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
+		super(http, authHttp);
+		this.apiRoute = 'semesters';
+	}
+	public viewDetailsPage(id: string) {
+		this.router.navigate(['/edit-semester'], { skipLocationChange: true, queryParams: { semesterId: id } });
+	}
 
 }

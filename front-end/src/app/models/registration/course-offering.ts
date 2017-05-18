@@ -8,10 +8,10 @@ export class CourseOffering extends SEntity {
 	courseID: number = 0;
 	semesterID: number = 0;
 	staffIDs: number[];
-	constructor(){
+	constructor() {
 		super();
-		this.courseID=0;
-		this.semesterID=0;
-		this.staffIDs=[0];
+		this.courseID = 0;
+		this.semesterID = 0;
+		this.staffIDs = [0];
 	}
 }

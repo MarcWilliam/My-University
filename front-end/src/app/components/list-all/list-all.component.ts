@@ -9,79 +9,79 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import {
-  MdDataTableComponent,
-  MdDataTablePaginationComponent,
-  IDatatableSelectionEvent,
-  IDatatableSortEvent,
-  IDatatablePaginationEvent,
-  DatatableSortType,
+	MdDataTableComponent,
+	MdDataTablePaginationComponent,
+	IDatatableSelectionEvent,
+	IDatatableSortEvent,
+	IDatatablePaginationEvent,
+	DatatableSortType,
 } from 'ng2-md-datatable';
 
 import { CRUDService, ServiceFactory } from '../../services';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-list-all',
-  templateUrl: './list-all.component.html',
-  styleUrls: ['./list-all.component.scss']
+	selector: 'app-list-all',
+	templateUrl: './list-all.component.html',
+	styleUrls: ['./list-all.component.scss']
 })
 export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
-  public data: any;
-  public headers: any;
+	public data: any;
+	public headers: any;
 
-  private crudService;
-  private currentSelection$: BehaviorSubject<string[]> = new BehaviorSubject([]);
-  private unmount$: Subject<void> = new Subject<void>();
+	private crudService;
+	private currentSelection$: BehaviorSubject<string[]> = new BehaviorSubject([]);
+	private unmount$: Subject<void> = new Subject<void>();
 
-  @ViewChild(MdDataTableComponent) datatable: MdDataTableComponent;
+	@ViewChild(MdDataTableComponent) datatable: MdDataTableComponent;
 
-  constructor(private route: ActivatedRoute, private serviceFactory: ServiceFactory) { }
+	constructor(private route: ActivatedRoute, private serviceFactory: ServiceFactory) { }
 
-  onViewDetails(id: string) {
-    this.crudService.viewDetailsPage(id);
-  }
+	onViewDetails(id: string) {
+		this.crudService.viewDetailsPage(id);
+	}
 
-  onAddNew() {
-    this.crudService.viewDetailsPage('0');
-  }
+	onAddNew() {
+		this.crudService.viewDetailsPage('0');
+	}
 
-  onDelete(arrayIndex: any) {
-    this.currentSelection$.first().subscribe(selectedData => {
+	onDelete(arrayIndex: any) {
+		this.currentSelection$.first().subscribe(selectedData => {
 
-      for (const id of selectedData) {
-        this.data = this.data.filter(selectedData => selectedData.id !== id);
-      }
+			for (const id of selectedData) {
+				this.data = this.data.filter(selectedData => selectedData.id !== id);
+			}
 
-      this.crudService.delete(selectedData).subscribe(response => {
+			this.crudService.delete(selectedData).subscribe(response => {
 
-      });
+			});
 
-    });
-  }
+		});
+	}
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.crudService = this.serviceFactory.getService(params['apiRoute']);
-      this.crudService.read().subscribe(response => {
-        if (response) {
-          this.data = this.crudService.parseData(response['data']);
-          this.headers = Object.keys(this.data[0]);
-        }
-      });
-    });
-  }
+	ngOnInit() {
+		this.route.queryParams.subscribe(params => {
+			this.crudService = this.serviceFactory.getService(params['apiRoute']);
+			this.crudService.read().subscribe(response => {
+				if (response) {
+					this.data = this.crudService.parseData(response['data']);
+					this.headers = Object.keys(this.data[0]);
+				}
+			});
+		});
+	}
 
-  ngAfterViewInit() {
-    if (this.datatable) {
-      Observable.from(this.datatable.selectionChange)
-        .takeUntil(this.unmount$)
-        .subscribe((e: IDatatableSelectionEvent) => this.currentSelection$.next(e.selectedValues));
-    }
-  }
+	ngAfterViewInit() {
+		if (this.datatable) {
+			Observable.from(this.datatable.selectionChange)
+				.takeUntil(this.unmount$)
+				.subscribe((e: IDatatableSelectionEvent) => this.currentSelection$.next(e.selectedValues));
+		}
+	}
 
-  ngOnDestroy() {
-    this.unmount$.next();
-    this.unmount$.complete();
-  }
+	ngOnDestroy() {
+		this.unmount$.next();
+		this.unmount$.complete();
+	}
 
 }

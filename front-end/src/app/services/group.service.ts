@@ -8,9 +8,9 @@ import { Service, CRUDService } from '../services';
 @Injectable()
 export class GroupService extends CRUDService implements Service {
 
-  constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
-    super(http, authHttp);
-    this.apiRoute = 'groups';
-  }
+	constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
+		super(http, authHttp);
+		this.apiRoute = 'groups';
+	}
 
 }

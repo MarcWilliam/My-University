@@ -13,53 +13,53 @@ import CONFIG from '../../app.config';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http, private userService: UserService, private router: Router) { }
+	constructor(private http: Http, private userService: UserService, private router: Router) { }
 
-    public signUp(user: any): void {
-        this.userService.register(user).subscribe(data => {
-            if (data.user && data.token) {
-                this.setCurrentUser(data);
-                this.router.navigate(['/dashboard']);
-            }
-        });
-    }
+	public signUp(user: any): void {
+		this.userService.register(user).subscribe(data => {
+			if (data.user && data.token) {
+				this.setCurrentUser(data);
+				this.router.navigate(['/dashboard']);
+			}
+		});
+	}
 
-    signIn(credentials: any) {
-        this.userService.login(credentials).subscribe(data => {
-            if (data.user && data.token) {
-                this.setCurrentUser(data);
-                this.router.navigate(['/dashboard']);
-            }
-        });
-    }
+	signIn(credentials: any) {
+		this.userService.login(credentials).subscribe(data => {
+			if (data.user && data.token) {
+				this.setCurrentUser(data);
+				this.router.navigate(['/dashboard']);
+			}
+		});
+	}
 
-    signOut() {
-        this.deleteCurrentUser();
-    }
+	signOut() {
+		this.deleteCurrentUser();
+	}
 
-    public static IsLoggedIn() {
-        return tokenNotExpired();
-    }
+	public static IsLoggedIn() {
+		return tokenNotExpired();
+	}
 
-    public isloggedIn() {
-        return AuthenticationService.IsLoggedIn();
-    }
+	public isloggedIn() {
+		return AuthenticationService.IsLoggedIn();
+	}
 
-    public getCurrentUser(): User {
-        let user = localStorage.getItem('user');
-        if (user) {
-            return JSON.parse(user);
-        }
-    }
+	public getCurrentUser(): User {
+		let user = localStorage.getItem('user');
+		if (user) {
+			return JSON.parse(user);
+		}
+	}
 
-    setCurrentUser(data) {
-        localStorage.setItem('user', JSON.stringify(data.user));
-        localStorage.setItem('token', data.token);
-    }
+	setCurrentUser(data) {
+		localStorage.setItem('user', JSON.stringify(data.user));
+		localStorage.setItem('token', data.token);
+	}
 
-    deleteCurrentUser() {
-        // remove the user and the user's token from local storage
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-    }
+	deleteCurrentUser() {
+		// remove the user and the user's token from local storage
+		localStorage.removeItem('user');
+		localStorage.removeItem('token');
+	}
 }

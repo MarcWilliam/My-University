@@ -8,9 +8,9 @@ import { Service, CRUDService } from '../services';
 @Injectable()
 export class CourseOfferingEnrollmentService extends CRUDService implements Service {
 
-  constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
-    super(http, authHttp);
-    this.apiRoute = 'cource_offering_enrollments';
-  }
+	constructor(protected http: Http, protected authHttp: AuthHttp, private router: Router) {
+		super(http, authHttp);
+		this.apiRoute = 'cource_offering_enrollments';
+	}
 
 }

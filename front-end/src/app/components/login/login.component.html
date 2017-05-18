@@ -1,49 +1,49 @@
 <md-grid-list class="mat-app-background" cols="1" rowHeight="974px">
-    <md-grid-tile>
-        <md-card class="my-card">
-            <md-card-header>
-                <md-card-title>Sign In</md-card-title>
-                <md-card-subtitle>My university</md-card-subtitle>
-            </md-card-header>
+	<md-grid-tile>
+		<md-card class="my-card">
+			<md-card-header>
+				<md-card-title>Sign In</md-card-title>
+				<md-card-subtitle>My university</md-card-subtitle>
+			</md-card-header>
 
-            <form [formGroup]="signInForm" (ngSubmit)="onSignInFormSubmit()">
-                <md-card-content>
-                    <md-grid-list cols="1" rowHeight="3.5rem">
-                        <md-grid-tile>
-                            <md-input-container color="primary">
-                                <input mdInput type="email" placeholder="Email" name="email" formControlName="email" required />
-                                <md-hint *ngIf="signInForm.controls['email'].hasError('pattern')" align="end">
-                                    Enter a valid email
-                                </md-hint>
-                            </md-input-container>
-                        </md-grid-tile>
-                        <md-grid-tile>
-                            <md-input-container color="primary">
-                                <input mdInput type="password" placeholder="Password" name="password" formControlName="password" required />
-                                <md-hint *ngIf="signInForm.controls['password'].hasError('minlength')" align="end">
-                                    Enter at least 6 characters
-                                </md-hint>
-                            </md-input-container>
-                        </md-grid-tile>
-                    </md-grid-list>
-                </md-card-content>
+			<form [formGroup]="signInForm" (ngSubmit)="onSignInFormSubmit()">
+				<md-card-content>
+					<md-grid-list cols="1" rowHeight="3.5rem">
+						<md-grid-tile>
+							<md-input-container color="primary">
+								<input mdInput type="email" placeholder="Email" name="email" formControlName="email" required />
+								<md-hint *ngIf="signInForm.controls['email'].hasError('pattern')" align="end">
+									Enter a valid email
+								</md-hint>
+							</md-input-container>
+						</md-grid-tile>
+						<md-grid-tile>
+							<md-input-container color="primary">
+								<input mdInput type="password" placeholder="Password" name="password" formControlName="password" required />
+								<md-hint *ngIf="signInForm.controls['password'].hasError('minlength')" align="end">
+									Enter at least 6 characters
+								</md-hint>
+							</md-input-container>
+						</md-grid-tile>
+					</md-grid-list>
+				</md-card-content>
 
-                <md-card-actions>
-                    <md-grid-list cols="3" rowHeight="50px">
-                        <md-grid-tile colspan="3">
-                            <button type="submit" md-raised-button color="primary" [disabled]="signInForm.controls['email'].hasError('required') || signInForm.controls['password'].hasError('required') || signInForm.controls['email'].hasError('pattern') || signInForm.controls['password'].hasError('minlength')">
+				<md-card-actions>
+					<md-grid-list cols="3" rowHeight="50px">
+						<md-grid-tile colspan="3">
+							<button type="submit" md-raised-button color="primary" [disabled]="signInForm.controls['email'].hasError('required') || signInForm.controls['password'].hasError('required') || signInForm.controls['email'].hasError('pattern') || signInForm.controls['password'].hasError('minlength')">
                                     SIGN IN
                             </button>
-                        </md-grid-tile>
-                        <md-grid-tile colspan="3">
-                            <a routerLink="/registration">
-                                <p>Need an account?</p>
-                            </a>
-                        </md-grid-tile>
-                    </md-grid-list>
-                </md-card-actions>
-            </form>
+						</md-grid-tile>
+						<md-grid-tile colspan="3">
+							<a routerLink="/registration">
+								<p>Need an account?</p>
+							</a>
+						</md-grid-tile>
+					</md-grid-list>
+				</md-card-actions>
+			</form>
 
-        </md-card>
-    </md-grid-tile>
+		</md-card>
+	</md-grid-tile>
 </md-grid-list>

@@ -1,47 +1,47 @@
 <form #editProfile="ngForm" (ngSubmit)="onSave()">
-    <md-card>
-        <md-grid-list cols="3" rowHeight="100px">
+	<md-card>
+		<md-grid-list cols="3" rowHeight="100px">
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.name" name="name" placeholder="Name" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.name" name="name" placeholder="Name" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.code" name="code" placeholder="Code" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.code" name="code" placeholder="Code" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.description" name="discription" placeholder="discription" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.description" name="discription" placeholder="discription" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.creditHours" name="creditHour" placeholder="creditHour" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.creditHours" name="creditHour" placeholder="creditHour" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.level" name="level" placeholder="Level" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.level" name="level" placeholder="Level" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile>
-                <md-input-container class="input-profile">
-                    <input mdInput [(ngModel)]="course.departmentID" name="departementID" placeholder="DepartementID" value="">
-                </md-input-container>
-            </md-grid-tile>
+			<md-grid-tile>
+				<md-input-container class="input-profile">
+					<input mdInput [(ngModel)]="course.departmentID" name="departementID" placeholder="DepartementID" value="">
+				</md-input-container>
+			</md-grid-tile>
 
-            <md-grid-tile colspan="3">
-                <button color="primary" md-raised-button>Save</button>
-            </md-grid-tile>
+			<md-grid-tile colspan="3">
+				<button color="primary" md-raised-button>Save</button>
+			</md-grid-tile>
 
-        </md-grid-list>
-    </md-card>
+		</md-grid-list>
+	</md-card>
 </form>

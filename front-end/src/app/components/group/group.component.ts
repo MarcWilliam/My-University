@@ -3,19 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services';
 
 @Component({
-  selector: 'app-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss']
+	selector: 'app-group',
+	templateUrl: './group.component.html',
+	styleUrls: ['./group.component.scss']
 })
 export class GroupComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService)  { }
+	constructor(private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-    onLogOutTapped(): any {
-    this.authenticationService.signOut();
-  }
+	onLogOutTapped(): any {
+		this.authenticationService.signOut();
+	}
 
 }

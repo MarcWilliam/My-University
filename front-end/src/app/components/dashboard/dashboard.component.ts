@@ -3,23 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceFactory, AuthenticationService, UserService } from '../../services';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+	selector: 'app-dashboard',
+	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private serviceFactory: ServiceFactory, private authenticationService: AuthenticationService, private userService: UserService) { }
+	constructor(private serviceFactory: ServiceFactory,
+		private authenticationService: AuthenticationService,
+		private userService: UserService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  onLogOutTapped(): any {
-    this.authenticationService.signOut();
-  }
+	onLogOutTapped(): any {
+		this.authenticationService.signOut();
+	}
 
-  onTest(): any {
-    this.userService.read('7').subscribe((user) => { console.log(user) });
-  }
+	onTest(): any {
+		this.userService.read('7').subscribe((user) => { console.log(user) });
+	}
 
 }

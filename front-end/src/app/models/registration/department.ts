@@ -11,8 +11,8 @@ export class Department extends SEntity {
 
 	constructor() {
 		super();
-		this.name='';
-		this.description='';
+		this.name = '';
+		this.description = '';
 	}
 
 }

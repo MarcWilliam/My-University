@@ -12,19 +12,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from '@angular/material';
 
 import {
-  RegistrationComponent,
-  LoginComponent,
-  HomeComponent,
-  DashboardComponent,
-  GroupComponent,
-  UserRoleViewComponent,
-  ListAllComponent,
-  UserRoleEditComponent,
-  EditProfileComponent,
-  EditCourseComponent,
-  EditDepartementComponent,
-  EditSemesterComponent,
-  EnrollmentComponent
+	RegistrationComponent,
+	LoginComponent,
+	HomeComponent,
+	DashboardComponent,
+	GroupComponent,
+	UserRoleViewComponent,
+	ListAllComponent,
+	UserRoleEditComponent,
+	EditProfileComponent,
+	EditCourseComponent,
+	EditDepartementComponent,
+	EditSemesterComponent,
+	EnrollmentComponent
 } from './components';
 
 import { AuthHttpModule } from './modules';
@@ -36,64 +36,64 @@ import { AuthenticationGuard } from './guards';
 import { CallbackPipe } from './pipes';
 
 import {
-  ServiceFactory,
-  CRUDService,
-  UserService,
-  AuthenticationService,
-  UserRoleService,
-  CourseService,
-  DepartmentService,
-  SemesterService,
-  GroupService,
-  CourseOfferingService,
-  CourseOfferingEnrollmentService,
+	ServiceFactory,
+	CRUDService,
+	UserService,
+	AuthenticationService,
+	UserRoleService,
+	CourseService,
+	DepartmentService,
+	SemesterService,
+	GroupService,
+	CourseOfferingService,
+	CourseOfferingEnrollmentService,
 } from './services';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegistrationComponent,
-    LoginComponent,
-    HomeComponent,
-    DashboardComponent,
-    GroupComponent,
-    UserRoleViewComponent,
-    ListAllComponent,
-    UserRoleEditComponent,
-    EditProfileComponent,
-    EditCourseComponent,
-    EditDepartementComponent,
-    EditSemesterComponent,
-    EnrollmentComponent,
-    CallbackPipe
+	declarations: [
+		AppComponent,
+		RegistrationComponent,
+		LoginComponent,
+		HomeComponent,
+		DashboardComponent,
+		GroupComponent,
+		UserRoleViewComponent,
+		ListAllComponent,
+		UserRoleEditComponent,
+		EditProfileComponent,
+		EditCourseComponent,
+		EditDepartementComponent,
+		EditSemesterComponent,
+		EnrollmentComponent,
+		CallbackPipe
 
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpModule,
-    AuthHttpModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    MdDataTableModule
-  ],
-  providers: [
-    ServiceFactory,
-    CRUDService,
-    UserService,
-    AuthenticationService,
-    UserRoleService,
-    CourseService,
-    AuthenticationGuard,
-    DepartmentService,
-    SemesterService,
-    GroupService,
-    CourseOfferingService,
-    CourseOfferingEnrollmentService
-  ],
-  bootstrap: [AppComponent]
+	],
+	imports: [
+		BrowserModule,
+		ReactiveFormsModule,
+		HttpModule,
+		AuthHttpModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MaterialModule,
+		FormsModule,
+		MdDataTableModule
+	],
+	providers: [
+		ServiceFactory,
+		CRUDService,
+		UserService,
+		AuthenticationService,
+		UserRoleService,
+		CourseService,
+		AuthenticationGuard,
+		DepartmentService,
+		SemesterService,
+		GroupService,
+		CourseOfferingService,
+		CourseOfferingEnrollmentService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

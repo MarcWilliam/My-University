@@ -1,194 +1,194 @@
 <md-card>
-  <md-card-title>
-    <button md-raised-button color="warn" (click)="onReset()">
+	<md-card-title>
+		<button md-raised-button color="warn" (click)="onReset()">
         <md-icon>restore_page</md-icon>
         <span>Reset Courses</span>
   </button>
-    <button md-raised-button color="accent" (click)="onEnroll()">
+		<button md-raised-button color="accent" (click)="onEnroll()">
         <md-icon>assignment_ind</md-icon>
         <span>Enroll Now</span>
   </button>
-  </md-card-title>
+	</md-card-title>
 
-  <ng2-md-datatable>
-    <ng2-md-datatable-header>
-      <ng2-md-datatable-column>Day</ng2-md-datatable-column>
-      <ng2-md-datatable-column> 9-11</ng2-md-datatable-column>
-      <ng2-md-datatable-column>11-1</ng2-md-datatable-column>
-      <ng2-md-datatable-column>1-3</ng2-md-datatable-column>
-    </ng2-md-datatable-header>
+	<ng2-md-datatable>
+		<ng2-md-datatable-header>
+			<ng2-md-datatable-column>Day</ng2-md-datatable-column>
+			<ng2-md-datatable-column> 9-11</ng2-md-datatable-column>
+			<ng2-md-datatable-column>11-1</ng2-md-datatable-column>
+			<ng2-md-datatable-column>1-3</ng2-md-datatable-column>
+		</ng2-md-datatable-header>
 
-    <tbody>
+		<tbody>
 
-      <ng2-md-datatable-row>
-        <td>
-          Sunday
-        </td>
+			<ng2-md-datatable-row>
+				<td>
+					Sunday
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[0]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[0]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[1]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[1]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[2]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[2]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-      </ng2-md-datatable-row>
+			</ng2-md-datatable-row>
 
-      <ng2-md-datatable-row>
-        <td>Monday</td>
+			<ng2-md-datatable-row>
+				<td>Monday</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[3]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[3]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[4]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[4]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[5]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
-      </ng2-md-datatable-row>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[5]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
+			</ng2-md-datatable-row>
 
-      <ng2-md-datatable-row>
-        <td>Tuesday</td>
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[6]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+			<ng2-md-datatable-row>
+				<td>Tuesday</td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[6]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[7]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[7]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[8]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
-      </ng2-md-datatable-row>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[8]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
+			</ng2-md-datatable-row>
 
-      <ng2-md-datatable-row>
-        <td>Wednesday</td>
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[9]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+			<ng2-md-datatable-row>
+				<td>Wednesday</td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[9]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[10]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[10]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[11]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
-      </ng2-md-datatable-row>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[11]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
+			</ng2-md-datatable-row>
 
-      <ng2-md-datatable-row>
-        <td>Thursday</td>
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[12]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+			<ng2-md-datatable-row>
+				<td>Thursday</td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[12]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[13]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[13]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[14]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
-      </ng2-md-datatable-row>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[14]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
+			</ng2-md-datatable-row>
 
-      <ng2-md-datatable-row>
-        <td>Saturday</td>
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[15]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+			<ng2-md-datatable-row>
+				<td>Saturday</td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[15]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot1">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[16]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[16]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot2">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
 
-        <td>
-          <md-radio-group class="radio-group" [(ngModel)]="selectedCourses[17]">
-            <md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
-              {{ courseMap[group.courseOfferingID]?.data.name }}
-            </md-radio-button>
-          </md-radio-group>
-        </td>
-      </ng2-md-datatable-row>
+				<td>
+					<md-radio-group class="radio-group" [(ngModel)]="selectedCourses[17]">
+						<md-radio-button class="radio-button" [value]="group.courseOfferingID" *ngFor="let group of groups | callback: filterGroupSlot3">
+							{{ courseMap[group.courseOfferingID]?.data.name }}
+						</md-radio-button>
+					</md-radio-group>
+				</td>
+			</ng2-md-datatable-row>
 
-    </tbody>
+		</tbody>
 
-  </ng2-md-datatable>
+	</ng2-md-datatable>
 
 </md-card>
