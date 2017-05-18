@@ -10,7 +10,7 @@ import { CourseService } from '../../services';
 export class EditCourseComponent implements OnInit {
 
  	private course :Course ;
-
+  private isNew: boolean;
   constructor(private route: ActivatedRoute, private courseService: CourseService) { 
   	this.course= new Course();
   }
@@ -18,16 +18,25 @@ export class EditCourseComponent implements OnInit {
   ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
-      const courseId = params['courseId'];
+        const courseId = params['courseId'];
+        this.isNew = courseId == '0';
+        if(!this.isNew){
         this.courseService.read('id', [courseId]).subscribe(response => {
           this.course = <Course>response['data'][0];
         });
+      }
     });
     
   }
   onSave() {
-    this.courseService.update([this.course]).subscribe(result => {
+    if (this.isNew) {
+      this.courseService.create([this.course]).subscribe(result => {
     });
+    }
+    else{
+      this.courseService.update([this.course]).subscribe(result => {
+    });
+    }
   }
 }
  
