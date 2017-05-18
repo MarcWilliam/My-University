@@ -36,19 +36,20 @@ export class AuthenticationService {
     signOut() {
         this.deleteCurrentUser();
     }
-    isloggedIn() {
+
+    public static IsLoggedIn() {
         return tokenNotExpired();
     }
 
-    public static GetCurrentUser(): User {
+    public isloggedIn() {
+        return AuthenticationService.IsLoggedIn();
+    }
+
+    public getCurrentUser(): User {
         let user = localStorage.getItem('user');
         if (user) {
             return JSON.parse(user);
         }
-    }
-
-    public getCurrentUser(): User {
-        return AuthenticationService.GetCurrentUser();
     }
 
     setCurrentUser(data) {
