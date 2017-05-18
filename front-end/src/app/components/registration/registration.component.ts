@@ -39,16 +39,11 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', []],
-	  name: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required, Validators.minLength(6)]],
       birthDate: ['', [Validators.required, Validators.pattern(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/)]],
-	  gender: ['', []],
-	  phone: ['', [Validators.required, Validators.minLength(10),Validators.pattern(/^01[0-2][0-9]{8}$/)]]
-
-
-	  
-
-
-    })
+      gender: ['', []],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern(/^01[0-2][0-9]{8}$/)]]
+    });
   }
 
   onSignUpFormSubmit(): void {
@@ -58,8 +53,7 @@ export class RegistrationComponent implements OnInit {
     user.email = this.signUpForm.value.email;
     user.password = this.signUpForm.value.password;
     user.role = this.signUpForm.value.role;
-	user.gender = this.signUpForm.value.gender;
+    user.gender = this.signUpForm.value.gender;
     this.authenticationService.signUp(user);
   }
-
 }
