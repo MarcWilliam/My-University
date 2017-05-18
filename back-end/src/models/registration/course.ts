@@ -67,7 +67,7 @@ export class Course extends SEntity {
 		for (var i in <Course>data) {
 			for (var j in data[i].prerequisitesIDs) {
 				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]));
+					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[j] }]));
 			}
 		}
 
@@ -95,7 +95,7 @@ export class Course extends SEntity {
 
 			for (var j in data[i].prerequisitesIDs) {
 				let [rows, fields] = (await conn.query(`INSERT INTO ?? SET ?`,
-					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[i] }]));
+					[this.DB_TABLE.REL.PREREQUISITE, { 'course_id': data[i].id, 'prerequisite_id': data[i].prerequisitesIDs[j] }]));
 			}
 		}
 
@@ -112,7 +112,7 @@ export class Course extends SEntity {
 			data[i].prerequisitesIDs = [];
 
 			for (var j in rows) {
-				data[i].prerequisitesIDs.push(rows[i].prerequisite_id);
+				data[i].prerequisitesIDs.push(rows[j].prerequisite_id);
 			}
 		}
 		return data;

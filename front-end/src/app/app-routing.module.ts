@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './guards';
 
 import { AppComponent } from './app.component';
+import { AuthenticationService } from './services';
 
 import {
   RegistrationComponent,
@@ -16,10 +17,12 @@ import {
   EditCourseComponent,
   ListAllComponent,
   EditDepartementComponent,
-  EditSemesterComponent
+  EditSemesterComponent,
+  EnrollmentComponent
 } from './components';
 
 
+const defaultRoute = AuthenticationService.IsLoggedIn() ? '/home' : 'login';
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
@@ -29,12 +32,13 @@ const appRoutes: Routes = [
   { path: 'permissions', component: UserRoleViewComponent },
   { path: 'edit-permissions', component: UserRoleEditComponent },
   { path: 'list-all', component: ListAllComponent, canActivate: [AuthenticationGuard] },
+  { path: 'enrollment', component: EnrollmentComponent },
   { path: 'edit-course', component: EditCourseComponent },
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthenticationGuard] },
   { path: 'edit-departement', component: EditDepartementComponent },
   { path: 'edit-semester', component: EditSemesterComponent },
 
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default url
+  { path: '', redirectTo: defaultRoute, pathMatch: 'full' }, // Default url
   { path: '**', component: LoginComponent } // Wrong path ==> 404 url
 ];
 

@@ -21,7 +21,6 @@ export class UserRoleService extends CRUDService implements Service {
     }
 
   public parseEntry(entry: any) {
-    //console.log(entry.permissions);
     delete entry.permissions;
     entry.createdAt = this.datePipe.transform(entry.createdAt, 'medium');
     entry.updatedAt = this.datePipe.transform(entry.updatedAt, 'medium');

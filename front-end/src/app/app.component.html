@@ -4,6 +4,7 @@
         <md-nav-list>
             <a md-list-item routerLink="/dashboard">Dashboard</a>
             <a md-list-item routerLink="/home">Home</a>
+              <a md-list-item routerLink="/enrollment">Enrollment</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: userService.apiRoute }" skipLocationChange>Users</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: UserRoleService.apiRoute }" skipLocationChange>User Roles</a>
             <a md-list-item routerLink="/list-all" [queryParams]="{ apiRoute: courseService.apiRoute }" skipLocationChange>Courses</a>

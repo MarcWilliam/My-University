@@ -2,12 +2,12 @@
 
 <md-card-title>
   <button md-raised-button color="warn" (click)="onDelete()">
-        <span>Delete Selected</span>
         <md-icon>delete_forever</md-icon>
+        <span>Delete Selected</span>
   </button>
   <button md-raised-button color="accent" (click)="onAddNew()">
-        <span>Add new</span>
         <md-icon>add_box</md-icon>
+        <span>Add new</span>
   </button>
   </md-card-title>
 
@@ -21,6 +21,7 @@
       <td>
         <button md-icon-button (click)="onViewDetails(entry.id)">
             <md-icon>visibility</md-icon>
+            <span>View</span>
         </button>
       </td>
     </ng2-md-datatable-row>

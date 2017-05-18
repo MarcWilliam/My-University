@@ -63,8 +63,10 @@ export class ListAllComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.queryParams.subscribe(params => {
       this.crudService = this.serviceFactory.getService(params['apiRoute']);
       this.crudService.read().subscribe(response => {
-        this.data = this.crudService.parseData(response['data']);
-        this.headers = Object.keys(this.data[0]);
+        if (response) {
+          this.data = this.crudService.parseData(response['data']);
+          this.headers = Object.keys(this.data[0]);
+        }
       });
     });
   }
