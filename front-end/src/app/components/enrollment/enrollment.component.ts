@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GroupService } from '../../services/group.service';
 
 import {
   MdDataTableComponent,
@@ -21,7 +22,7 @@ export class EnrollmentComponent implements OnInit {
 
   seasons = 'sunday';
 
-  constructor() { }
+  constructor(private groupService: GroupService) { }
 
   ngOnInit() {
   }

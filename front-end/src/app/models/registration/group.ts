@@ -10,18 +10,19 @@ export class Group extends SEntity implements hasPermission {
 
 	name: String;
 	maxStudents: number;
-	startTime ;
-	durationTime;
+	slot: number;
+	dayOfWeek: number;
 	courseOfferingID: number;
 	groupID: number;
-	constructor(){
-	 super();
-	 this.name='';
-	 this.maxStudents=0;
-	 this.startTime=0;
-	 this.durationTime=0;
-	 this.courseOfferingID=0;
-	 this.groupID=0;
+
+	constructor() {
+		super();
+		this.name = '';
+		this.maxStudents = 0;
+		this.slot = 0;
+		this.dayOfWeek = 0;
+		this.courseOfferingID = 0;
+		this.groupID = 0;
 	}
 
 }

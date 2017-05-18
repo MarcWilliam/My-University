@@ -27,13 +27,24 @@ import {
   EnrollmentComponent
 } from './components';
 
-import { ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, CourseService , DepartmentService ,SemesterService } from './services';
-
 import { AuthHttpModule } from './modules';
 import { FormsModule } from '@angular/forms';
 import { MdDataTableModule } from 'ng2-md-datatable';
 
 import { AuthenticationGuard } from './guards';
+
+import {
+  ServiceFactory,
+  CRUDService,
+  UserService,
+  AuthenticationService,
+  UserRoleService,
+  CourseService,
+  DepartmentService,
+  SemesterService,
+  GroupService
+} from './services';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +75,16 @@ import { AuthenticationGuard } from './guards';
     FormsModule,
     MdDataTableModule
   ],
-  providers: [ServiceFactory, CRUDService, UserService, AuthenticationService, UserRoleService, CourseService, AuthenticationGuard,DepartmentService,SemesterService],
+  providers: [ServiceFactory,
+    CRUDService,
+    UserService,
+    AuthenticationService,
+    UserRoleService,
+    CourseService,
+    AuthenticationGuard,
+    DepartmentService,
+    SemesterService,
+    GroupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
