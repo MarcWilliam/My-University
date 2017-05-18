@@ -18,8 +18,8 @@ export class Group extends SEntity implements hasPermission {
 
 	name: String;
 	maxStudents: number;
-	startTime;
-	durationTime;
+	slot: number;
+	dayOfWeek: number;
 	courseOfferingID: number;
 	groupID: number;
 
@@ -28,8 +28,8 @@ export class Group extends SEntity implements hasPermission {
 
 		this.name = row.name;
 		this.maxStudents = row.max_students;
-		this.startTime = row.start_time;
-		this.durationTime = row.duration_time;
+		this.slot = row.slot;
+		this.dayOfWeek = row.day_of_week;
 		this.courseOfferingID = row.ourse_offering_id;
 		this.groupID = row.group_id;
 	}
@@ -39,8 +39,8 @@ export class Group extends SEntity implements hasPermission {
 
 		row.name = this.name;
 		row.max_students = this.maxStudents;
-		row.start_time = this.startTime;
-		row.duration_time = this.durationTime;
+		row.slot = this.slot;
+		row.day_of_week = this.dayOfWeek;
 		row.course_offering_id = this.courseOfferingID;
 		row.group_id = this.groupID;
 
